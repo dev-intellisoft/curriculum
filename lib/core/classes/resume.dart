@@ -97,19 +97,9 @@ class Resume {
     return resumes;
   }
 
-  Future<dynamic> save() async {
-    try {
-      var data = await DatabaseHelper.instance.saveResume(this);
-      print(data);
-    } catch (e) {
-      print(e);
-    }
-  }
-
-
   Map<String, dynamic> prepareInsert() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['id'] = id;
+    data['resume_id'] = id;
     data['name'] = name;
     data['first_name'] = firstName;
     data['last_name'] = lastName;

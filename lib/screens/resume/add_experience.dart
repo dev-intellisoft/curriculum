@@ -53,7 +53,7 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
             margin: const EdgeInsets.only(left: 15, right: 15),
             child: ListView(
               children: [
-                const SizedBox(height: 10,),
+                const SizedBox(height: 15,),
                 TextFormField(
                   controller: _company,
                   onChanged: (value) {

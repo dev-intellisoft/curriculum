@@ -1,10 +1,16 @@
 import 'package:flutter/cupertino.dart';
-import 'package:curriculum/core/classes/resume.dart' as r;
+import 'package:curriculum/core/classes/resume.dart';
 import 'package:curriculum/core/classes/experience.dart';
 import 'package:curriculum/core/classes/education.dart';
 
+import '../database_helper.dart';
+
 class ResumeProvider with ChangeNotifier {
-  r.Resume resume = r.Resume(experiences: [], educations: []);
+  Resume resume = Resume(experiences: [], educations: []);
+
+  Resume getResume() {
+    return resume;
+  }
 
   void saveExperience(Experience experience) {
     if ( experience.tempId == null ) {
@@ -42,5 +48,16 @@ class ResumeProvider with ChangeNotifier {
 
   List<Experience>? getExperience () {
     return resume.experiences ?? [];
+  }
+
+  void saveResume(Resume resume) async {
+    if ( resume.id! > 0) {
+      await DatabaseHelper.instance.updateResume(resume);
+    } else {
+      int resumeId = await DatabaseHelper.instance.saveResume(resume);
+      resume.id = resumeId;
+    }
+    resume = resume;
+    notifyListeners();
   }
 }

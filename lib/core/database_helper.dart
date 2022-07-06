@@ -95,6 +95,11 @@ class DatabaseHelper {
     return await db.rawQuery('SELECT * FROM resumes');
   }
 
+  Future<int> updateResume (Resume resume) async {
+    Database db = await instance.database;
+    return await db.update('resumes', resume.prepareInsert(), where: 'resume_id=?', whereArgs: [resume.id]);
+  }
+
   Future<int> saveResume(Resume resume) async {
     Database db = await instance.database;
     return await db.insert('resumes', resume.prepareInsert());
