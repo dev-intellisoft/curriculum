@@ -24,36 +24,50 @@ class DatabaseHelper {
   Future _onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE user(
-          id INTEGER PRIMARY KEY,
-          username TEXT,
-          password TEXT
+        id INTEGER PRIMARY KEY,
+        username TEXT,
+        password TEXT
       )
       ''');
 
     await db.execute('''
       CREATE TABLE resumes(
-            id INTEGER PRIMARY KEY,
-            name TEXT,
-            first_name TEXT,
-            last_name TEXT,
-            telephone TEXT,
-            email TEXT,
-            location TEXT,
-            linked_in TEXT,
-            github TEXT
+        resume_id INTEGER PRIMARY KEY,
+        name TEXT,
+        first_name TEXT,
+        last_name TEXT,
+        telephone TEXT,
+        email TEXT,
+        location TEXT,
+        linked_in TEXT,
+        github TEXT
         )
     ''');
 
     await db.execute('''
       CREATE TABLE experiences(
-        id INTEGER PRIMARY KEY,
+        experience_id INTEGER PRIMARY KEY,
+        resume_id INTEGER,
         company TEXT,
-        job_title TEXT,
+        title TEXT,
         location TEXT,
         start TEXT,
         end TEXT,
         keywords TEXT,
         description TEXT
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE educations (
+        education_id INTEGER PRIMARY KEY,
+        resume_id INTEGER,
+        course TEXT,
+        institution TEXT,
+        location TEXT,
+        description TEXT,
+        start TEXT,
+        end TEXT
       )
     ''');
   }
