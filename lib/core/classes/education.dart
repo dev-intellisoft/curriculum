@@ -3,6 +3,8 @@ class Education {
   int? tempId;
   String? course;
   String? institution;
+  String? location;
+  String? description;
   String? start;
   String? end;
 
@@ -10,6 +12,8 @@ class Education {
     this.id,
     this.course,
     this.institution,
+    this.description,
+    this.location,
     this.start,
     this.end
   });
@@ -18,6 +22,8 @@ class Education {
     id = json['id'];
     course = json['course'];
     institution = json['institution'];
+    description = json['description'];
+    location = json['location'];
     start = json['start'];
     end = json['end'];
   }
@@ -27,6 +33,8 @@ class Education {
     data['id'] = id;
     data['course'] = course;
     data['institution'] = institution;
+    data['location'] = location;
+    data['description'] = description;
     data['start'] = start;
     data['end'] = end;
     return data;

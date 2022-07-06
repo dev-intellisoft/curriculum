@@ -4,7 +4,7 @@ import 'package:curriculum/core/classes/experience.dart';
 import 'package:curriculum/core/classes/education.dart';
 
 class ResumeProvider with ChangeNotifier {
-  r.Resume resume = r.Resume(experiences: [], education: []);
+  r.Resume resume = r.Resume(experiences: [], educations: []);
 
   void saveExperience(Experience experience) {
     if ( experience.tempId == null ) {
@@ -23,15 +23,23 @@ class ResumeProvider with ChangeNotifier {
 
   void saveEducation(Education education) {
     if ( education.tempId == null ) {
-      education.tempId = resume.education!.length;
-      resume.education!.add(education);
+      education.tempId = resume.educations!.length;
+      resume.educations!.add(education);
     } else {
-      resume.education![education.tempId!] = education;
+      resume.educations![education.tempId!] = education;
     }
     notifyListeners();
   }
 
-  List<Education>? get getEducations => resume.education;
+  void removeEducation(int index) {
+    resume.educations!.removeAt(index);
+    notifyListeners();
+  }
+
+  List<Education>? getEducations() {
+    return resume.educations ?? [];
+  }
+
   List<Experience>? getExperience () {
     return resume.experiences ?? [];
   }

@@ -1,4 +1,5 @@
 import 'package:curriculum/core/classes/resume.dart';
+import 'package:curriculum/screens/resume/educations.dart';
 import 'package:curriculum/screens/resume/experiences.dart';
 import 'package:curriculum/screens/resume/personal.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,7 +24,10 @@ class _ProfileWidget extends State<ProfileWidget> {
 
   Widget _render(int index)  {
     if ( index == 1 ) {
-      return ExperiencesWidget();
+      return const ExperiencesScreen();
+    }
+    if ( index == 2 ) {
+      return const EducationsScreen();
     }
     return PersonalWidget(resume: resume);
   }
@@ -50,7 +54,7 @@ class _ProfileWidget extends State<ProfileWidget> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.school),
-              label: 'Graduations',
+              label: 'Education',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),

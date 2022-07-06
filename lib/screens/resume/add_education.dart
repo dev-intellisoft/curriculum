@@ -1,28 +1,26 @@
-import 'package:curriculum/core/classes/experience.dart';
-import 'package:curriculum/screens/resume/experiences.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:curriculum/core/classes/education.dart';
+import 'package:curriculum/screens/resume/educations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
 
-class AddExperienceWidget extends StatefulWidget {
-  Experience experience;
-  AddExperienceWidget({ Key? key, required this.experience }) : super(key: key);
+class AddEducationWidget extends StatefulWidget {
+  Education education;
+  AddEducationWidget({ Key? key, required this.education }) : super(key: key);
 
   @override
-  _AddExperienceWidget createState() => _AddExperienceWidget();
+  _AddEducationWidget createState() => _AddEducationWidget();
 }
 
-class _AddExperienceWidget extends State<AddExperienceWidget> {
+class _AddEducationWidget extends State<AddEducationWidget> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController _company = TextEditingController(text: widget.experience.company);
-    TextEditingController _title = TextEditingController(text: widget.experience.title);
-    TextEditingController _location = TextEditingController(text: widget.experience.location);
-    TextEditingController _description = TextEditingController(text: widget.experience.description);
-    TextEditingController _start = TextEditingController(text: widget.experience.start);
-    TextEditingController _end = TextEditingController(text: widget.experience.end);
-
+    TextEditingController _start = TextEditingController(text: widget.education.start);
+    TextEditingController _end = TextEditingController(text: widget.education.end);
+    TextEditingController _institution = TextEditingController(text: widget.education.institution);
+    TextEditingController _course = TextEditingController(text: widget.education.course);
+    TextEditingController _location = TextEditingController(text: widget.education.location);
+    TextEditingController _description = TextEditingController(text: widget.education.description);
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -32,13 +30,13 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Add Experience'),
+          title: const Text('Add Education'),
           actions: [
             GestureDetector(
               onTap: () {
-                context.read<ResumeProvider>().saveExperience(widget.experience);
+                context.read<ResumeProvider>().saveEducation(widget.education);
                 Navigator.pop(context, MaterialPageRoute(builder: (_) {
-                  return const ExperiencesScreen();
+                  return const EducationsScreen();
                 }));
               },
               child: Container(
@@ -55,29 +53,29 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
               children: [
                 const SizedBox(height: 10,),
                 TextFormField(
-                  controller: _company,
+                  controller: _institution,
                   onChanged: (value) {
-                    widget.experience.company = value;
+                    widget.education.institution = value;
                   },
                   decoration: const InputDecoration(
-                    labelText: 'Company'
+                    labelText: 'Institution'
                   ),
                 ),
                 const SizedBox(height: 15,),
                 TextFormField(
-                  controller: _title,
+                  controller: _course,
                   onChanged: (value) {
-                    widget.experience.title = value;
+                    widget.education.course = value;
                   },
                   decoration: const InputDecoration(
-                      labelText: 'Job Title'
+                      labelText: 'Course'
                   ),
                 ),
                 const SizedBox(height: 15,),
                 TextFormField(
                   controller: _location,
                   onChanged: (value) {
-                    widget.experience.location = value;
+                    widget.education.location = value;
                   },
                   decoration: const InputDecoration(
                       labelText: 'Location',
@@ -104,7 +102,7 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                           );
 
                           if(pickedDate != null ){
-                            widget.experience.start = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+                            widget.education.start = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
                             _start.text = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
                           }
                         },
@@ -131,40 +129,28 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                           );
 
                           if(pickedDate != null ){
-                            widget.experience.end = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+                            widget.education.end = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
                             setState(() {
                               _end.text = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
                             });
                           }
                         },
                       ),
-                    )
+                    ),
                   ],
                 ),
-
-                const SizedBox(height: 15,),
-                TextFormField(
-                  onChanged: (value) {
-                    // widget.experience!.keywords = value;
-                  },
-                  decoration: const InputDecoration(
-                    labelText: 'Keywords',
-                  ),
-                ),
-
                 const SizedBox(height: 15,),
                 TextFormField(
                   controller: _description,
                   onChanged: (value) {
-                    widget.experience.description = value;
+                    widget.education.description = value;
                   },
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
                   decoration: const InputDecoration(
-                      labelText: 'Description',
+                    labelText: 'Description',
                   ),
                 ),
-
               ],
             ),
           ),

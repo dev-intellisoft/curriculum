@@ -6,14 +6,14 @@ import 'package:provider/provider.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class ExperiencesWidget extends StatefulWidget {
-  const ExperiencesWidget({ Key? key }) : super(key: key);
+class ExperiencesScreen extends StatefulWidget {
+  const ExperiencesScreen({ Key? key }) : super(key: key);
 
   @override
-  _ExperiencesWidget createState() => _ExperiencesWidget();
+  _ExperiencesScreen createState() => _ExperiencesScreen();
 }
 
-class _ExperiencesWidget extends State<ExperiencesWidget> {
+class _ExperiencesScreen extends State<ExperiencesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,8 +85,7 @@ class _ExperiencesWidget extends State<ExperiencesWidget> {
             },
           );
       }
-      ),
-    );
+    ),);
   }
 
 }

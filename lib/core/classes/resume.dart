@@ -14,7 +14,7 @@ class Resume {
   String? linkedIn;
   String? github;
   List<Experience>? experiences;
-  List<Education>? education;
+  List<Education>? educations;
   List<String>? languages;
   List<String>? skills;
 
@@ -29,7 +29,7 @@ class Resume {
     this.linkedIn,
     this.github,
     this.experiences,
-    this.education,
+    this.educations,
     this.languages,
     this.skills
   });
@@ -51,10 +51,10 @@ class Resume {
         experiences!.add(Experience.fromJson(v));
       });
     }
-    if (json['education'] != null) {
-      education = <Education>[];
-      json['education'].forEach((v) {
-        education!.add(Education.fromJson(v));
+    if (json['educations'] != null) {
+      educations = <Education>[];
+      json['educations'].forEach((v) {
+        educations!.add(Education.fromJson(v));
       });
     }
     if ( json['languages'] != null ) {
@@ -80,8 +80,8 @@ class Resume {
     if (experiences != null) {
       data['experiences'] = experiences!.map((v) => v.toJson()).toList();
     }
-    if (education != null) {
-      data['education'] = education!.map((v) => v.toJson()).toList();
+    if (educations != null) {
+      data['educations'] = educations!.map((v) => v.toJson()).toList();
     }
     data['languages'] = languages;
     data['skills'] = skills;
