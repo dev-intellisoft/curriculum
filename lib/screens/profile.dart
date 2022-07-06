@@ -62,8 +62,6 @@ class _ProfileWidget extends State<ProfileWidget> {
             ),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.blueAccent,
-          unselectedItemColor: Colors.grey,
           onTap: _onItemTapped,
         ),
         body: _render(_selectedIndex),

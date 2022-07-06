@@ -20,6 +20,11 @@ class MyApp extends StatelessWidget {
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder()
         ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: Colors.blueAccent,
+          unselectedItemColor: Colors.grey,
+          showUnselectedLabels: true
+        ),
         appBarTheme: const AppBarTheme(
           foregroundColor: Colors.blueAccent,
           backgroundColor: Colors.white,
