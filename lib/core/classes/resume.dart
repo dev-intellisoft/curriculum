@@ -97,7 +97,7 @@ class Resume {
     return resumes;
   }
 
-  Map<String, dynamic> prepareInsert() {
+  Map<String, dynamic> prepareStatement() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['resume_id'] = id;
     data['name'] = name;

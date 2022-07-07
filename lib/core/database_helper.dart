@@ -97,12 +97,12 @@ class DatabaseHelper {
 
   Future<int> updateResume (Resume resume) async {
     Database db = await instance.database;
-    return await db.update('resumes', resume.prepareInsert(), where: 'resume_id=?', whereArgs: [resume.id]);
+    return await db.update('resumes', resume.prepareStatement(), where: 'resume_id=?', whereArgs: [resume.id]);
   }
 
   Future<int> saveResume(Resume resume) async {
     Database db = await instance.database;
-    return await db.insert('resumes', resume.prepareInsert());
+    return await db.insert('resumes', resume.prepareStatement());
   }
 
   Future<int> removeResume(int id) async {
