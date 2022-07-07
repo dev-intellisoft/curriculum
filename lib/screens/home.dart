@@ -48,9 +48,16 @@ class _HomeWidget extends State<HomeWidget> {
                   itemCount: snapShot.data == null?0:snapShot.data!.length,
                   itemBuilder: (context, i) {
                     return Slidable(
-
                         key: const ValueKey(0),
-                        child: ListTile( title: Text(snapShot.data![i].name!)),
+                        child: ListTile(
+                          onTap: () {
+                            context.read<ResumeProvider>().setResume(snapShot.data![i]);
+                            Navigator.push(context, MaterialPageRoute(builder: (_) {
+                              return const ProfileWidget();
+                            }));
+                          },
+                            title: Text(snapShot.data![i].name!)
+                        ),
                       endActionPane: ActionPane(
                         motion: const ScrollMotion(),
                         // dismissible: DismissiblePane(onDismissed: () {}),
