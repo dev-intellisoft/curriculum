@@ -14,8 +14,6 @@ class _PersonalWidget extends State<PersonalWidget> {
   @override
   Widget build(BuildContext context) {
     Resume resume = context.read<ResumeProvider>().getResume();
-    bool disableSaveButton = resume.name == '' || resume.name == null;
-
     TextEditingController _name = TextEditingController(text: resume.name);
     TextEditingController _firstName = TextEditingController(text: resume.firstName);
     TextEditingController _lastName = TextEditingController(text: resume.lastName);
@@ -31,38 +29,43 @@ class _PersonalWidget extends State<PersonalWidget> {
       appBar: AppBar(
         title: const Text('Personal Information'),
         actions: [
-          GestureDetector(
-            onTap: () {
-              if ( disableSaveButton ) {
-                return;
-              }
-              context.read<ResumeProvider>().saveResume(resume);
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                backgroundColor: Colors.green,
-                content: Row(
-                  children:  [
-                    Container(
-                        margin: const EdgeInsets.only(right: 5),
-                        child:const Icon(Icons.check_circle_outline, color: Colors.black45,)
-                    ),
-                    const Text('Saved!', style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
-                action: SnackBarAction(
-                  label: '',
-                  onPressed: () {},
-                ),
-              ));
-            },
-            child: Container(
-                margin: const EdgeInsets.only(right: 10),
-                child: Icon(Icons.save_rounded,
-                  color: disableSaveButton?Colors.grey:Colors.blueAccent,)
-            ),
-          )
+          Consumer<ResumeProvider>(builder: (context, data, index) {
+            String? _name = data.getResume().name;
+            bool _disableSaveButton = _name == '' || _name == null;
+            return GestureDetector(
+              onTap: () {
+                if ( _disableSaveButton ) {
+                  return;
+                }
+                context.read<ResumeProvider>().saveResume(resume);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  backgroundColor: Colors.green,
+                  content: Row(
+                    children:  [
+                      Container(
+                          margin: const EdgeInsets.only(right: 5),
+                          child:const Icon(Icons.check_circle_outline, color: Colors.black45,)
+                      ),
+                      const Text('Saved!', style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                  action: SnackBarAction(
+                    label: '',
+                    onPressed: () {},
+                  ),
+                ));
+              },
+              child: Container(
+                  margin: const EdgeInsets.only(right: 10),
+                  child: Icon(Icons.save_rounded,
+                    color: _disableSaveButton?Colors.grey:Colors.blueAccent,)
+              ),
+            );
+          })
+
         ],
       ),
       body: Container(
