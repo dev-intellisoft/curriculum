@@ -104,4 +104,9 @@ class DatabaseHelper {
     Database db = await instance.database;
     return await db.insert('resumes', resume.prepareInsert());
   }
+
+  Future<int> removeResume(int id) async {
+    Database db = await instance.database;
+    return await db.delete('resumes', where: 'resume_id = ?', whereArgs: [id]);
+  }
 }
