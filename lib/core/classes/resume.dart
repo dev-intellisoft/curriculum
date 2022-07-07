@@ -35,7 +35,7 @@ class Resume {
   });
 
   Resume.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['resume_id'];
     name = json['name'];
     firstName = json['first_name'];
     lastName = json['last_name'];
