@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:curriculum/core/classes/education.dart';
 import 'package:curriculum/core/classes/resume.dart';
 import 'package:curriculum/core/classes/user.dart';
 import 'package:sqflite/sqflite.dart';
@@ -124,6 +125,11 @@ class DatabaseHelper {
     return result;
   }
 
+  Future<int> removeExperience(int experienceId) async {
+    Database db = await instance.database;
+    return db.delete('experiences', where: 'experience_id = ?', whereArgs: [experienceId]);
+  }
+
   Future<List<Experience>> getExperiences(int resumeId) async {
     List<Experience> experiences = [];
     Database db = await instance.database;
@@ -134,8 +140,31 @@ class DatabaseHelper {
     return experiences;
   }
 
-  Future<int> removeExperience(int experienceId) async {
+  Future<int> insertEducation(Education education) async {
     Database db = await instance.database;
-    return db.delete('experiences', where: 'experience_id = ?', whereArgs: [experienceId]);
+    return await db.insert('educations', education.prepareStatement());
+  }
+
+  Future<int> updateEducation(Education education) async {
+    Database db = await instance.database;
+    int result = await db.update('educations', education.prepareStatement(),
+        where: 'resume_id = ? AND experience_id = ?',
+        whereArgs: [education.resumeId, education.id]);
+    return result;
+  }
+
+  Future<int> removeEducation(int educationId) async {
+    Database db = await instance.database;
+    return db.delete('educations', where: 'education_id = ?', whereArgs: [educationId]);
+  }
+
+  Future<List<Education>> getEducations(int resumeId) async {
+    List<Education> educations = [];
+    Database db = await instance.database;
+    var results = await db.query('educations', where: 'resume_id = ?', whereArgs: [resumeId]);
+    results.forEach((result) {
+      educations.add(Education.fromJson(result));
+    });
+    return educations;
   }
 }

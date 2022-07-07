@@ -74,25 +74,6 @@ class ResumeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void saveEducation(Education education) {
-    if ( education.tempId == null ) {
-      education.tempId = resume.educations!.length;
-      resume.educations!.add(education);
-    } else {
-      resume.educations![education.tempId!] = education;
-    }
-    notifyListeners();
-  }
-
-  void removeEducation(int index) {
-    resume.educations!.removeAt(index);
-    notifyListeners();
-  }
-
-  List<Education>? getEducations() {
-    return resume.educations ?? [];
-  }
-
   Future loadExperiences () async {
     resume.experiences = await DatabaseHelper.instance.getExperiences(resume.id!);
   }
@@ -100,4 +81,36 @@ class ResumeProvider with ChangeNotifier {
   List<Experience>? getExperience () {
     return resume.experiences;
   }
+
+  void saveEducation(Education education) async {
+    if ( education.institution == null || education.institution == '' ) {
+      return;
+    }
+
+    if ( education.id == null ) {
+      education.resumeId = resume.id;
+      await DatabaseHelper.instance.insertEducation(education);
+    } else {
+      await DatabaseHelper.instance.updateEducation(education);
+    }
+
+    resume.educations = await DatabaseHelper.instance.getEducations(resume.id!);
+
+    notifyListeners();
+  }
+
+  void removeEducation(int educationId) async {
+    await DatabaseHelper.instance.removeEducation(educationId);
+    resume.educations = await DatabaseHelper.instance.getEducations(resume.id!);
+    notifyListeners();
+  }
+
+  Future loadEducations () async {
+    resume.educations = await DatabaseHelper.instance.getEducations(resume.id!);
+  }
+
+  List<Education>? getEducations () {
+    return resume.educations;
+  }
+
 }
