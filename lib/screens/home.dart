@@ -1,7 +1,10 @@
 import 'package:curriculum/core/classes/resume.dart';
 import 'package:curriculum/screens/profile.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
+
+import '../core/providers/resume_provider.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({Key? key}) : super(key: key);
@@ -44,7 +47,34 @@ class _HomeWidget extends State<HomeWidget> {
                 child: ListView.builder(
                   itemCount: snapShot.data == null?0:snapShot.data!.length,
                   itemBuilder: (context, i) {
-                    return ListTile(title: Text(snapShot.data![i].name!));
+                    return Slidable(
+
+                        key: const ValueKey(0),
+                        child: ListTile( title: Text(snapShot.data![i].name!)),
+                      endActionPane: ActionPane(
+                        motion: const ScrollMotion(),
+                        // dismissible: DismissiblePane(onDismissed: () {}),
+                        children: [
+                          SlidableAction(
+                            onPressed: (value) {},
+                            backgroundColor: const Color(0xFF21B7CA),
+                            foregroundColor: Colors.white,
+                            icon: Icons.file_copy_outlined,
+                            label: 'Duplicate',
+                          ),
+                          SlidableAction(
+                            onPressed: (value) {
+                              context.read<ResumeProvider>().removeResume(snapShot.data![i].id!);
+                            },
+                            backgroundColor: const Color(0xFFFE4A49),
+                            foregroundColor: Colors.white,
+                            icon: Icons.delete,
+                            label: 'Delete',
+                          ),
+
+                        ],
+                      ),
+                    );
                   },
                 )
               );
