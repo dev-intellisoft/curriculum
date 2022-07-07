@@ -3,6 +3,7 @@ import 'package:curriculum/core/providers/resume_provider.dart';
 import 'package:curriculum/screens/resume/educations.dart';
 import 'package:curriculum/screens/resume/experiences.dart';
 import 'package:curriculum/screens/resume/personal.dart';
+import 'package:curriculum/screens/resume/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -52,6 +53,9 @@ class _ProfileWidget extends State<ProfileWidget> {
     }
     if ( index == 2 ) {
       return const EducationsScreen();
+    }
+    if ( index == 3 ) {
+      return const SettingsScreen();
     }
     return const PersonalWidget();
   }
