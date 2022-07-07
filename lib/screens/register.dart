@@ -112,7 +112,7 @@ class _RegisterWidget extends State<RegisterWidget> {
                             onPressed: () {},
                           ),
                         ));
-                        Navigator.push(context, MaterialPageRoute(builder: (_) {
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {
                           return const HomeWidget();
                         }));
                       } else {
