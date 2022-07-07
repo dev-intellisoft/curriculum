@@ -7,7 +7,21 @@ import '../database_helper.dart';
 
 class ResumeProvider with ChangeNotifier {
   Resume resume = Resume(experiences: [], educations: []);
+  List<Resume> resumes = [];
 
+  Future<List<Resume>> loadResumes() async {
+    List<Resume> resumes = [];
+    List<dynamic> data = await DatabaseHelper.instance.getResumes();
+
+    for ( int i = 0; i <  data.length; i ++ ) {
+      resumes.add(Resume.fromJson(data[i]));
+    }
+    return resumes;
+  }
+
+  List<Resume> getResumes() {
+    return resumes;
+  }
   Resume getResume() {
     return resume;
   }
@@ -61,6 +75,11 @@ class ResumeProvider with ChangeNotifier {
       resume.id = resumeId;
     }
     resume = resume;
+    notifyListeners();
+  }
+
+  void removeResume (int resumeId) async {
+    await DatabaseHelper.instance.removeResume(resumeId);
     notifyListeners();
   }
 }

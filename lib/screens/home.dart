@@ -35,7 +35,7 @@ class _HomeWidget extends State<HomeWidget> {
       ),
         body: SafeArea(
           child: FutureBuilder(
-            future: Resume.getResumes(),
+            future: Provider.of<ResumeProvider>(context).loadResumes(),
             builder:  (BuildContext context, AsyncSnapshot<List<Resume>> snapShot) {
               if ( snapShot.data != null && !(snapShot.data!.length > 0) ) {
                 return const Center(
