@@ -19,6 +19,11 @@ class ResumeProvider with ChangeNotifier {
     return resumes;
   }
 
+  void setResume(Resume _resume) {
+    resume = _resume;
+    notifyListeners();
+  }
+
   List<Resume> getResumes() {
     return resumes;
   }
