@@ -51,7 +51,10 @@ class ResumeProvider with ChangeNotifier {
   }
 
   void saveResume(Resume resume) async {
-    if ( resume.id! > 0) {
+    if ( resume.name == null ) {
+      return;
+    }
+    if ( resume.id != null && resume.id! > 0) {
       await DatabaseHelper.instance.updateResume(resume);
     } else {
       int resumeId = await DatabaseHelper.instance.saveResume(resume);
