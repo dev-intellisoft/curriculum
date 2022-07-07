@@ -133,4 +133,9 @@ class DatabaseHelper {
     });
     return experiences;
   }
+
+  Future<int> removeExperience(int experienceId) async {
+    Database db = await instance.database;
+    return db.delete('experiences', where: 'experience_id = ?', whereArgs: [experienceId]);
+  }
 }

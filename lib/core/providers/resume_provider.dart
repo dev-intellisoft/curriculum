@@ -68,8 +68,9 @@ class ResumeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void removeExperience(int index) {
-    resume.experiences.removeAt(index);
+  void removeExperience(int experienceId) async {
+    await DatabaseHelper.instance.removeExperience(experienceId);
+    resume.experiences = await DatabaseHelper.instance.getExperiences(resume.id!);
     notifyListeners();
   }
 
@@ -90,6 +91,10 @@ class ResumeProvider with ChangeNotifier {
 
   List<Education>? getEducations() {
     return resume.educations ?? [];
+  }
+
+  Future loadExperiences () async {
+    resume.experiences = await DatabaseHelper.instance.getExperiences(resume.id!);
   }
 
   List<Experience>? getExperience () {

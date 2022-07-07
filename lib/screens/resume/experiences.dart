@@ -33,58 +33,63 @@ class _ExperiencesScreen extends State<ExperiencesScreen> {
           )
         ],
       ),
-      body: Consumer<ResumeProvider>(
-        builder:(context, data, index) {
-          List<Experience> experiences = data.getExperience() ?? [];
-          if ( experiences.isEmpty ) {
-            return const Center(
-              child: Text('No records found!', style: TextStyle(
-                fontWeight: FontWeight.bold
-              ),),
-            );
-          }
+      body: FutureBuilder(
+        future: Provider.of<ResumeProvider>(context).loadExperiences(),
+        builder: (context, data) {
+          return Consumer<ResumeProvider>(
+              builder:(context, data, index) {
+                List<Experience> experiences = data.getExperience() ?? [];
+                if ( experiences.isEmpty ) {
+                  return const Center(
+                    child: Text('No records found!', style: TextStyle(
+                        fontWeight: FontWeight.bold
+                    ),),
+                  );
+                }
 
-          return ListView.builder(
-            itemCount: experiences.length,
-            itemBuilder: (context, index) {
-              return Slidable(
-                key: const ValueKey(0),
-                endActionPane: ActionPane(
-                  motion: const ScrollMotion(),
-                  children: [
-                    SlidableAction(
-                      onPressed: (value) {},
-                      backgroundColor: const Color(0xFF21B7CA),
-                      foregroundColor: Colors.white,
-                      icon: Icons.file_copy_outlined,
-                      label: 'Duplicate',
-                    ),
-                    SlidableAction(
-                      onPressed: (value) {
-                        context.read<ResumeProvider>().removeExperience(experiences[index].tempId!);
-                      },
-                      backgroundColor: const Color(0xFFFE4A49),
-                      foregroundColor: Colors.white,
-                      icon: Icons.delete,
-                      label: 'Delete',
-                    ),
+                return ListView.builder(
+                  itemCount: experiences.length,
+                  itemBuilder: (context, index) {
+                    return Slidable(
+                        key: const ValueKey(0),
+                        endActionPane: ActionPane(
+                          motion: const ScrollMotion(),
+                          children: [
+                            SlidableAction(
+                              onPressed: (value) {},
+                              backgroundColor: const Color(0xFF21B7CA),
+                              foregroundColor: Colors.white,
+                              icon: Icons.file_copy_outlined,
+                              label: 'Duplicate',
+                            ),
+                            SlidableAction(
+                              onPressed: (value) {
+                                context.read<ResumeProvider>().removeExperience(experiences[index].id!);
+                              },
+                              backgroundColor: const Color(0xFFFE4A49),
+                              foregroundColor: Colors.white,
+                              icon: Icons.delete,
+                              label: 'Delete',
+                            ),
 
-                  ],
-                ),
-                  child: ListTile(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (_) {
-                        return AddExperienceWidget(experience: experiences[index],);
-                      }));
-                    },
-                  key: const ValueKey(0),
-                  title: Text('${experiences[index].company}'),
-                )
-              );
-            },
+                          ],
+                        ),
+                        child: ListTile(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (_) {
+                              return AddExperienceWidget(experience: experiences[index],);
+                            }));
+                          },
+                          key: const ValueKey(0),
+                          title: Text('${experiences[index].company}'),
+                        )
+                    );
+                  },
+                );
+              }
           );
-      }
-    ),);
+        },
+      ),);
   }
 
 }
