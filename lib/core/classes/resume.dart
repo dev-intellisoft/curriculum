@@ -13,7 +13,7 @@ class Resume {
   String? location;
   String? linkedIn;
   String? github;
-  List<Experience>? experiences;
+  List<Experience> experiences = <Experience>[];
   List<Education>? educations;
   List<String>? languages;
   List<String>? skills;
@@ -28,7 +28,7 @@ class Resume {
     this.location,
     this.linkedIn,
     this.github,
-    this.experiences,
+    required this.experiences,
     this.educations,
     this.languages,
     this.skills
@@ -48,7 +48,7 @@ class Resume {
     if (json['experiences'] != null) {
       experiences = <Experience>[];
       json['experiences'].forEach((v) {
-        experiences!.add(Experience.fromJson(v));
+        experiences.add(Experience.fromJson(v));
       });
     }
     if (json['educations'] != null) {
@@ -78,7 +78,7 @@ class Resume {
     data['github'] = github;
 
     if (experiences != null) {
-      data['experiences'] = experiences!.map((v) => v.toJson()).toList();
+      data['experiences'] = experiences.map((v) => v.toJson()).toList();
     }
     if (educations != null) {
       data['educations'] = educations!.map((v) => v.toJson()).toList();

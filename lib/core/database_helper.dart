@@ -4,6 +4,7 @@ import 'package:curriculum/core/classes/user.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'classes/experience.dart';
 
 class DatabaseHelper {
   DatabaseHelper._privateConstructor();
@@ -108,5 +109,28 @@ class DatabaseHelper {
   Future<int> removeResume(int id) async {
     Database db = await instance.database;
     return await db.delete('resumes', where: 'resume_id = ?', whereArgs: [id]);
+  }
+
+  Future<int> insertExperience(Experience experience) async {
+    Database db = await instance.database;
+    return await db.insert('experiences', experience.prepareStatement());
+  }
+
+  Future<int> updateExperience(Experience experience) async {
+    Database db = await instance.database;
+    int result = await db.update('experiences', experience.prepareStatement(),
+        where: 'resume_id = ? AND experience_id = ?',
+        whereArgs: [experience.resumeId, experience.id]);
+    return result;
+  }
+
+  Future<List<Experience>> getExperiences(int resumeId) async {
+    List<Experience> experiences = [];
+    Database db = await instance.database;
+    var results = await db.query('experiences', where: 'resume_id = ?', whereArgs: [resumeId]);
+    results.forEach((result) {
+      experiences.add(Experience.fromJson(result));
+    });
+    return experiences;
   }
 }

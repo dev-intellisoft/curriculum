@@ -27,22 +27,49 @@ class ResumeProvider with ChangeNotifier {
   List<Resume> getResumes() {
     return resumes;
   }
+
   Resume getResume() {
     return resume;
   }
 
-  void saveExperience(Experience experience) {
-    if ( experience.tempId == null ) {
-      experience.tempId = resume.experiences!.length;
-      resume.experiences!.add(experience);
-    } else {
-      resume.experiences![experience.tempId!] = experience;
+  void saveResume(Resume resume) async {
+    if ( resume.name == null ) {
+      return;
     }
+    if ( resume.id != null && resume.id! > 0) {
+      await DatabaseHelper.instance.updateResume(resume);
+    } else {
+      int resumeId = await DatabaseHelper.instance.saveResume(resume);
+      resume.id = resumeId;
+    }
+    resume = resume;
+    notifyListeners();
+  }
+
+  void removeResume (int resumeId) async {
+    await DatabaseHelper.instance.removeResume(resumeId);
+    notifyListeners();
+  }
+
+  void saveExperience(Experience experience) async {
+    if ( experience.company == null || experience.company == '' ) {
+      return;
+    }
+
+    if ( experience.id == null ) {
+      experience.resumeId = resume.id;
+      await DatabaseHelper.instance.insertExperience(experience);
+    } else {
+      await DatabaseHelper.instance.updateExperience(experience);
+    }
+
+    resume.experiences = await DatabaseHelper.instance.getExperiences(resume.id!);
+
     notifyListeners();
   }
 
   void removeExperience(int index) {
-    resume.experiences!.removeAt(index);
+    resume.experiences.removeAt(index);
     notifyListeners();
   }
 
@@ -66,25 +93,6 @@ class ResumeProvider with ChangeNotifier {
   }
 
   List<Experience>? getExperience () {
-    return resume.experiences ?? [];
-  }
-
-  void saveResume(Resume resume) async {
-    if ( resume.name == null ) {
-      return;
-    }
-    if ( resume.id != null && resume.id! > 0) {
-      await DatabaseHelper.instance.updateResume(resume);
-    } else {
-      int resumeId = await DatabaseHelper.instance.saveResume(resume);
-      resume.id = resumeId;
-    }
-    resume = resume;
-    notifyListeners();
-  }
-
-  void removeResume (int resumeId) async {
-    await DatabaseHelper.instance.removeResume(resumeId);
-    notifyListeners();
+    return resume.experiences;
   }
 }
