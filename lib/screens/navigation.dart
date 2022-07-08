@@ -7,14 +7,14 @@ import 'package:curriculum/screens/resume/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ProfileWidget extends StatefulWidget {
-  const ProfileWidget({Key? key}) : super(key: key);
+class NavigationScreen extends StatefulWidget {
+  const NavigationScreen({Key? key}) : super(key: key);
 
   @override
-  _ProfileWidget createState() => _ProfileWidget();
+  _NavigationScreen createState() => _NavigationScreen();
 }
 
-class _ProfileWidget extends State<ProfileWidget> {
+class _NavigationScreen extends State<NavigationScreen> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {

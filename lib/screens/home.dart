@@ -1,5 +1,5 @@
 import 'package:curriculum/core/classes/resume.dart';
-import 'package:curriculum/screens/profile.dart';
+import 'package:curriculum/screens/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +23,7 @@ class _HomeWidget extends State<HomeWidget> {
           GestureDetector(
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (_) {
-                return const ProfileWidget();
+                return const NavigationScreen();
               }));
             },
             child: Container(
@@ -53,7 +53,7 @@ class _HomeWidget extends State<HomeWidget> {
                           onTap: () {
                             context.read<ResumeProvider>().setResume(snapShot.data![i]);
                             Navigator.push(context, MaterialPageRoute(builder: (_) {
-                              return const ProfileWidget();
+                              return const NavigationScreen();
                             }));
                           },
                             title: Text(snapShot.data![i].name!)
