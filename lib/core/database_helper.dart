@@ -56,8 +56,8 @@ class DatabaseHelper {
         company TEXT,
         title TEXT,
         location TEXT,
-        start TEXT,
-        end TEXT,
+        start DATE,
+        end DATE,
         keywords TEXT,
         description TEXT
       )
@@ -71,8 +71,8 @@ class DatabaseHelper {
         institution TEXT,
         location TEXT,
         description TEXT,
-        start TEXT,
-        end TEXT
+        start DATE,
+        end DATE
       )
     ''');
   }

@@ -1,11 +1,13 @@
+import 'package:intl/intl.dart';
+
 class Experience {
   int? id;
   int? tempId;
   int? resumeId;
   String? company;
   String? title;
-  String? start;
-  String? end;
+  DateTime? start;
+  DateTime? end;
   List<String>? keywords;
   String? description;
   String? location;
@@ -28,8 +30,12 @@ class Experience {
     resumeId = json['resume_id'];
     company = json['company'];
     title = json['title'];
-    start = json['start'];
-    end = json['end'];
+    if ( json['start'] != null ) {
+      start = DateTime.parse(json['start']);
+    }
+    if ( json['end'] != null ) {
+      end = DateTime.parse(json['end']);
+    }
     // keywords = json['keywords'].cast<String>();
     description = json['description'];
     location = json['location'];
@@ -41,8 +47,12 @@ class Experience {
     data['resume_id'] = resumeId;
     data['company'] = company;
     data['title'] = title;
-    data['start'] = start;
-    data['end'] = end;
+    if ( start != null ) {
+      data['start'] = DateFormat('yyyy-MM-dd').format(start!).toString();
+    }
+    if ( end != null ) {
+      data['end'] = DateFormat('yyyy-MM-dd').format(end!).toString();
+    }
     data['keywords'] = keywords;
     data['description'] = description;
     data['location'] = location;
@@ -55,8 +65,12 @@ class Experience {
     data['resume_id'] = resumeId;
     data['company'] = company;
     data['title'] = title;
-    data['start'] = start;
-    data['end'] = end;
+    if ( start != null ) {
+      data['start'] = DateFormat('yyyy-MM-dd').format(start!);
+    }
+    if ( end != null ) {
+      data['end'] = DateFormat('yyyy-MM-dd').format(end!);
+    }
     data['keywords'] = keywords;
     data['description'] = description;
     data['location'] = location;

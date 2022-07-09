@@ -1,6 +1,7 @@
 import 'package:curriculum/core/classes/education.dart';
 import 'package:curriculum/screens/resume/educations.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
 
@@ -15,8 +16,12 @@ class AddEducationWidget extends StatefulWidget {
 class _AddEducationWidget extends State<AddEducationWidget> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController _start = TextEditingController(text: widget.education.start);
-    TextEditingController _end = TextEditingController(text: widget.education.end);
+    TextEditingController _start = TextEditingController(
+        text: widget.education.start == null?'':DateFormat('dd/MM/yyyy').format(widget.education.start!)
+    );
+    TextEditingController _end = TextEditingController(
+        text: widget.education.end == null?'':DateFormat('dd/MM/yyyy').format(widget.education.end!)
+    );
     TextEditingController _institution = TextEditingController(text: widget.education.institution);
     TextEditingController _course = TextEditingController(text: widget.education.course);
     TextEditingController _location = TextEditingController(text: widget.education.location);
@@ -102,8 +107,8 @@ class _AddEducationWidget extends State<AddEducationWidget> {
                           );
 
                           if(pickedDate != null ){
-                            widget.education.start = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
-                            _start.text = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+                            widget.education.start = pickedDate;
+                            _start.text = DateFormat('dd/MM/yyyy').format(pickedDate);
                           }
                         },
                       ),
@@ -129,9 +134,9 @@ class _AddEducationWidget extends State<AddEducationWidget> {
                           );
 
                           if(pickedDate != null ){
-                            widget.education.end = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+                            widget.education.end = pickedDate;
                             setState(() {
-                              _end.text = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+                              _end.text = DateFormat('dd/MM/yyyy').format(pickedDate);
                             });
                           }
                         },

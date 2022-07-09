@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class Education {
   int? id;
   int? resumeId;
@@ -5,8 +7,8 @@ class Education {
   String? institution;
   String? location;
   String? description;
-  String? start;
-  String? end;
+  DateTime? start;
+  DateTime? end;
 
   Education({
     this.id,
@@ -26,8 +28,12 @@ class Education {
     institution = json['institution'];
     description = json['description'];
     location = json['location'];
-    start = json['start'];
-    end = json['end'];
+    if ( json['start'] != null ) {
+      start = DateTime.parse(json['start']);
+    }
+    if ( json['end'] != null ) {
+      end = DateTime.parse(json['end']);
+    }
   }
 
   Map<String, dynamic> prepareStatement() {
@@ -38,8 +44,12 @@ class Education {
     data['institution'] = institution;
     data['location'] = location;
     data['description'] = description;
-    data['start'] = start;
-    data['end'] = end;
+    if ( start != null ) {
+      data['start'] = DateFormat('yyyy-MM-dd').format(start!);
+    }
+    if ( end != null ) {
+      data['end'] = DateFormat('yyyy-MM-dd').format(end!);
+    }
     return data;
   }
 
@@ -51,8 +61,12 @@ class Education {
     data['institution'] = institution;
     data['location'] = location;
     data['description'] = description;
-    data['start'] = start;
-    data['end'] = end;
+    if ( start != null ) {
+      data['start'] = DateFormat('yyyy-MM-dd').format(start!);
+    }
+    if ( end != null ) {
+      data['end'] = DateFormat('yyyy-MM-dd').format(end!);
+    }
     return data;
   }
 }

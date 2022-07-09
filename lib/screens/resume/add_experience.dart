@@ -2,6 +2,7 @@ import 'package:curriculum/core/classes/experience.dart';
 import 'package:curriculum/screens/resume/experiences.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
 
@@ -20,8 +21,12 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
     TextEditingController _title = TextEditingController(text: widget.experience.title);
     TextEditingController _location = TextEditingController(text: widget.experience.location);
     TextEditingController _description = TextEditingController(text: widget.experience.description);
-    TextEditingController _start = TextEditingController(text: widget.experience.start);
-    TextEditingController _end = TextEditingController(text: widget.experience.end);
+    TextEditingController _start = TextEditingController(
+        text: widget.experience.start == null?'':DateFormat('dd/MM/yyyy').format(widget.experience.start!)
+    );
+    TextEditingController _end = TextEditingController(
+        text:widget.experience.end == null? '': DateFormat('dd/MM/yyyy').format(widget.experience.end!)
+    );
 
     return GestureDetector(
       onTap: () {
@@ -104,8 +109,8 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                           );
 
                           if(pickedDate != null ){
-                            widget.experience.start = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
-                            _start.text = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+                            widget.experience.start = pickedDate;
+                            _start.text = DateFormat('dd/MM/yyyy').format(pickedDate);
                           }
                         },
                       ),
@@ -131,9 +136,9 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                           );
 
                           if(pickedDate != null ){
-                            widget.experience.end = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+                            widget.experience.end = pickedDate;
                             setState(() {
-                              _end.text = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+                              _end.text = DateFormat('dd/MM/yyyy').format(pickedDate);
                             });
                           }
                         },
