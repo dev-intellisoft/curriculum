@@ -20,8 +20,11 @@ class DatabaseHelper {
       path,
       version: 1,
       onCreate: _onCreate,
+      // onOpen:
     );
   }
+
+
 
   Future _onCreate(Database db, int version) async {
     await db.execute('''
@@ -154,7 +157,7 @@ class DatabaseHelper {
   Future<int> updateEducation(Education education) async {
     Database db = await instance.database;
     int result = await db.update('educations', education.prepareStatement(),
-        where: 'resume_id = ? AND experience_id = ?',
+        where: 'resume_id = ? AND education_id = ?',
         whereArgs: [education.resumeId, education.id]);
     return result;
   }
