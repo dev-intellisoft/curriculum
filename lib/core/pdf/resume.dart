@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:curriculum/core/classes/education.dart';
 import 'package:curriculum/core/classes/experience.dart';
 import 'package:curriculum/core/classes/resume.dart';
+import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
@@ -141,7 +142,12 @@ class _Education extends pw.StatelessWidget {
               children: <pw.Widget>[
                 pw.Container(
                   margin: const pw.EdgeInsets.only(right: 15),
-                  child: pw.Text('${education.start} - ${education.end}')
+                    child: pw.Text(
+                        '${
+                            education.start == null? '':DateFormat('MMM yyyy').format(education.start!)
+                        } - ${
+                            education.end == null?'':DateFormat('MMM yyyy').format(education.end!)
+                        }')
                 ),
                 pw.Text('${education.course} at ${education.institution}',
                     style: pw.Theme.of(context)
@@ -182,7 +188,12 @@ class _Experience extends pw.StatelessWidget {
 
                   height: 6,
                   margin: const pw.EdgeInsets.only( right: 20),
-                  child: pw.Text(' ${experience.start} - ${experience.end}')
+                  child: pw.Text(
+                      '${
+                          experience.start == null? '':DateFormat('MMM yyyy').format(experience.start!)
+                      } - ${
+                          experience.end == null?'':DateFormat('MMM yyyy').format(experience.end!)
+                      }')
                 ),
                 pw.Text('${experience.title} at ${experience.company}',
                     style: pw.Theme.of(context)
