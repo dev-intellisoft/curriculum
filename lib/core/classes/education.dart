@@ -21,6 +21,7 @@ class Education {
 
   Education.fromJson(Map<String, dynamic> json) {
     id = json['education_id'];
+    resumeId = json['resume_id'];
     course = json['course'];
     institution = json['institution'];
     description = json['description'];
@@ -45,6 +46,7 @@ class Education {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = id;
+    data['resume_id'] = resumeId;
     data['course'] = course;
     data['institution'] = institution;
     data['location'] = location;
