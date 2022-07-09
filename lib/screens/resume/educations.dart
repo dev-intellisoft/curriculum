@@ -52,7 +52,7 @@ class _EducationsScreen extends State<EducationsScreen> {
                       key: const ValueKey(0),
                       endActionPane: ActionPane(
                         motion: const ScrollMotion(),
-                        dismissible: DismissiblePane(onDismissed: () {}),
+                        // dismissible: DismissiblePane(onDismissed: () {}),
                         children: [
                           SlidableAction(
                             onPressed: (value) {},

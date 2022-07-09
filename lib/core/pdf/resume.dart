@@ -50,13 +50,14 @@ Future<Uint8List> generateResume(PdfPageFormat format, Resume? resume) async {
                               crossAxisAlignment: pw.CrossAxisAlignment.start,
                               children: <pw.Widget>[
 
-                                pw.Text('${resume.experiences[0].title}',
-                                    textScaleFactor: 1.2,
-                                    style: pw.Theme.of(context)
-                                        .defaultTextStyle
-                                        .copyWith(
-                                        fontWeight: pw.FontWeight.bold,
-                                        color: green)),
+                                if( resume.experiences.isNotEmpty )
+                                  pw.Text('${resume.experiences[0].title}',
+                                      textScaleFactor: 1.2,
+                                      style: pw.Theme.of(context)
+                                          .defaultTextStyle
+                                          .copyWith(
+                                          fontWeight: pw.FontWeight.bold,
+                                          color: green)),
 
                                 pw.Text('${resume.location}'),
                                 // pw.Text('Nordegg, AB T0M 2H0'),
@@ -78,22 +79,24 @@ Future<Uint8List> generateResume(PdfPageFormat format, Resume? resume) async {
                             pw.Padding(padding: pw.EdgeInsets.zero)
                           ],
                         ),
-                        _Category(title: 'Work Experience'),
-                        pw.ListView.builder(
-                            itemBuilder: (context, index) {
-                              return _Experience(
-                                  experience: resume.experiences[index],);
-                            },
-                            itemCount: resume.experiences.length
-                        ),
+                        if ( resume.experiences.isNotEmpty )
+                          _Category(title: 'Work Experience'),
+                          pw.ListView.builder(
+                              itemBuilder: (context, index) {
+                                return _Experience(
+                                    experience: resume.experiences[index],);
+                              },
+                              itemCount: resume.experiences.length
+                          ),
 
-                        _Category(title: 'Education'),
-                        pw.ListView.builder(
+                        if ( resume.educations.isNotEmpty )
+                          _Category(title: 'Education'),
+                          pw.ListView.builder(
                             itemBuilder: (context, index) {
                               return _Education(education:resume.educations[index] );
                             },
                             itemCount: resume.educations.length
-                        ),
+                          ),
                       ],
                     ),
                   ),
