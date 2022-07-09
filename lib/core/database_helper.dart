@@ -92,6 +92,12 @@ class DatabaseHelper {
     return await db.insert('user', user.toMap());
   }
 
+  Future<Resume> getResume(int resumeId) async {
+    Database db = await instance.database;
+    var data = await db.query('resumes', where: 'resume_id = ?', whereArgs: [resumeId]);
+    return Resume.fromJson(data[0]);
+  }
+
   Future<dynamic> getResumes() async {
     Database db = await instance.database;
     return await db.rawQuery('SELECT * FROM resumes');
@@ -166,5 +172,12 @@ class DatabaseHelper {
       educations.add(Education.fromJson(result));
     });
     return educations;
+  }
+
+  Future<Resume> getPdfData(int resumeId) async {
+    Resume resume = await getResume(resumeId);
+    resume.experiences = await getExperiences(resumeId);
+    resume.educations = await getEducations(resumeId);
+    return resume;
   }
 }

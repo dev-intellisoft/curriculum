@@ -1,9 +1,9 @@
 import 'package:curriculum/core/classes/resume.dart';
 import 'package:curriculum/screens/navigation.dart';
+import 'package:curriculum/screens/previewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
-
 import '../core/providers/resume_provider.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -14,6 +14,7 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidget extends State<HomeWidget> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,11 +64,23 @@ class _HomeWidget extends State<HomeWidget> {
                         // dismissible: DismissiblePane(onDismissed: () {}),
                         children: [
                           SlidableAction(
+                            onPressed: (value) async {
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {
+                                return PreviewerScreen(resumeId:snapShot.data![i].id);
+                              }));
+                              // Pdf().generate(snapShot.data![i].id!);
+                            },
+                            backgroundColor: const Color(0xFF18A100),
+                            foregroundColor: Colors.white,
+                            icon: Icons.picture_as_pdf,
+                            label: 'Generate',
+                          ),
+                          SlidableAction(
                             onPressed: (value) {},
                             backgroundColor: const Color(0xFF21B7CA),
                             foregroundColor: Colors.white,
                             icon: Icons.file_copy_outlined,
-                            label: 'Duplicate',
+                            label: 'Clone',
                           ),
                           SlidableAction(
                             onPressed: (value) {
