@@ -65,7 +65,7 @@ class _HomeWidget extends State<HomeWidget> {
                         children: [
                           SlidableAction(
                             onPressed: (value) async {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {
+                              Navigator.push(context, MaterialPageRoute(builder: (_) {
                                 return PreviewerScreen(resumeId:snapShot.data![i].id);
                               }));
                               // Pdf().generate(snapShot.data![i].id!);
