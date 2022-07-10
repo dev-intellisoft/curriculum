@@ -48,6 +48,17 @@ class _EducationsScreen extends State<EducationsScreen> {
               return ListView.builder(
                 itemCount: educations.length,
                 itemBuilder: (context, index) {
+                  int _days = 0;
+                  int _years = 0;
+                  int _month = 0;
+                  if ( educations[index].end != null && educations[index].start != null ) {
+                    _days = educations[index].end!.difference(educations[index].start!).inDays;
+                  } else if ( educations[index].start != null ) {
+                    DateTime _now = DateTime.now();
+                    _days = _now.difference(educations[index].start!).inDays;
+                  }
+                  _years = _days ~/ 360;
+                  _month = ((_days - (_years * 360)) / 30).ceil();
                   return Slidable(
                       key: const ValueKey(0),
                       endActionPane: ActionPane(
@@ -81,6 +92,8 @@ class _EducationsScreen extends State<EducationsScreen> {
                         },
                         key: const ValueKey(0),
                         title: Text('${educations[index].institution}'),
+                        subtitle: Text('${educations[index].course}'),
+                        trailing: Text('${_years > 0?'${_years} yrs':''} ${_month > 0?'${_month} mo':''}'),
                       )
                   );
                 },
