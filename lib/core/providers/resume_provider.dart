@@ -113,4 +113,27 @@ class ResumeProvider with ChangeNotifier {
     return resume.educations;
   }
 
+  Future<void> cloneResume(resumeId, cloneName) async  {
+    Resume resume = await DatabaseHelper.instance.getResume(resumeId);
+    resume.educations = await DatabaseHelper.instance.getEducations(resumeId);
+    resume.experiences = await DatabaseHelper.instance.getExperiences(resumeId);
+
+    resume.name = cloneName;
+    resume.id =  null;
+    resume.id = await DatabaseHelper.instance.saveResume(resume);
+    resume.educations.forEach((education) async {
+      education.id = null;
+      education.resumeId = resume.id;
+      education.id = await DatabaseHelper.instance.insertEducation(education);
+    });
+    resume.experiences.forEach((experience) async {
+      experience.id = null;
+      experience.resumeId = resume.id;
+      experience.id = await DatabaseHelper.instance.insertExperience(experience);
+    });
+
+    resumes.add(resume);
+    notifyListeners();
+  }
+
 }

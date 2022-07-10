@@ -14,10 +14,21 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidget extends State<HomeWidget> {
+  FocusNode focusNode = FocusNode();
+  String cloneName = '';
+
+
+  @override
+  void dispose() {
+    focusNode.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset : true,
       appBar: AppBar(
         title: const Text('Profile'),
         actions: [
@@ -68,7 +79,6 @@ class _HomeWidget extends State<HomeWidget> {
                               Navigator.push(context, MaterialPageRoute(builder: (_) {
                                 return PreviewerScreen(resumeId:snapShot.data![i].id);
                               }));
-                              // Pdf().generate(snapShot.data![i].id!);
                             },
                             backgroundColor: const Color(0xFF18A100),
                             foregroundColor: Colors.white,
@@ -76,7 +86,50 @@ class _HomeWidget extends State<HomeWidget> {
                             label: 'Generate',
                           ),
                           SlidableAction(
-                            onPressed: (value) {},
+                            onPressed: (value) {
+                              showModalBottomSheet(context: context, builder: (context) {
+                                return Container(
+                                  color: Colors.white,
+                                  child: ListView(
+                                    children: [
+                                      Container(
+                                        child: const Text('Clone my resume', style: TextStyle(
+                                          fontWeight: FontWeight.bold
+                                        ),),
+                                        margin: const EdgeInsets.only(left: 30, top: 30, right: 30),
+                                      ),
+                                      Container(
+                                        child: TextFormField(
+                                          decoration: const InputDecoration(
+                                              label: Text('Clone name')
+                                          ),
+                                          onChanged: (value) {
+                                            setState(() {
+                                              cloneName = value;
+                                            });
+                                          },
+                                          focusNode: focusNode,
+                                          autofocus: true,
+                                          onEditingComplete: () async {
+                                            if (cloneName == '') {
+                                              return;
+                                            }
+
+                                            await context.read<ResumeProvider>().cloneResume(snapShot.data![i].id, cloneName);
+                                            setState(() {
+                                              cloneName = '';
+                                            });
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                        margin: const EdgeInsets.all(30),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              });
+                              // focusNode.requestFocus();
+                            },
                             backgroundColor: const Color(0xFF21B7CA),
                             foregroundColor: Colors.white,
                             icon: Icons.file_copy_outlined,
