@@ -56,7 +56,7 @@ class _LoginWidget extends State<LoginWidget> {
               children: [
                 Container(
                   margin: const EdgeInsets.only(top: 60, bottom: 60),
-                  child: const Text('APP NAME', style: TextStyle(
+                  child: const Text('openCV Builder', style: TextStyle(
                     fontSize: 18, fontWeight: FontWeight.bold
                   ),),
                 ),
