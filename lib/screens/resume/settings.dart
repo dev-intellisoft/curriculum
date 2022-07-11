@@ -24,22 +24,22 @@ class _SettingsScreen extends State<SettingsScreen> {
           child: ListView(
             children: [
               ListTile(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) {
-                    return const LanguageScreen();
-                  }));
-                },
+                // onTap: () {
+                //   Navigator.push(context, MaterialPageRoute(builder: (_) {
+                //     return const LanguageScreen();
+                //   }));
+                // },
                 leading: const Icon(Icons.g_translate),
                 title: const Text('Language', style: TextStyle(
                   fontWeight: FontWeight.bold
                 ),),
               ),
               ListTile(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) {
-                    return const EmailScreen();
-                  }));
-                },
+                // onTap: () {
+                //   Navigator.push(context, MaterialPageRoute(builder: (_) {
+                //     return const EmailScreen();
+                //   }));
+                // },
                 leading: const Icon(Icons.email),
                 title: const Text('E-mail', style: TextStyle(
                   fontWeight: FontWeight.bold

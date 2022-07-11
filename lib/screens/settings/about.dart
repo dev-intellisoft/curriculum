@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+// import 'package:package_info_plus/package_info_plus.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({Key? key}) : super(key: key);
@@ -15,12 +15,12 @@ class _AboutScreen extends State<AboutScreen> {
   String buildNumber = '';
 
   void _init () async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    // PackageInfo packageInfo = await PackageInfo.fromPlatform();
     setState(() {
-      appName = packageInfo.appName;
-      packageName = packageInfo.packageName;
-      version = packageInfo.version;
-      buildNumber = packageInfo.buildNumber;
+      // appName = packageInfo.appName;
+      // packageName = packageInfo.packageName;
+      // version = packageInfo.version;
+      // buildNumber = packageInfo.buildNumber;
     });
   }
 
