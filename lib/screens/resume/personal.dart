@@ -44,10 +44,10 @@ class _PersonalWidget extends State<PersonalWidget> {
                     children:  [
                       Container(
                           margin: const EdgeInsets.only(right: 5),
-                          child:const Icon(Icons.check_circle_outline, color: Colors.black45,)
+                          child:const Icon(Icons.check_circle_outline, color: Colors.white,)
                       ),
                       const Text('Saved!', style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold),
                       )
                     ],
