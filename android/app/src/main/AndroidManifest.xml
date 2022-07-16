@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.curriculum">
+    package="br.net.intellisoft.curriculum">
    <application
-        android:label="curriculum"
+        android:label="openCV Builder"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

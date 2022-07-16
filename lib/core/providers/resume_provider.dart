@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:curriculum/core/classes/resume.dart';
 import 'package:curriculum/core/classes/experience.dart';
@@ -11,7 +13,41 @@ class ResumeProvider with ChangeNotifier {
 
   Future<List<Resume>> loadResumes() async {
     List<Resume> resumes = [];
-    List<dynamic> data = await DatabaseHelper.instance.getResumes();
+    // List<dynamic> data = await DatabaseHelper.instance.getResumes();
+    List<dynamic> data = [
+     json.decode( '{"resume_id": 1, "name": "Main CV", "first_name": "sdgdfgs", '
+         '"last_name": "dsfgdfsg", "telephone": "sdfgsdf", "email": "sdfgdfsg", '
+         '"location": "dsgfdfsg", "linked_in": "sdgfdfsg", "github": "dsfgdfsgdfs"}'),
+      json.decode( '{"resume_id": 1, "name": "My English CV", "first_name": "sdgdfgs", '
+          '"last_name": "dsfgdfsg", "telephone": "sdfgsdf", "email": "sdfgdfsg", '
+          '"location": "dsgfdfsg", "linked_in": "sdgfdfsg", "github": "dsfgdfsgdfs"}'),
+      json.decode( '{"resume_id": 1, "name": "My French CV", "first_name": "sdgdfgs", '
+          '"last_name": "dsfgdfsg", "telephone": "sdfgsdf", "email": "sdfgdfsg", '
+          '"location": "dsgfdfsg", "linked_in": "sdgfdfsg", "github": "dsfgdfsgdfs"}'),
+      json.decode( '{"resume_id": 1, "name": "Mary CV", "first_name": "sdgdfgs", '
+          '"last_name": "dsfgdfsg", "telephone": "sdfgsdf", "email": "sdfgdfsg", '
+          '"location": "dsgfdfsg", "linked_in": "sdgfdfsg", "github": "dsfgdfsgdfs"}'),
+      json.decode( '{"resume_id": 1, "name": "Full Stack CV", "first_name": "sdgdfgs", '
+          '"last_name": "dsfgdfsg", "telephone": "sdfgsdf", "email": "sdfgdfsg", '
+          '"location": "dsgfdfsg", "linked_in": "sdgfdfsg", "github": "dsfgdfsgdfs"}'),
+      json.decode( '{"resume_id": 1, "name": "Cloned CV", "first_name": "sdgdfgs", '
+          '"last_name": "dsfgdfsg", "telephone": "sdfgsdf", "email": "sdfgdfsg", '
+          '"location": "dsgfdfsg", "linked_in": "sdgfdfsg", "github": "dsfgdfsgdfs"}'),
+      json.decode( '{"resume_id": 1, "name": "Draft 1", "first_name": "sdgdfgs", '
+          '"last_name": "dsfgdfsg", "telephone": "sdfgsdf", "email": "sdfgdfsg", '
+          '"location": "dsgfdfsg", "linked_in": "sdgfdfsg", "github": "dsfgdfsgdfs"}'),
+      json.decode( '{"resume_id": 1, "name": "Test", "first_name": "sdgdfgs", '
+          '"last_name": "dsfgdfsg", "telephone": "sdfgsdf", "email": "sdfgdfsg", '
+          '"location": "dsgfdfsg", "linked_in": "sdgfdfsg", "github": "dsfgdfsgdfs"}'),
+      json.decode( '{"resume_id": 1, "name": "gdfsgdf", "first_name": "sdgdfgs", '
+          '"last_name": "dsfgdfsg", "telephone": "sdfgsdf", "email": "sdfgdfsg", '
+          '"location": "dsgfdfsg", "linked_in": "sdgfdfsg", "github": "dsfgdfsgdfs"}'),
+      json.decode( '{"resume_id": 1, "name": "John\'s CV", "first_name": "John", '
+          '"last_name": "Doe", "telephone": "+971 00 000 0000", "email": "sdfgdfsg", '
+          '"location": "Dubai, UAE", "linked_in": "https://linkedin.com", '
+          '"github": "https://github.com"}'),
+
+    ];
 
     for ( int i = 0; i <  data.length; i ++ ) {
       resumes.add(Resume.fromJson(data[i]));

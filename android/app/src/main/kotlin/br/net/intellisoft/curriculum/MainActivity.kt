@@ -1,4 +1,4 @@
-package com.example.curriculum
+package br.net.intellisoft.curriculum
 
 import io.flutter.embedding.android.FlutterActivity
 
