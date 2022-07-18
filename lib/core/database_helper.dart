@@ -25,8 +25,6 @@ class DatabaseHelper {
     );
   }
 
-
-
   Future _onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE user(
@@ -97,18 +95,17 @@ class DatabaseHelper {
   }
 
   Future<Resume> getResume(int resumeId) async {
-    // Database db = await instance.database;
-    // var data = await db.query('resumes', where: 'resume_id = ?', whereArgs: [resumeId]);
-    var data = json.decode( '{"resume_id": 1, "name": "John\'s CV", "first_name": "John", '
-        '"last_name": "Doe", "telephone": "+971 00 000 0000", "email": "sdfgdfsg", '
-        '"location": "Dubai, UAE", "linked_in": "https://linkedin.com", '
-        '"github": "https://github.com"}');
-    return Resume.fromJson(data);
+    Database db = await instance.database;
+    var data = await db.query('resumes', where: 'resume_id = ?', whereArgs: [resumeId]);
+    return Resume.fromJson(data[0]);
   }
 
-  Future<dynamic> getResumes() async {
+  Future<List<Resume>> getResumes() async {
+    List<Resume> resumes = [];
     Database db = await instance.database;
-    return await db.rawQuery('SELECT * FROM resumes');
+    var results = await db.rawQuery('SELECT * FROM resumes');
+    results.forEach((result) => resumes.add(Resume.fromJson(result)));
+    return resumes;
   }
 
   Future<int> updateResume (Resume resume) async {
@@ -146,29 +143,9 @@ class DatabaseHelper {
 
   Future<List<Experience>> getExperiences(int resumeId) async {
     List<Experience> experiences = [];
-    // Database db = await instance.database;
-    // var results = await db.query('experiences', where: 'resume_id = ?', whereArgs: [resumeId]);
-    var results = [
-      json.decode('{"experience_id":1,"resume_id":1,"company":"App Builders LLC",'
-          '"title":"Software Engineer","location":"Dubai, UAE","start":"2018-07-02",'
-          '"end":"2022-07-11", "keywords":"null","description":"Builder cross platform application"}'),
-
-      json.decode('{ "experience_id":2, "resume_id":1, "company":"IT Solutions CO LTD", '
-          '"title":"Front End Developer", "location":"Curitiba, Brazil", "start":"2017-07-04", '
-          '"end":"2018-07-04", "keywords":"null", "description":"flutter development" }'),
-
-      json.decode('{ "experience_id":3, "resume_id":1, "company":"Talk Contact Center", '
-          '"title":"Help Desk", "location":"Mumbai, India", "start":"2022-07-11", '
-          '"end":"2012-07-11", "keywords":"null", "description":"help desk front level" }'),
-
-      json.decode('{ "experience_id":4, "resume_id":1, "company":"City Shopping", '
-          '"title":"IT Technician", "location":"São José dos Perdidos", "start":"1999-07-15", '
-          '"end":"2000-07-13", "keywords":"null", "description":"fix stores equipment" }')
-    ];
-
-    results.forEach((result) {
-      experiences.add(Experience.fromJson(result));
-    });
+    Database db = await instance.database;
+    var results = await db.query('experiences', where: 'resume_id = ?', whereArgs: [resumeId]);
+    results.forEach((result) => experiences.add(Experience.fromJson(result)));
     return experiences;
   }
 
@@ -192,37 +169,9 @@ class DatabaseHelper {
 
   Future<List<Education>> getEducations(int resumeId) async {
     List<Education> educations = [];
-    // Database db = await instance.database;
-    // var results = await db.query('educations', where: 'resume_id = ?', whereArgs: [resumeId]);
-    var results = [
-      json.decode('''
-      {
-        "education_id": 1,
-        "resume_id": 1,
-        "course": "Computer Science",
-        "institution": "University of Lome",
-        "location": "Lome, TG",
-        "description": "Computer Science Graduation",
-        "start": "1994-07-20",
-        "end": "1990-07-18"
-      }
-      '''),
-      json.decode('''
-      {
-        "education_id": 2,
-        "resume_id": 1,
-        "course": "Python",
-        "institution": "Udemy",
-        "location": "Dubai, UAE",
-        "description": "null",
-        "start": "2022-07-11",
-        "end": "2022-07-11"
-      }
-      ''')
-    ];
-    results.forEach((result) {
-      educations.add(Education.fromJson(result));
-    });
+    Database db = await instance.database;
+    var results = await db.query('educations', where: 'resume_id = ?', whereArgs: [resumeId]);
+    results.forEach((result) => educations.add(Education.fromJson(result)));
     return educations;
   }
 
@@ -231,5 +180,18 @@ class DatabaseHelper {
     resume.experiences = await getExperiences(resumeId);
     resume.educations = await getEducations(resumeId);
     return resume;
+  }
+
+  Future<bool> removeAccount() async {
+    try {
+      Database db = await instance.database;
+      await db.delete('experiences');
+      await db.delete('educations');
+      await db.delete('resumes');
+      await db.delete('user');
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 }
