@@ -1,9 +1,11 @@
 import 'package:curriculum/core/classes/resume.dart';
 import 'package:curriculum/screens/navigation.dart';
 import 'package:curriculum/screens/previewer.dart';
+import 'package:curriculum/widgets/my_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../core/providers/resume_provider.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -141,8 +143,26 @@ class _HomeWidget extends State<HomeWidget> {
                           label: 'Clone',
                         ),
                         SlidableAction(
-                          onPressed: (value) {
-                            context.read<ResumeProvider>().removeResume(snapShot.data![i].id!);
+                          onPressed: (value) async {
+                            SharedPreferences _prefs = await SharedPreferences.getInstance();
+                            bool dontAsk = _prefs.getBool('dont_ask')?? true;
+                            if ( dontAsk ) {
+                              context.read<ResumeProvider>().removeResume(snapShot.data![i].id!);
+                            } else {
+                              showDialog(
+                                  context: context,
+                                  builder: (_) => MyAlert(
+                                      name: snapShot.data![i].name!,
+                                      onCancel: () {
+                                        Navigator.pop(context);
+                                      },
+                                      onConfirm: () {
+                                        context.read<ResumeProvider>().removeResume(snapShot.data![i].id!);
+                                        Navigator.pop(context);
+                                      }
+                                  )
+                              );
+                            }
                           },
                           backgroundColor: const Color(0xFFFE4A49),
                           foregroundColor: Colors.white,

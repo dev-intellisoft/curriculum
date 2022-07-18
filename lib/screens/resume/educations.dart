@@ -3,7 +3,9 @@ import 'package:curriculum/screens/resume/add_education.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/providers/resume_provider.dart';
+import '../../widgets/my_alert.dart';
 
 class EducationsScreen extends StatefulWidget {
   const EducationsScreen({ Key? key }) : super(key: key);
@@ -60,51 +62,68 @@ class _EducationsScreen extends State<EducationsScreen> {
                   _years = _days ~/ 360;
                   _month = ((_days - (_years * 360)) / 30).ceil();
                   return Slidable(
-                      key: const ValueKey(0),
-                      endActionPane: ActionPane(
-                        motion: const ScrollMotion(),
-                        // dismissible: DismissiblePane(onDismissed: () {}),
-                        children: [
-                          SlidableAction(
-                            onPressed: (value) {},
-                            backgroundColor: const Color(0xFF21B7CA),
-                            foregroundColor: Colors.white,
-                            icon: Icons.file_copy_outlined,
-                            label: 'Duplicate',
-                          ),
-                          SlidableAction(
-                            onPressed: (value) {
+                    key: const ValueKey(0),
+                    endActionPane: ActionPane(
+                      motion: const ScrollMotion(),
+                      children: [
+                        SlidableAction(
+                          onPressed: (value) {},
+                          backgroundColor: const Color(0xFF21B7CA),
+                          foregroundColor: Colors.white,
+                          icon: Icons.file_copy_outlined,
+                          label: 'Duplicate',
+                        ),
+                        SlidableAction(
+                          onPressed: (value) async {
+                            SharedPreferences _prefs = await SharedPreferences.getInstance();
+                            bool dontAsk = _prefs.getBool('dont_ask')?? true;
+                            if ( dontAsk ) {
                               context.read<ResumeProvider>().removeEducation(educations[index].id!);
-                            },
-                            backgroundColor: const Color(0xFFFE4A49),
-                            foregroundColor: Colors.white,
-                            icon: Icons.delete,
-                            label: 'Delete',
-                          ),
-
-                        ],
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: Colors.grey.withOpacity(0.3),
-                              width: 1
-                            )
-                          )
-                        ),
-                        child: ListTile(
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_) {
-                              return AddEducationWidget(education: educations[index],);
-                            }));
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (_) => MyAlert(
+                                  name: educations[index].institution!,
+                                  onCancel: () {
+                                    Navigator.pop(context);
+                                  },
+                                  onConfirm: () {
+                                    context.read<ResumeProvider>().removeEducation(educations[index].id!);
+                                    Navigator.pop(context);
+                                  }
+                                )
+                              );
+                            }
                           },
-                          key: const ValueKey(0),
-                          title: Text('${educations[index].institution}'),
-                          subtitle: Text('${educations[index].course}'),
-                          trailing: Text('${_years > 0?'${_years} yrs':''} ${_month > 0?'${_month} mo':''}'),
+                          backgroundColor: const Color(0xFFFE4A49),
+                          foregroundColor: Colors.white,
+                          icon: Icons.delete,
+                          label: 'Delete',
                         ),
-                      )
+
+                      ],
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.grey.withOpacity(0.3),
+                            width: 1
+                          )
+                        )
+                      ),
+                      child: ListTile(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (_) {
+                            return AddEducationWidget(education: educations[index],);
+                          }));
+                        },
+                        key: const ValueKey(0),
+                        title: Text('${educations[index].institution}'),
+                        subtitle: Text('${educations[index].course}'),
+                        trailing: Text('${_years > 0?'${_years} yrs':''} ${_month > 0?'${_month} mo':''}'),
+                      ),
+                    )
                   );
                 },
               );

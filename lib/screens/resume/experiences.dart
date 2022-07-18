@@ -1,10 +1,12 @@
 import 'package:curriculum/core/classes/experience.dart';
 import 'package:curriculum/screens/resume/add_experience.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../widgets/my_alert.dart';
 
 class ExperiencesScreen extends StatefulWidget {
   const ExperiencesScreen({ Key? key }) : super(key: key);
@@ -64,48 +66,66 @@ class _ExperiencesScreen extends State<ExperiencesScreen> {
                   _month = ((_days - (_years * 360)) / 30).ceil();
 
                   return Slidable(
-                      key: const ValueKey(0),
-                      endActionPane: ActionPane(
-                        motion: const ScrollMotion(),
-                        children: [
-                          SlidableAction(
-                            onPressed: (value) {},
-                            backgroundColor: const Color(0xFF21B7CA),
-                            foregroundColor: Colors.white,
-                            icon: Icons.file_copy_outlined,
-                            label: 'Duplicate',
-                          ),
-                          SlidableAction(
-                            onPressed: (value) {
+                    key: const ValueKey(0),
+                    endActionPane: ActionPane(
+                      motion: const ScrollMotion(),
+                      children: [
+                        SlidableAction(
+                          onPressed: (value) {},
+                          backgroundColor: const Color(0xFF21B7CA),
+                          foregroundColor: Colors.white,
+                          icon: Icons.file_copy_outlined,
+                          label: 'Duplicate',
+                        ),
+                        SlidableAction(
+                          onPressed: (value) async {
+                            SharedPreferences _prefs = await SharedPreferences.getInstance();
+                            bool dontAsk = _prefs.getBool('dont_ask')?? true;
+                            if ( dontAsk ) {
                               context.read<ResumeProvider>().removeExperience(experiences[index].id!);
-                            },
-                            backgroundColor: const Color(0xFFFE4A49),
-                            foregroundColor: Colors.white,
-                            icon: Icons.delete,
-                            label: 'Delete',
-                          ),
-                        ],
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: Colors.grey.withOpacity(0.3), width: 1
-                            )
-                          )
-                        ),
-                        child: ListTile(
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_) {
-                              return AddExperienceWidget(experience: experiences[index],);
-                            }));
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (_) => MyAlert(
+                                  name: experiences[index].company!,
+                                  onCancel: () {
+                                    Navigator.pop(context);
+                                  },
+                                  onConfirm: () {
+                                    context.read<ResumeProvider>().removeExperience(experiences[index].id!);
+                                    Navigator.pop(context);
+                                  }
+                                )
+                              );
+                            }
                           },
-                          key: const ValueKey(0),
-                          title: Text('${experiences[index].company}'),
-                          subtitle: Text('${experiences[index].title}'),
-                          trailing: Text('${_years > 0?'$_years yrs':''} ${_month > 0?'$_month mo':''}'),
+                          backgroundColor: const Color(0xFFFE4A49),
+                          foregroundColor: Colors.white,
+                          icon: Icons.delete,
+                          label: 'Delete',
                         ),
-                      )
+                      ],
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.grey.withOpacity(0.3), width: 1
+                          )
+                        )
+                      ),
+                      child: ListTile(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (_) {
+                            return AddExperienceWidget(experience: experiences[index],);
+                          }));
+                        },
+                        key: const ValueKey(0),
+                        title: Text('${experiences[index].company}'),
+                        subtitle: Text('${experiences[index].title}'),
+                        trailing: Text('${_years > 0?'$_years yrs':''} ${_month > 0?'$_month mo':''}'),
+                      ),
+                    )
                   );
                 },
               );
