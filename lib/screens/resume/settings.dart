@@ -23,28 +23,32 @@ class _SettingsScreen extends State<SettingsScreen> {
         child: Center(
           child: ListView(
             children: [
-              ListTile(
+              const SizedBox(height: 15,),
+              const Divider(),
+              const ListTile(
                 // onTap: () {
                 //   Navigator.push(context, MaterialPageRoute(builder: (_) {
                 //     return const LanguageScreen();
                 //   }));
                 // },
-                leading: const Icon(Icons.g_translate),
-                title: const Text('Language', style: TextStyle(
+                leading: Icon(Icons.g_translate),
+                title: Text('Language', style: TextStyle(
                   fontWeight: FontWeight.bold
                 ),),
               ),
-              ListTile(
+              const Divider(),
+              const ListTile(
                 // onTap: () {
                 //   Navigator.push(context, MaterialPageRoute(builder: (_) {
                 //     return const EmailScreen();
                 //   }));
                 // },
-                leading: const Icon(Icons.email),
-                title: const Text('E-mail', style: TextStyle(
+                leading: Icon(Icons.email),
+                title: Text('E-mail', style: TextStyle(
                   fontWeight: FontWeight.bold
                 ),),
               ),
+              const Divider(),
               ListTile(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (_){
@@ -56,6 +60,7 @@ class _SettingsScreen extends State<SettingsScreen> {
                     fontWeight: FontWeight.bold
                 ),),
               ),
+              const Divider(),
               ListTile(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (_){
@@ -66,7 +71,8 @@ class _SettingsScreen extends State<SettingsScreen> {
                 title: const Text('About', style: TextStyle(
                   fontWeight: FontWeight.bold
                 ),),
-              )
+              ),
+              const Divider(),
             ],
           ),
         ),

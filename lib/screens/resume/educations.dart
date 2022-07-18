@@ -84,16 +84,26 @@ class _EducationsScreen extends State<EducationsScreen> {
 
                         ],
                       ),
-                      child: ListTile(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (_) {
-                            return AddEducationWidget(education: educations[index],);
-                          }));
-                        },
-                        key: const ValueKey(0),
-                        title: Text('${educations[index].institution}'),
-                        subtitle: Text('${educations[index].course}'),
-                        trailing: Text('${_years > 0?'${_years} yrs':''} ${_month > 0?'${_month} mo':''}'),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: Colors.grey.withOpacity(0.3),
+                              width: 1
+                            )
+                          )
+                        ),
+                        child: ListTile(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (_) {
+                              return AddEducationWidget(education: educations[index],);
+                            }));
+                          },
+                          key: const ValueKey(0),
+                          title: Text('${educations[index].institution}'),
+                          subtitle: Text('${educations[index].course}'),
+                          trailing: Text('${_years > 0?'${_years} yrs':''} ${_month > 0?'${_month} mo':''}'),
+                        ),
                       )
                   );
                 },

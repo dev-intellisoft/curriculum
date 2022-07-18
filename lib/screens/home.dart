@@ -54,102 +54,106 @@ class _HomeWidget extends State<HomeWidget> {
                     child: Text('No resume found!', style: TextStyle(fontWeight: FontWeight.bold),)
                 );
               }
-              return Container(
-                margin: const EdgeInsets.only(left: 15, right: 15),
-                child: ListView.builder(
-                  itemCount: snapShot.data == null?0:snapShot.data!.length,
-                  itemBuilder: (context, i) {
-                    return Slidable(
-                        key: const ValueKey(0),
-                        child: ListTile(
-                          onTap: () {
-                            context.read<ResumeProvider>().setResume(snapShot.data![i]);
-                            Navigator.push(context, MaterialPageRoute(builder: (_) {
-                              return const NavigationScreen();
-                            }));
-                          },
-                            title: Text(snapShot.data![i].name!)
+              return ListView.builder(
+                itemCount: snapShot.data == null?0:snapShot.data!.length,
+                itemBuilder: (context, i) {
+                  return Slidable(
+                      key: const ValueKey(0),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: Colors.grey.withOpacity(0.3),
+                              width: 1
+                            )
+                          )
                         ),
-                      endActionPane: ActionPane(
-                        motion: const ScrollMotion(),
-                        // dismissible: DismissiblePane(onDismissed: () {}),
-                        children: [
-                          SlidableAction(
-                            onPressed: (value) async {
+                        child: ListTile(
+                            onTap: () {
+                              context.read<ResumeProvider>().setResume(snapShot.data![i]);
                               Navigator.push(context, MaterialPageRoute(builder: (_) {
-                                return PreviewerScreen(resumeId:snapShot.data![i].id);
+                                return const NavigationScreen();
                               }));
                             },
-                            backgroundColor: const Color(0xFF18A100),
-                            foregroundColor: Colors.white,
-                            icon: Icons.picture_as_pdf,
-                            label: 'Generate',
-                          ),
-                          SlidableAction(
-                            onPressed: (value) {
-                              showModalBottomSheet(context: context, builder: (context) {
-                                return Container(
-                                  color: Colors.white,
-                                  child: ListView(
-                                    children: [
-                                      Container(
-                                        child: const Text('Clone my resume', style: TextStyle(
-                                          fontWeight: FontWeight.bold
-                                        ),),
-                                        margin: const EdgeInsets.only(left: 30, top: 30, right: 30),
-                                      ),
-                                      Container(
-                                        child: TextFormField(
-                                          decoration: const InputDecoration(
-                                              label: Text('Clone name')
-                                          ),
-                                          onChanged: (value) {
-                                            setState(() {
-                                              cloneName = value;
-                                            });
-                                          },
-                                          focusNode: focusNode,
-                                          autofocus: true,
-                                          onEditingComplete: () async {
-                                            if (cloneName == '') {
-                                              return;
-                                            }
-
-                                            await context.read<ResumeProvider>().cloneResume(snapShot.data![i].id, cloneName);
-                                            setState(() {
-                                              cloneName = '';
-                                            });
-                                            Navigator.pop(context);
-                                          },
-                                        ),
-                                        margin: const EdgeInsets.all(30),
-                                      )
-                                    ],
-                                  ),
-                                );
-                              });
-                              // focusNode.requestFocus();
-                            },
-                            backgroundColor: const Color(0xFF21B7CA),
-                            foregroundColor: Colors.white,
-                            icon: Icons.file_copy_outlined,
-                            label: 'Clone',
-                          ),
-                          SlidableAction(
-                            onPressed: (value) {
-                              context.read<ResumeProvider>().removeResume(snapShot.data![i].id!);
-                            },
-                            backgroundColor: const Color(0xFFFE4A49),
-                            foregroundColor: Colors.white,
-                            icon: Icons.delete,
-                            label: 'Delete',
-                          ),
-
-                        ],
+                            title: Text(snapShot.data![i].name!)
+                        ),
                       ),
-                    );
-                  },
-                )
+                    endActionPane: ActionPane(
+                      motion: const ScrollMotion(),
+                      children: [
+                        SlidableAction(
+                          onPressed: (value) async {
+                            Navigator.push(context, MaterialPageRoute(builder: (_) {
+                              return PreviewerScreen(resumeId:snapShot.data![i].id);
+                            }));
+                          },
+                          backgroundColor: const Color(0xFF18A100),
+                          foregroundColor: Colors.white,
+                          icon: Icons.picture_as_pdf,
+                          label: 'Generate',
+                        ),
+                        SlidableAction(
+                          onPressed: (value) {
+                            showDialog(context: context, builder: (_) => AlertDialog(
+                              title: Row(
+                                children: const [
+                                  Icon(Icons.file_copy_outlined),
+                                  Text('Clone you cv as...')
+                                ],
+                              ),
+                              content: TextFormField(
+                                decoration: const InputDecoration(
+                                    label: Text('Copy name')
+                                ),
+                                onChanged: (value) {
+                                  setState(() {
+                                    cloneName = value;
+                                  });
+                                },
+                              ),
+                              actions: [
+                                FlatButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('Cancel')
+                                ),
+                                FlatButton(
+                                    onPressed: () async {
+                                      if (cloneName == '') {
+                                        return;
+                                      }
+                                      await context.read<ResumeProvider>().cloneResume(snapShot.data![i].id, cloneName);
+                                      setState(() {
+                                        cloneName = '';
+                                      });
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('Clone')
+                                )
+                              ],
+                            ));
+                          },
+                          backgroundColor: const Color(0xFF21B7CA),
+                          foregroundColor: Colors.white,
+                          icon: Icons.file_copy_outlined,
+                          label: 'Clone',
+                        ),
+                        SlidableAction(
+                          onPressed: (value) {
+                            context.read<ResumeProvider>().removeResume(snapShot.data![i].id!);
+                          },
+                          backgroundColor: const Color(0xFFFE4A49),
+                          foregroundColor: Colors.white,
+                          icon: Icons.delete,
+                          label: 'Delete',
+                        ),
+
+                      ],
+                    ),
+                  );
+                },
               );
             }
           )

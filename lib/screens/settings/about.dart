@@ -46,40 +46,28 @@ class _AboutScreen extends State<AboutScreen> {
       body: ListView(
         children: [
           const SizedBox(height: 20,),
-          Container(
-            color: Colors.grey.withOpacity(0.1),
-            height: 1,
-          ),
+          const Divider(),
           ListTile(
             title: const Text('App name: '),
             trailing: Text(appName, style: const TextStyle(
                 fontWeight: FontWeight.bold
             ),),
           ),
-          Container(
-            color: Colors.grey.withOpacity(0.1),
-            height: 1,
-          ),
+          const Divider(),
           ListTile(
             title: const Text('Version: '),
             trailing: Text(version, style: const TextStyle(
                 fontWeight: FontWeight.bold
             ),),
           ),
-          Container(
-            color: Colors.grey.withOpacity(0.1),
-            height: 1,
-          ),
+          const Divider(),
           ListTile(
             title: const Text('Build: '),
             trailing: Text(buildNumber, style: const TextStyle(
                 fontWeight: FontWeight.bold
             ),),
           ),
-          Container(
-            color: Colors.grey.withOpacity(0.1),
-            height: 1,
-          ),
+          const Divider(),
           const SizedBox(height: 20,),
 
           GestureDetector(

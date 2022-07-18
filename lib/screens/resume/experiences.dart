@@ -64,40 +64,48 @@ class _ExperiencesScreen extends State<ExperiencesScreen> {
                   _month = ((_days - (_years * 360)) / 30).ceil();
 
                   return Slidable(
-                    key: const ValueKey(0),
-                    endActionPane: ActionPane(
-                      motion: const ScrollMotion(),
-                      children: [
-                        SlidableAction(
-                          onPressed: (value) {},
-                          backgroundColor: const Color(0xFF21B7CA),
-                          foregroundColor: Colors.white,
-                          icon: Icons.file_copy_outlined,
-                          label: 'Duplicate',
-                        ),
-                        SlidableAction(
-                          onPressed: (value) {
-                            context.read<ResumeProvider>().removeExperience(experiences[index].id!);
-                          },
-                          backgroundColor: const Color(0xFFFE4A49),
-                          foregroundColor: Colors.white,
-                          icon: Icons.delete,
-                          label: 'Delete',
-                        ),
-
-                      ],
-                    ),
-                    child: ListTile(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (_) {
-                          return AddExperienceWidget(experience: experiences[index],);
-                        }));
-                      },
                       key: const ValueKey(0),
-                      title: Text('${experiences[index].company}'),
-                      subtitle: Text('${experiences[index].title}'),
-                      trailing: Text('${_years > 0?'${_years} yrs':''} ${_month > 0?'${_month} mo':''}'),
-                    )
+                      endActionPane: ActionPane(
+                        motion: const ScrollMotion(),
+                        children: [
+                          SlidableAction(
+                            onPressed: (value) {},
+                            backgroundColor: const Color(0xFF21B7CA),
+                            foregroundColor: Colors.white,
+                            icon: Icons.file_copy_outlined,
+                            label: 'Duplicate',
+                          ),
+                          SlidableAction(
+                            onPressed: (value) {
+                              context.read<ResumeProvider>().removeExperience(experiences[index].id!);
+                            },
+                            backgroundColor: const Color(0xFFFE4A49),
+                            foregroundColor: Colors.white,
+                            icon: Icons.delete,
+                            label: 'Delete',
+                          ),
+                        ],
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: Colors.grey.withOpacity(0.3), width: 1
+                            )
+                          )
+                        ),
+                        child: ListTile(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (_) {
+                              return AddExperienceWidget(experience: experiences[index],);
+                            }));
+                          },
+                          key: const ValueKey(0),
+                          title: Text('${experiences[index].company}'),
+                          subtitle: Text('${experiences[index].title}'),
+                          trailing: Text('${_years > 0?'$_years yrs':''} ${_month > 0?'$_month mo':''}'),
+                        ),
+                      )
                   );
                 },
               );
