@@ -23,13 +23,13 @@ class _SupportScreen extends State<SupportScreen> {
           ),
 
           Center(
-            child: Text('In UAE: +971 52 4886', style: TextStyle(
+            child: Text('In UAE: +971 52 673 4886', style: TextStyle(
                 fontWeight: FontWeight.bold
             ),),
           ),
 
           Center(
-            child: Text('Global: +971 52 4886 (WhatsApp)', style: TextStyle(
+            child: Text('Global: +971 52 673 4886 (WhatsApp)', style: TextStyle(
                 fontWeight: FontWeight.bold
             ),),
           )
