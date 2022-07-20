@@ -100,6 +100,9 @@ class _LoginWidget extends State<LoginWidget> {
                   onTap: disabled?() {}:() async {
                     bool login = await User.login(username, password);
                     if ( login ) {
+                      SharedPreferences _prefs = await SharedPreferences.getInstance();
+                      _prefs.setString('username', username);
+                      _prefs.setString('logged', 'yes');
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         backgroundColor: Colors.green,
                         content: const Text('Login success!'),

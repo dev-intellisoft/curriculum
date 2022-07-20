@@ -88,9 +88,11 @@ class _AboutScreen extends State<AboutScreen> {
                     onPressed: () async {
                       bool remove = await context.read<ResumeProvider>().removeAccount();
                       if (remove) {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
-                          return const MyApp();
-                        }));
+                        Navigator.pop(_);
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(builder: (context) =>
+                            const MyApp()), (Route<dynamic> route) => false
+                        );
                       }
                     },
                     child: const Text('Yes'),
