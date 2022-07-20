@@ -6,11 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'home.dart';
 
 class LoginWidget extends StatefulWidget {
-  bool? userExists;
-  LoginWidget({
-    Key? key,
-    required this.userExists
-  }) : super(key: key);
+  const LoginWidget({ Key? key, }) : super(key: key);
 
   @override
   _LoginWidget createState() => _LoginWidget();
@@ -141,28 +137,28 @@ class _LoginWidget extends State<LoginWidget> {
                   ),
                 ),
 
-                if ( widget.userExists != null && !widget.userExists! )
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (_) {
-                        return const RegisterWidget();
-                      }));
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 20),
-                      width: double.infinity,
-                      height: 45,
-                      child: const Center(
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) {
+                      return const RegisterWidget();
+                    }));
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    width: double.infinity,
+                    height: 45,
+                    child: const Center(
                         child: Text('Register', style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold
                         ),)),
-                      decoration: BoxDecoration(
+                    decoration: BoxDecoration(
                         color: Colors.green,
                         borderRadius: BorderRadius.circular(5)
-                      ),
                     ),
                   ),
+                ),
+
               ],
             ),
           ),

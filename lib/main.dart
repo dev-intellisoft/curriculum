@@ -1,4 +1,3 @@
-import 'package:curriculum/core/database_helper.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:curriculum/screens/login.dart';
@@ -32,12 +31,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: FutureBuilder(
-        future: DatabaseHelper.instance.userExists(),
-        builder: (BuildContext context, AsyncSnapshot<bool> snapShot) {
-          return LoginWidget(userExists: snapShot.data);
-        },
-      ),
+      home: const LoginWidget(),
     );
   }
 }
