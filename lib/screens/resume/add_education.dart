@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class AddEducationWidget extends StatefulWidget {
   Education education;
@@ -35,7 +36,7 @@ class _AddEducationWidget extends State<AddEducationWidget> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Add Education'),
+          title: Text('educations_screen.add_education.title'.tr()),
           actions: [
             GestureDetector(
               onTap: () {
@@ -62,8 +63,8 @@ class _AddEducationWidget extends State<AddEducationWidget> {
                   onChanged: (value) {
                     widget.education.institution = value;
                   },
-                  decoration: const InputDecoration(
-                    labelText: 'Institution'
+                  decoration: InputDecoration(
+                    labelText: 'educations_screen.add_education.institution'.tr()
                   ),
                 ),
                 const SizedBox(height: 15,),
@@ -72,8 +73,8 @@ class _AddEducationWidget extends State<AddEducationWidget> {
                   onChanged: (value) {
                     widget.education.course = value;
                   },
-                  decoration: const InputDecoration(
-                      labelText: 'Course'
+                  decoration: InputDecoration(
+                      labelText: 'educations_screen.add_education.course'.tr()
                   ),
                 ),
                 const SizedBox(height: 15,),
@@ -82,9 +83,9 @@ class _AddEducationWidget extends State<AddEducationWidget> {
                   onChanged: (value) {
                     widget.education.location = value;
                   },
-                  decoration: const InputDecoration(
-                      labelText: 'Location',
-                    hintText: 'London, UK'
+                  decoration: InputDecoration(
+                    labelText: 'educations_screen.add_education.location'.tr(),
+                    hintText: 'educations_screen.add_education.location_tip'.tr(),
                   ),
                 ),
                 const SizedBox(height: 15,),
@@ -94,8 +95,8 @@ class _AddEducationWidget extends State<AddEducationWidget> {
                       flex: 50,
                       child: TextFormField(
                         controller: _start,
-                        decoration: const InputDecoration(
-                            labelText: 'Start'
+                        decoration: InputDecoration(
+                            labelText: 'start'.tr()
                         ),
                         readOnly: true,  //set it true, so that user will not able to edit text
                         onTap: () async {
@@ -121,8 +122,8 @@ class _AddEducationWidget extends State<AddEducationWidget> {
                       flex: 50,
                       child: TextFormField(
                         controller: _end,
-                        decoration: const InputDecoration(
-                            labelText: 'End'
+                        decoration: InputDecoration(
+                            labelText: 'end'.tr()
                         ),
                         readOnly: true,  //set it true, so that user will not able to edit text
                         onTap: () async {
@@ -152,8 +153,8 @@ class _AddEducationWidget extends State<AddEducationWidget> {
                   },
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
-                  decoration: const InputDecoration(
-                    labelText: 'Description',
+                  decoration: InputDecoration(
+                      labelText: 'educations_screen.add_education.description'.tr(),
                   ),
                 ),
               ],

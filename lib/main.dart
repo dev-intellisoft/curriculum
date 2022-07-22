@@ -1,4 +1,6 @@
 import 'package:curriculum/core/providers/resume_provider.dart';
+import 'package:curriculum/translations/codegen_loader.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:curriculum/screens/login.dart';
 import 'package:provider/provider.dart';
@@ -7,9 +9,19 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load();
+  await EasyLocalization.ensureInitialized();
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => ResumeProvider())
-  ], child: const MyApp(),));
+  ], child: EasyLocalization(
+    fallbackLocale: const Locale('en'),
+    supportedLocales: const [
+      Locale('en'),
+      Locale('pt'),
+    ],
+      assetLoader: const CodegenLoader(),
+      path: 'assets/translations',
+     child: const MyApp(),
+  ),));
 }
 
 class MyApp extends StatelessWidget {
@@ -17,6 +29,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       theme: ThemeData(
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder()

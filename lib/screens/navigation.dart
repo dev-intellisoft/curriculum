@@ -6,6 +6,7 @@ import 'package:curriculum/screens/resume/personal.dart';
 import 'package:curriculum/screens/resume/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class _NavigationScreen extends State<NavigationScreen> {
               margin: const EdgeInsets.only(right: 5),
                 child:const Icon(Icons.warning_amber_outlined, color: Colors.black,)
             ),
-            const Text('Please fill your information to proceed!', style: TextStyle(
+            Text('navigation.text1'.tr(), style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold),
             )
@@ -71,22 +72,22 @@ class _NavigationScreen extends State<NavigationScreen> {
       },
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.account_box_rounded),
-              label: 'Personal',
+              icon: const Icon(Icons.account_box_rounded),
+              label: 'navigation_screen.information'.tr(),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.business),
-              label: 'Works',
+              icon: const Icon(Icons.business),
+              label: 'navigation_screen.experiences'.tr(),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.school),
-              label: 'Education',
+              icon: const Icon(Icons.school),
+              label: 'navigation_screen.education'.tr(),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
+              icon: const Icon(Icons.settings),
+              label: 'navigation_screen.settings'.tr(),
             ),
           ],
           currentIndex: _selectedIndex,

@@ -2,6 +2,7 @@ import 'package:curriculum/core/classes/resume.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class PersonalWidget extends StatefulWidget {
   const PersonalWidget({ Key? key, }) : super(key: key);
@@ -27,7 +28,7 @@ class _PersonalWidget extends State<PersonalWidget> {
       resizeToAvoidBottomInset : true,
 
       appBar: AppBar(
-        title: const Text('Personal Information'),
+        title: Text('personal_info_screen.title'.tr()),
         actions: [
           Consumer<ResumeProvider>(builder: (context, data, index) {
             String? _name = data.getResume().name;
@@ -46,7 +47,7 @@ class _PersonalWidget extends State<PersonalWidget> {
                           margin: const EdgeInsets.only(right: 5),
                           child:const Icon(Icons.check_circle_outline, color: Colors.white,)
                       ),
-                      const Text('Saved!', style: TextStyle(
+                      Text('personal_info_screen.success'.tr(), style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
                       )
@@ -82,9 +83,9 @@ class _PersonalWidget extends State<PersonalWidget> {
                 onChanged: (value) {
                   resume.name = value;
                 },
-                decoration: const InputDecoration(
-                    labelText: 'Profile name',
-                    hintText: 'Eg.: My English Resume'
+                decoration: InputDecoration(
+                    labelText: 'personal_info_screen.profile_name'.tr(),
+                    hintText: 'personal_info_screen.profile_name_tip'.tr(),
                 ),
               ),
             ),
@@ -94,8 +95,8 @@ class _PersonalWidget extends State<PersonalWidget> {
               onChanged: (value) {
                 resume.firstName = value;
               },
-              decoration: const InputDecoration(
-                labelText: 'First name',
+              decoration: InputDecoration(
+                labelText: 'personal_info_screen.first_name'.tr(),
               ),
             ),
             const SizedBox(height: 10,),
@@ -104,8 +105,8 @@ class _PersonalWidget extends State<PersonalWidget> {
               onChanged: (value) {
                 resume.lastName = value;
               },
-              decoration: const InputDecoration(
-                labelText: 'Last name',
+              decoration: InputDecoration(
+                labelText: 'personal_info_screen.last_name'.tr(),
               ),
             ),
             const SizedBox(height: 10,),
@@ -114,8 +115,8 @@ class _PersonalWidget extends State<PersonalWidget> {
               onChanged: (value) {
                 resume.telephone = value;
               },
-              decoration: const InputDecoration(
-                labelText: 'Telephone',
+              decoration: InputDecoration(
+                labelText: 'personal_info_screen.mobile'.tr(),
               ),
             ),
             const SizedBox(height: 10,),
@@ -124,8 +125,8 @@ class _PersonalWidget extends State<PersonalWidget> {
               onChanged: (value) {
                 resume.email = value;
               },
-              decoration: const InputDecoration(
-                labelText: 'E-mail',
+              decoration: InputDecoration(
+                labelText: 'personal_info_screen.email'.tr(),
               ),
             ),
 
@@ -135,8 +136,8 @@ class _PersonalWidget extends State<PersonalWidget> {
               onChanged: (value) {
                 resume.location = value;
               },
-              decoration: const InputDecoration(
-                labelText: 'Location',
+              decoration: InputDecoration(
+                labelText: 'personal_info_screen.location'.tr(),
               ),
             ),
 
@@ -148,8 +149,8 @@ class _PersonalWidget extends State<PersonalWidget> {
               onChanged: (value) {
                 resume.linkedIn = value;
               },
-              decoration: const InputDecoration(
-                labelText: 'Linkedin',
+              decoration: InputDecoration(
+                labelText: 'personal_info_screen.linkedin'.tr(),
               ),
             ),
             const SizedBox(height: 10,),
@@ -158,8 +159,8 @@ class _PersonalWidget extends State<PersonalWidget> {
               onChanged: (value) {
                 resume.github = value;
               },
-              decoration: const InputDecoration(
-                labelText: 'Github',
+              decoration: InputDecoration(
+                labelText: 'personal_info_screen.github'.tr(),
               ),
             ),
           ],

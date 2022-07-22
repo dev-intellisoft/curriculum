@@ -44,6 +44,7 @@ dependencies:
   intl: ^0.17.0
   package_info_plus: ^1.4.0
   flutter_dotenv: ^5.0.2
+  easy_localization: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +74,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - .env
+    - assets/translations/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

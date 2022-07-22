@@ -1,0 +1,107 @@
+{
+  "username": "Username",
+  "password": "Password",
+  "delete_warning": "Are you sure you want to delete your account?",
+  "delete_my_account": "Delete my account",
+  "login_screen": {
+    "app_name": "openCV Builder",
+    "register": "Register",
+    "failed": "Something went wrong!",
+    "success": "Login success!"
+  },
+  "login": "Login",
+  "register_screen": {
+    "register": "Register",
+    "text1": "NOTE: All information will be kept on your device.",
+    "text2": "Nothing is being shared over network.",
+    "success": "Registered with success!",
+    "failed": "Something went wrong!"
+  },
+  "register": "Register",
+  "resumes_screen": {
+    "title": "Resumes",
+    "not_found": "No resume found!",
+    "generate": "Generate",
+    "clone_as": "Clone you cv as...",
+    "copy_name": "Copy name",
+    "username": "Username: {username}"
+  },
+  "cancel": "Cancel",
+  "clone": "Clone",
+  "delete": "Delete",
+  "guest": "Guest",
+  "logout": "Logout",
+  "warning": "Warning",
+  "yes": "Yes",
+  "no": "No",
+  "personal_info_screen": {
+    "title": "Personal information",
+    "success": "Saved with success!",
+    "profile_name": "Profile name",
+    "profile_name_tip": "Eg.: My English Resume",
+    "first_name": "Fist name",
+    "last_name": "Last name",
+    "mobile": "Mobile",
+    "email": "E-mail",
+    "location": "Location",
+    "linkedin": "Linkedin",
+    "github": "GitHub"
+  },
+  "navigation_screen": {
+    "text1": "Please fill your information to proceed!",
+    "information": "Information",
+    "experiences": "Experiences",
+    "settings": "Settings",
+    "education": "Education"
+  },
+  "experiences_screen": {
+    "title": "Work experiences",
+    "not_found": "No records found!",
+    "add_experience": {
+      "title": "Add Experience",
+      "company": "Company",
+      "job_title": "Job title",
+      "location": "Location",
+      "location_tip": "London, UK",
+      "keywords": "Keywords",
+      "description": "Description"
+    }
+  },
+  "duplicate": "Duplicate",
+  "years": "{years} year(s)",
+  "months": "{month} month(s)",
+  "start": "Start",
+  "end": "End",
+  "educations_screen": {
+    "title": "Educations",
+    "not_found": "No records found!",
+    "add_education": {
+      "title": "Add education",
+      "institution": "Institution",
+      "course": "Course",
+      "location": "Location",
+      "location_tip": "London, UK",
+      "description": "Description"
+    }
+  },
+  "settings_screen": {
+    "title": "Settings",
+    "languages": "Languages",
+    "email": "E-mail",
+    "support": "Support",
+    "about": "About",
+    "support_screen": {
+      "title": "Support"
+    },
+    "about_screen": {
+      "app_name": "App name",
+      "title": "About",
+      "version": "Version",
+      "build": "Build"
+    }
+  },
+  "my_alert": {
+    "warning": "Warning",
+    "notice": "Are you sure you want to delete \"{name}\"?"
+  }
+}

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class AddExperienceWidget extends StatefulWidget {
   Experience experience;
@@ -37,7 +38,7 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Add Experience'),
+          title: Text('experiences_screen.add_experience.title'.tr()),
           actions: [
             GestureDetector(
               onTap: () {
@@ -64,8 +65,8 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                   onChanged: (value) {
                     widget.experience.company = value;
                   },
-                  decoration: const InputDecoration(
-                    labelText: 'Company'
+                  decoration: InputDecoration(
+                    labelText: 'experiences_screen.add_experience.company'.tr()
                   ),
                 ),
                 const SizedBox(height: 15,),
@@ -74,8 +75,8 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                   onChanged: (value) {
                     widget.experience.title = value;
                   },
-                  decoration: const InputDecoration(
-                      labelText: 'Job Title'
+                  decoration: InputDecoration(
+                      labelText: 'experiences_screen.add_experience.job_title'.tr()
                   ),
                 ),
                 const SizedBox(height: 15,),
@@ -84,9 +85,9 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                   onChanged: (value) {
                     widget.experience.location = value;
                   },
-                  decoration: const InputDecoration(
-                      labelText: 'Location',
-                    hintText: 'London, UK'
+                  decoration: InputDecoration(
+                      labelText: 'experiences_screen.add_experience.location'.tr(),
+                    hintText: 'experiences_screen.add_experience.location_tip'.tr(),
                   ),
                 ),
                 const SizedBox(height: 15,),
@@ -96,8 +97,8 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                       flex: 50,
                       child: TextFormField(
                         controller: _start,
-                        decoration: const InputDecoration(
-                            labelText: 'Start'
+                        decoration: InputDecoration(
+                            labelText: 'start'.tr()
                         ),
                         readOnly: true,  //set it true, so that user will not able to edit text
                         onTap: () async {
@@ -123,8 +124,8 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                       flex: 50,
                       child: TextFormField(
                         controller: _end,
-                        decoration: const InputDecoration(
-                            labelText: 'End'
+                        decoration: InputDecoration(
+                            labelText: 'end'.tr()
                         ),
                         readOnly: true,  //set it true, so that user will not able to edit text
                         onTap: () async {
@@ -152,8 +153,8 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                   onChanged: (value) {
                     // widget.experience!.keywords = value;
                   },
-                  decoration: const InputDecoration(
-                    labelText: 'Keywords',
+                  decoration: InputDecoration(
+                    labelText: 'experiences_screen.add_experience.keywords'.tr(),
                   ),
                 ),
 
@@ -165,11 +166,10 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                   },
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
-                  decoration: const InputDecoration(
-                      labelText: 'Description',
+                  decoration: InputDecoration(
+                    labelText: 'experiences_screen.add_experience.description'.tr(),
                   ),
                 ),
-
               ],
             ),
           ),

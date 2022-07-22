@@ -1,8 +1,9 @@
 import 'package:curriculum/screens/settings/about.dart';
-import 'package:curriculum/screens/settings/email.dart';
-import 'package:curriculum/screens/settings/language.dart';
+// import 'package:curriculum/screens/settings/email.dart';
+// import 'package:curriculum/screens/settings/language.dart';
 import 'package:curriculum/screens/settings/support.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class _SettingsScreen extends State<SettingsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: Text('settings.title'.tr()),
       ),
       body: SafeArea(
         child: Center(
@@ -25,26 +26,26 @@ class _SettingsScreen extends State<SettingsScreen> {
             children: [
               const SizedBox(height: 15,),
               const Divider(),
-              const ListTile(
+              ListTile(
                 // onTap: () {
                 //   Navigator.push(context, MaterialPageRoute(builder: (_) {
                 //     return const LanguageScreen();
                 //   }));
                 // },
-                leading: Icon(Icons.g_translate),
-                title: Text('Language', style: TextStyle(
+                leading: const Icon(Icons.g_translate),
+                title: Text('settings_screen.languages'.tr(), style: const TextStyle(
                   fontWeight: FontWeight.bold
                 ),),
               ),
               const Divider(),
-              const ListTile(
+              ListTile(
                 // onTap: () {
                 //   Navigator.push(context, MaterialPageRoute(builder: (_) {
                 //     return const EmailScreen();
                 //   }));
                 // },
-                leading: Icon(Icons.email),
-                title: Text('E-mail', style: TextStyle(
+                leading: const Icon(Icons.email),
+                title: Text('settings_screen.email'.tr(), style: const TextStyle(
                   fontWeight: FontWeight.bold
                 ),),
               ),
@@ -56,7 +57,7 @@ class _SettingsScreen extends State<SettingsScreen> {
                   }));
                 },
                 leading: const Icon(Icons.support_agent),
-                title: const Text('Support', style: TextStyle(
+                title: Text('settings_screen.support'.tr(), style: const TextStyle(
                     fontWeight: FontWeight.bold
                 ),),
               ),
@@ -68,7 +69,7 @@ class _SettingsScreen extends State<SettingsScreen> {
                   }));
                 },
                 leading: const Icon(Icons.info_outline),
-                title: const Text('About', style: TextStyle(
+                title: Text('settings_screen.about'.tr(), style: const TextStyle(
                   fontWeight: FontWeight.bold
                 ),),
               ),

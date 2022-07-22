@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import '../../main.dart';
 
 class AboutScreen extends StatefulWidget {
@@ -41,28 +41,28 @@ class _AboutScreen extends State<AboutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('About'),
+        title: Text('settings_screen.about_screen.title'.tr()),
       ),
       body: ListView(
         children: [
           const SizedBox(height: 20,),
           const Divider(),
           ListTile(
-            title: const Text('App name: '),
+            title:  Text('settings_screen.about_screen.app_name'.tr()),
             trailing: Text(appName, style: const TextStyle(
                 fontWeight: FontWeight.bold
             ),),
           ),
           const Divider(),
           ListTile(
-            title: const Text('Version: '),
+            title:  Text('settings_screen.about_screen.version'.tr()),
             trailing: Text(version, style: const TextStyle(
                 fontWeight: FontWeight.bold
             ),),
           ),
           const Divider(),
           ListTile(
-            title: const Text('Build: '),
+            title: Text('settings_screen.about_screen.build'.tr()),
             trailing: Text(buildNumber, style: const TextStyle(
                 fontWeight: FontWeight.bold
             ),),
@@ -79,10 +79,10 @@ class _AboutScreen extends State<AboutScreen> {
                       margin: const EdgeInsets.only(right: 10),
                       child: const Icon(Icons.warning, color: Colors.orange,),
                     ),
-                    const Text('Warning')
+                    Text('warning'.tr())
                   ],
                 ),
-                content: const Text('Are you sure you want to delete your account?'),
+                content: Text('delete_warning'.tr()),
                 actions: [
                   FlatButton(
                     onPressed: () async {
@@ -95,14 +95,14 @@ class _AboutScreen extends State<AboutScreen> {
                         );
                       }
                     },
-                    child: const Text('Yes'),
+                    child: Text('yes'.tr()),
                     color: Colors.red,
                   ),
                   FlatButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: const Text('No'),
+                    child: Text('no'.tr()),
                     color: Colors.grey.withOpacity(0.5),
                   )
                 ],
@@ -112,7 +112,7 @@ class _AboutScreen extends State<AboutScreen> {
               margin: const EdgeInsets.symmetric(horizontal: 20),
               height: 47,
               alignment: Alignment.center,
-              child: const Text('Delete my account', style: TextStyle(
+              child: Text('delete_my_account'.tr(), style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold
               ),),

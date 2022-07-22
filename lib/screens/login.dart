@@ -52,7 +52,7 @@ class _LoginWidget extends State<LoginWidget> {
               children: [
                 Container(
                   margin: const EdgeInsets.only(top: 60, bottom: 60),
-                  child: const Text('openCV Builder', style: TextStyle(
+                  child: Text('login_screen.app_name'.tr(), style: const TextStyle(
                     fontSize: 18, fontWeight: FontWeight.bold
                   ),),
                 ),
@@ -63,8 +63,8 @@ class _LoginWidget extends State<LoginWidget> {
                       username = value;
                     });
                   },
-                  decoration: const InputDecoration(
-                    labelText: 'Username'
+                  decoration: InputDecoration(
+                    labelText: 'username'.tr()
                   ),
                 ),
 
@@ -85,7 +85,7 @@ class _LoginWidget extends State<LoginWidget> {
                       },
                       child: visibility? const Icon(Icons.visibility_off): const Icon(Icons.visibility),
                     ),
-                    labelText: 'Password'
+                    labelText: 'password'.tr()
                   ),
                   obscureText: !visibility,
                 ),
@@ -101,18 +101,18 @@ class _LoginWidget extends State<LoginWidget> {
                       _prefs.setString('logged', 'yes');
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         backgroundColor: Colors.green,
-                        content: const Text('Login success!'),
+                        content: Text('login_screen.success'.tr()),
                         action: SnackBarAction(
                           label: '',
                           onPressed: () {},
                         ),
                       ));
                       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
-                        return const HomeWidget();
+                        return const ResumesWidget();
                       }));
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: const Text('Something went wrong!'),
+                        content: Text('login_screen.failed'.tr()),
                         backgroundColor: Colors.red,
                         action: SnackBarAction(
                           label: '',
@@ -126,7 +126,7 @@ class _LoginWidget extends State<LoginWidget> {
                     width: double.infinity,
                     height: 45,
                     child:  Center(
-                      child: Text('Login', style: TextStyle(
+                      child: Text('login'.tr(), style: TextStyle(
                         color: disabled?Colors.grey:Colors.white,
                         fontWeight: FontWeight.bold
                       ),)),
@@ -147,18 +147,17 @@ class _LoginWidget extends State<LoginWidget> {
                     margin: const EdgeInsets.only(top: 20),
                     width: double.infinity,
                     height: 45,
-                    child: const Center(
-                        child: Text('Register', style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold
-                        ),)),
+                    child: Center(
+                      child: Text('login_screen.register'.tr(), style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold
+                      ),)),
                     decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(5)
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(5)
                     ),
                   ),
                 ),
-
               ],
             ),
           ),

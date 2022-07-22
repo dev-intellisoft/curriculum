@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class MyAlert extends StatefulWidget {
   String name;
@@ -40,14 +41,14 @@ class _MyAlert extends State<MyAlert> {
             child: const Icon(Icons.warning, color: Colors.orange,),
             margin: const EdgeInsets.only(right: 15),
           ),
-          const Text('Warning')
+          Text('my_alert.warning'.tr())
         ],
       ),
       content: SizedBox(
         height: 86,
         child: Column(
           children: [
-            Text('Are you sure you want to delete "${widget.name}"?'),
+            Text('my_alert.notice'.tr(namedArgs: {'name':widget.name})),
 
             Row(
               children: [
@@ -73,11 +74,11 @@ class _MyAlert extends State<MyAlert> {
       actions: [
         FlatButton(
             onPressed: () => widget.onCancel.call(),
-            child: const Text('No')
+            child: Text('no'.tr())
         ),
         FlatButton(
             onPressed: () => widget.onConfirm.call(),
-            child: const Text('Yes')
+            child: Text('yes'.tr())
         )
       ],
     );

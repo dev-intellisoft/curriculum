@@ -8,6 +8,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../core/providers/resume_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ResumesWidget extends StatefulWidget {
   const ResumesWidget({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class ResumesWidget extends StatefulWidget {
 
 class _ResumesWidget extends State<ResumesWidget> {
   String cloneName = '';
-  String username = 'Guest';
+  String username = 'guest'.tr();
 
   void _init() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
@@ -46,7 +47,7 @@ class _ResumesWidget extends State<ResumesWidget> {
                   height: 150,
                   child: Column(
                     children: [
-                      Text('Username: $username'),
+                      Text('resumes_screen.username'.tr(namedArgs:{'username':username})),
                       FlatButton(
                         minWidth: 200,
                           color: Colors.grey,
@@ -59,7 +60,7 @@ class _ResumesWidget extends State<ResumesWidget> {
                                 const MyApp()), (Route<dynamic> route) => false
                             );
                           },
-                          child: const Text('Logout', style: TextStyle(
+                          child: Text('logout'.tr(), style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold
                           ),)
@@ -75,10 +76,10 @@ class _ResumesWidget extends State<ResumesWidget> {
                                   margin: const EdgeInsets.only(right: 10),
                                   child: const Icon(Icons.warning, color: Colors.orange,),
                                 ),
-                                const Text('Warning')
+                                Text('warning'.tr())
                               ],
                             ),
-                            content: const Text('Are you sure you want to delete your account?'),
+                            content: Text('delete_warning'.tr()),
                             actions: [
                               FlatButton(
                                 onPressed: () async {
@@ -92,7 +93,7 @@ class _ResumesWidget extends State<ResumesWidget> {
                                     );
                                   }
                                 },
-                                child: const Text('Yes', style: TextStyle(
+                                child: Text('yes'.tr(), style: const TextStyle(
                                   color: Colors.white
                                 ),),
                                 color: Colors.red,
@@ -101,13 +102,13 @@ class _ResumesWidget extends State<ResumesWidget> {
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                child: const Text('No'),
+                                child: Text('no'.tr()),
                                 color: Colors.grey.withOpacity(0.5),
                               )
                             ],
                           ),);
                         },
-                        child: const Text('Delete my account', style: TextStyle(
+                        child: Text('delete_my_account'.tr(), style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold
                         ),)
@@ -133,7 +134,7 @@ class _ResumesWidget extends State<ResumesWidget> {
             ),
           ),
         ),
-        title: const Text('Profile'),
+        title: Text('resumes_screen.title'.tr()),
         actions: [
           GestureDetector(
             onTap: (){
@@ -153,8 +154,8 @@ class _ResumesWidget extends State<ResumesWidget> {
             future: Provider.of<ResumeProvider>(context).loadResumes(),
             builder:  (BuildContext context, AsyncSnapshot<List<Resume>> snapShot) {
               if ( snapShot.data != null && !(snapShot.data!.length > 0) ) {
-                return const Center(
-                  child: Text('No resume found!', style: TextStyle(fontWeight: FontWeight.bold),)
+                return Center(
+                  child: Text('resumes_screen.not_found'.tr(), style: const TextStyle(fontWeight: FontWeight.bold),)
                 );
               }
               return ListView.builder(
@@ -194,20 +195,20 @@ class _ResumesWidget extends State<ResumesWidget> {
                           backgroundColor: const Color(0xFF18A100),
                           foregroundColor: Colors.white,
                           icon: Icons.picture_as_pdf,
-                          label: 'Generate',
+                          label: 'resumes_screen.generate'.tr(),
                         ),
                         SlidableAction(
                           onPressed: (value) {
                             showDialog(context: context, builder: (_) => AlertDialog(
                               title: Row(
-                                children: const [
-                                  Icon(Icons.file_copy_outlined),
-                                  Text('Clone you cv as...')
+                                children: [
+                                  const Icon(Icons.file_copy_outlined),
+                                  Text('resumes_screen.clone_as'.tr())
                                 ],
                               ),
                               content: TextFormField(
-                                decoration: const InputDecoration(
-                                  label: Text('Copy name')
+                                decoration: InputDecoration(
+                                  label: Text('resumes_screen.copy_name'.tr())
                                 ),
                                 onChanged: (value) {
                                   setState(() {
@@ -220,7 +221,7 @@ class _ResumesWidget extends State<ResumesWidget> {
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
-                                  child: const Text('Cancel')
+                                  child: Text('cancel'.tr())
                                 ),
                                 FlatButton(
                                   onPressed: () async {
@@ -233,7 +234,7 @@ class _ResumesWidget extends State<ResumesWidget> {
                                     });
                                     Navigator.pop(context);
                                   },
-                                  child: const Text('Clone')
+                                  child: Text('clone'.tr())
                                 )
                               ],
                             ));
@@ -241,7 +242,7 @@ class _ResumesWidget extends State<ResumesWidget> {
                           backgroundColor: const Color(0xFF21B7CA),
                           foregroundColor: Colors.white,
                           icon: Icons.file_copy_outlined,
-                          label: 'Clone',
+                          label: 'clone'.tr(),
                         ),
                         SlidableAction(
                           onPressed: (value) async {
@@ -268,7 +269,7 @@ class _ResumesWidget extends State<ResumesWidget> {
                           backgroundColor: const Color(0xFFFE4A49),
                           foregroundColor: Colors.white,
                           icon: Icons.delete,
-                          label: 'Delete',
+                          label: 'delete'.tr(),
                         ),
                       ],
                     ),

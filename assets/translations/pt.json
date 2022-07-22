@@ -1,0 +1,107 @@
+{
+  "username": "Usuário",
+  "password": "Senha",
+  "login_screen": {
+    "app_name": "openCV Builder",
+    "register": "Cadastrar",
+    "failed": "Algo deu errado!",
+    "success": "Logado com success!"
+  },
+  "login": "Entrar",
+  "register_screen": {
+    "register": "Cadastro",
+    "text1": "AVISO: Todas infomações ficará no seu aparelho.",
+    "text2": "Nada será enviado via rede.",
+    "success": "Cadastrado com sucesso!",
+    "failed": "Algo deu errado!"
+  },
+  "register": "Cadastrar",
+  "resumes_screen": {
+    "title": "Currículos",
+    "not_found": "Nenhum curriculo encontrado!",
+    "generate": "Gerar",
+    "clone_as": "Clonar seu cv como...",
+    "copy_name": "Nome da cópia",
+    "username": "Usuário: {username}"
+  },
+  "cancel": "Cancelar",
+  "clone": "Clonar",
+  "delete": "Excluir",
+  "guest": "Convidado",
+  "logout": "Logout",
+  "warning": "Aviso",
+  "yes": "Sim",
+  "no": "Não",
+  "personal_info_screen": {
+    "title": "Informações Pessoais",
+    "success": "Salvo com sucesso!",
+    "profile_name": "Nome do perfil",
+    "profile_name_tip": "Ex.: Meu currículo inglês",
+    "first_name": "Nome",
+    "last_name": "Sobrenome",
+    "mobile": "Celular",
+    "email": "E-mail",
+    "location": "Localização",
+    "linkedin": "Linkedin",
+    "github": "GitHub"
+  },
+  "navigation_screen": {
+    "text1": "Favor preencher suas informações para prosseguir!",
+    "information": "Informações",
+    "experiences": "Experiências",
+    "settings": "Configurações",
+    "education": "Escolaridade"
+  },
+  "experiences_screen": {
+    "title": "Experiências de Trabalho",
+    "not_found": "Nenhum registro encontrado!",
+    "add_experience": {
+      "title": "Incluir Experiência",
+      "company": "Empresa",
+      "job_title": "Cargo",
+      "location": "Localidade",
+      "location_tip": "São Paulo, Brasil",
+      "keywords": "Palavras chave",
+      "description": "Descrição"
+    }
+  },
+  "duplicate": "Duplicar",
+  "years": "{years}ano(s)",
+  "months": "{month} mes(es)",
+  "start": "Início",
+  "end": "Témino",
+  "educations_screen": {
+    "title": "Escolaridade",
+    "not_found": "Nenhum registro encontrado!",
+    "add_education": {
+      "title": "Incluir escolaridade",
+      "institution": "Instituição",
+      "course": "Curso",
+      "location": "Localidade",
+      "location_tip": "São Paulo, Brasil",
+      "description": "Descrição"
+    }
+  },
+  "settings_screen": {
+    "title": "Configurações",
+    "languages": "Idiomas",
+    "email": "E-mail",
+    "support": "Suporte",
+    "about": "Sobre",
+    "support_screen": {
+      "title": "Suporte"
+    },
+    "about_screen": {
+      "app_name": "Nomde do app",
+      "title": "Sobre",
+      "version": "Versão",
+      "build": "Build"
+    }
+  },
+  "delete_warning": "Tem cert que deseja excluir sua conta?",
+  "delete_my_account": "Excluir minha conta",
+  "my_alert": {
+    "warning": "Aviso",
+    "notice": "Tem certeza que deseja excluir \"{name}\"?"
+  }
+}
