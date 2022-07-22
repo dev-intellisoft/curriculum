@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:curriculum/core/classes/resume.dart';
 import 'package:curriculum/main.dart';
 import 'package:curriculum/screens/navigation.dart';
@@ -11,14 +9,14 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../core/providers/resume_provider.dart';
 
-class HomeWidget extends StatefulWidget {
-  const HomeWidget({Key? key}) : super(key: key);
+class ResumesWidget extends StatefulWidget {
+  const ResumesWidget({Key? key}) : super(key: key);
 
   @override
-  _HomeWidget createState() => _HomeWidget();
+  _ResumesWidget createState() => _ResumesWidget();
 }
 
-class _HomeWidget extends State<HomeWidget> {
+class _ResumesWidget extends State<ResumesWidget> {
   String cloneName = '';
   String username = 'Guest';
 

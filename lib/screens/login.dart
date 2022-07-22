@@ -2,8 +2,8 @@ import 'package:curriculum/core/classes/user.dart';
 import 'package:curriculum/screens/register.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'home.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'resumes.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({ Key? key, }) : super(key: key);
@@ -22,7 +22,7 @@ class _LoginWidget extends State<LoginWidget> {
     String? logged = _pref.getString('logged');
     if (logged == 'yes') {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
-        return const HomeWidget();
+        return const ResumesWidget();
       }));
     }
   }

@@ -1,6 +1,5 @@
 import 'package:curriculum/core/classes/user.dart';
-import 'package:curriculum/screens/home.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:curriculum/screens/resumes.dart';
 import 'package:flutter/material.dart';
 
 class RegisterWidget extends StatefulWidget {
@@ -113,7 +112,7 @@ class _RegisterWidget extends State<RegisterWidget> {
                           ),
                         ));
                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {
-                          return const HomeWidget();
+                          return const ResumesWidget();
                         }));
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
