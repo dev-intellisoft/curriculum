@@ -7,6 +7,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'classes/experience.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class DatabaseHelper {
   DatabaseHelper._privateConstructor();
@@ -33,6 +34,7 @@ class DatabaseHelper {
         password TEXT
       )
       ''');
+    await db.execute('INSERT INTO user(username, password) VALUES(\'${dotenv.env['DEMO_EMAIL']}\', \'${dotenv.env['DEMO_PASSWORD']}\')');
 
     await db.execute('''
       CREATE TABLE resumes(

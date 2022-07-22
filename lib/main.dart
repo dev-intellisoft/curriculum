@@ -2,9 +2,11 @@ import 'package:curriculum/core/providers/resume_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:curriculum/screens/login.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load();
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => ResumeProvider())
   ], child: const MyApp(),));
