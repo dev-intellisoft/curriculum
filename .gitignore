@@ -48,3 +48,5 @@ android/keys/
 ios/Podfile.lock
 pubspec.lock
 .env
+/lib/translations/codegen_loader.g.dart
+/lib/translations/locale_keys.g.dart
