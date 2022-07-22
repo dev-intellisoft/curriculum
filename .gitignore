@@ -45,3 +45,5 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 android/keys/
+ios/Podfile.lock
+pubspec.lock
