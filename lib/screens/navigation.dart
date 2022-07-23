@@ -29,7 +29,7 @@ class _NavigationScreen extends State<NavigationScreen> {
               margin: const EdgeInsets.only(right: 5),
                 child:const Icon(Icons.warning_amber_outlined, color: Colors.black,)
             ),
-            Text('navigation.text1'.tr(), style: const TextStyle(
+            Text('navigation_screen.text1'.tr(), style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold),
             )
