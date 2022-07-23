@@ -96,6 +96,9 @@
       "title": "Sobre",
       "version": "Versão",
       "build": "Build"
+    },
+    "languages_screen": {
+      "title": "Configurações de idiomas"
     }
   },
   "delete_warning": "Tem cert que deseja excluir sua conta?",

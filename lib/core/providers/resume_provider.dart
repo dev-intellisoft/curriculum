@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:curriculum/core/classes/resume.dart';
 import 'package:curriculum/core/classes/experience.dart';

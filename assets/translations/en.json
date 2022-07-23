@@ -98,6 +98,9 @@
       "title": "About",
       "version": "Version",
       "build": "Build"
+    },
+    "languages_screen": {
+      "title": "Language setting"
     }
   },
   "my_alert": {

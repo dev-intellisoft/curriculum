@@ -1,6 +1,6 @@
 import 'package:curriculum/screens/settings/about.dart';
 // import 'package:curriculum/screens/settings/email.dart';
-// import 'package:curriculum/screens/settings/language.dart';
+import 'package:curriculum/screens/settings/language.dart';
 import 'package:curriculum/screens/settings/support.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -18,7 +18,7 @@ class _SettingsScreen extends State<SettingsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('settings.title'.tr()),
+        title: Text('settings_screen.title'.tr()),
       ),
       body: SafeArea(
         child: Center(
@@ -26,18 +26,18 @@ class _SettingsScreen extends State<SettingsScreen> {
             children: [
               const SizedBox(height: 15,),
               const Divider(),
-              ListTile(
-                // onTap: () {
-                //   Navigator.push(context, MaterialPageRoute(builder: (_) {
-                //     return const LanguageScreen();
-                //   }));
-                // },
-                leading: const Icon(Icons.g_translate),
-                title: Text('settings_screen.languages'.tr(), style: const TextStyle(
-                  fontWeight: FontWeight.bold
-                ),),
-              ),
-              const Divider(),
+              // ListTile(
+              //   onTap: () {
+              //     Navigator.push(context, MaterialPageRoute(builder: (_) {
+              //       return const LanguageScreen();
+              //     }));
+              //   },
+              //   leading: const Icon(Icons.g_translate),
+              //   title: Text('settings_screen.languages'.tr(), style: const TextStyle(
+              //     fontWeight: FontWeight.bold
+              //   ),),
+              // ),
+              // const Divider(),
               ListTile(
                 // onTap: () {
                 //   Navigator.push(context, MaterialPageRoute(builder: (_) {
