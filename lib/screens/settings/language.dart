@@ -1,8 +1,7 @@
 import 'package:curriculum/screens/resume/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:provider/provider.dart';
-import '../../core/providers/languages_provider.dart';
+// import 'package:provider/provider.dart';
 
 class LanguageScreen extends StatefulWidget {
   const LanguageScreen({Key? key}) : super(key: key);
@@ -36,14 +35,14 @@ class _LanguageScreen extends State<LanguageScreen> {
           FlatButton(
             // color: Colors.blueGrey,
             onPressed: () {
-              context.read<LanguagesProvider>().setLocale(Locale('en'));
+              // context.read<LanguagesProvider>().setLocale(Locale('en'));
             },
             child: const Text('English')
           ),
           FlatButton(
             // color: Colors.blueGrey,
             onPressed: () {
-              context.read<LanguagesProvider>().setLocale(Locale('pt'));
+              // context.read<LanguagesProvider>().setLocale(Locale('pt'));
             },
             child: const Text('Português')
           )
