@@ -99,12 +99,17 @@
     },
     "languages_screen": {
       "title": "Configurações de idiomas"
-    }
+    },
+    "enabled_biometric": "Ativar {type}",
+    "disabled_biometric": "Desativar {type}"
   },
   "delete_warning": "Tem cert que deseja excluir sua conta?",
   "delete_my_account": "Excluir minha conta",
   "my_alert": {
     "warning": "Aviso",
     "notice": "Tem certeza que deseja excluir \"{name}\"?"
+  },
+  "biometric_alert": {
+    "notice": "Você deseja usar login biometrico?"
   }
 }

@@ -101,10 +101,15 @@
     },
     "languages_screen": {
       "title": "Language setting"
-    }
+    },
+    "enabled_biometric": "Enable {type}",
+    "disabled_biometric": "Disabled {type}"
   },
   "my_alert": {
     "warning": "Warning",
     "notice": "Are you sure you want to delete \"{name}\"?"
+  },
+  "biometric_alert": {
+    "notice": "Do you want to use biometric login?"
   }
 }

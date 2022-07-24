@@ -1,12 +1,17 @@
-import 'package:curriculum/core/classes/user.dart';
 import 'package:curriculum/screens/register.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:easy_localization/easy_localization.dart';
+import '../core/auth/auth.dart';
+import '../core/auth/biometrics.dart';
+import '../widgets/biometric_alert.dart';
 import 'resumes.dart';
 
 class LoginWidget extends StatefulWidget {
-  const LoginWidget({ Key? key, }) : super(key: key);
+  bool logout;
+  LoginWidget({
+    Key? key,
+    this.logout = false
+  }) : super(key: key);
 
   @override
   _LoginWidget createState() => _LoginWidget();
@@ -17,11 +22,19 @@ class _LoginWidget extends State<LoginWidget> {
   String password = '';
   bool visibility = false;
 
-  void _init() async {
-    SharedPreferences _pref = await SharedPreferences.getInstance();
-    String? logged = _pref.getString('logged');
-    if (logged == 'yes') {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
+   _init() async {
+    if (await isLoggedIn()) {
+      return Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
+        return const ResumesWidget();
+      }));
+    }
+
+    if (widget.logout) {
+      return;
+    }
+
+    if ( await biometricLogin() && await authenticate() ) {
+      return Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
         return const ResumesWidget();
       }));
     }
@@ -33,6 +46,7 @@ class _LoginWidget extends State<LoginWidget> {
     super.initState();
     _init();
   }
+
   @override
   Widget build(BuildContext context) {
     bool disabled = username.isEmpty || password.isEmpty;
@@ -58,6 +72,15 @@ class _LoginWidget extends State<LoginWidget> {
                 ),
 
                 TextFormField(
+                  onTap: () async {
+                    if ( await biometricLogin() ){
+                      if (await authenticate() ) {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
+                          return const ResumesWidget();
+                        }));
+                      }
+                    }
+                  },
                   onChanged: (value) {
                     setState(() {
                       username = value;
@@ -94,32 +117,40 @@ class _LoginWidget extends State<LoginWidget> {
 
                 GestureDetector(
                   onTap: disabled?() {}:() async {
-                    bool login = await User.login(username, password);
-                    if ( login ) {
-                      SharedPreferences _prefs = await SharedPreferences.getInstance();
-                      _prefs.setString('username', username);
-                      _prefs.setString('logged', 'yes');
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        backgroundColor: Colors.green,
-                        content: Text('login_screen.success'.tr()),
-                        action: SnackBarAction(
-                          label: '',
-                          onPressed: () {},
-                        ),
-                      ));
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
-                        return const ResumesWidget();
-                      }));
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text('login_screen.failed'.tr()),
-                        backgroundColor: Colors.red,
-                        action: SnackBarAction(
-                          label: '',
-                          onPressed: () {},
-                        ),
-                      ));
-                    }
+                    login(username, password).then((value) {
+                      if ( value ) {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
+                          return const ResumesWidget();
+                        }));
+
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          backgroundColor: Colors.green,
+                          content: Text('login_screen.success'.tr()),
+                          action: SnackBarAction(
+                            label: '',
+                            onPressed: () {},
+                          ),
+                        ));
+
+                        showDialog(context: context, builder: (ctx) => BiometricAlert(
+                          onConfirm: () {
+                            saveLoginCredentials(username, password);
+                          },
+                          onCancel: () {},
+                        ),);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text('login_screen.failed'.tr()),
+                          backgroundColor: Colors.red,
+                          action: SnackBarAction(
+                            label: '',
+                            onPressed: () {},
+                          ),
+                        ));
+                      }
+                    }).catchError((e) {
+                      print(e);
+                    });
                   },
                   child: Container(
                     margin: const EdgeInsets.only(top: 20),

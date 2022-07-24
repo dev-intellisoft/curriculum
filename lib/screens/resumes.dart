@@ -1,7 +1,7 @@
 import 'package:curriculum/core/classes/resume.dart';
-import 'package:curriculum/main.dart';
 import 'package:curriculum/screens/navigation.dart';
 import 'package:curriculum/screens/previewer.dart';
+import 'package:curriculum/screens/resume/settings.dart';
 import 'package:curriculum/widgets/my_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -42,81 +42,8 @@ class _ResumesWidget extends State<ResumesWidget> {
         leading: Center(
           child: GestureDetector(
             onTap: () {
-              showDialog(context: context, builder: (_) => AlertDialog(
-                content: SizedBox(
-                  height: 150,
-                  child: Column(
-                    children: [
-                      Text('resumes_screen.username'.tr(namedArgs:{'username':username})),
-                      FlatButton(
-                        minWidth: 200,
-                          color: Colors.grey,
-                          onPressed: () async {
-                            SharedPreferences _prefs = await SharedPreferences.getInstance();
-                            _prefs.clear();
-                            Navigator.pop(_);
-                            Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(builder: (context) =>
-                                const MyApp()), (Route<dynamic> route) => false
-                            );
-                          },
-                          child: Text('logout'.tr(), style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold
-                          ),)
-                      ),
-                      FlatButton(
-                        minWidth: 200,
-                        color: Colors.red,
-                        onPressed: () {
-                          showDialog(context: context, builder: (ctx) => AlertDialog(
-                            title: Row(
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.only(right: 10),
-                                  child: const Icon(Icons.warning, color: Colors.orange,),
-                                ),
-                                Text('warning'.tr())
-                              ],
-                            ),
-                            content: Text('delete_warning'.tr()),
-                            actions: [
-                              FlatButton(
-                                onPressed: () async {
-                                  bool remove = await context.read<ResumeProvider>().removeAccount();
-                                  if (remove) {
-                                    Navigator.pop(ctx);
-                                    Navigator.pop(_);
-                                    Navigator.of(context).pushAndRemoveUntil(
-                                        MaterialPageRoute(builder: (context) =>
-                                        const MyApp()), (Route<dynamic> route) => false
-                                    );
-                                  }
-                                },
-                                child: Text('yes'.tr(), style: const TextStyle(
-                                  color: Colors.white
-                                ),),
-                                color: Colors.red,
-                              ),
-                              FlatButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text('no'.tr()),
-                                color: Colors.grey.withOpacity(0.5),
-                              )
-                            ],
-                          ),);
-                        },
-                        child: Text('delete_my_account'.tr(), style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold
-                        ),)
-                      ),
-                    ],
-                  ),
-                ),
-              ));
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) =>
+              const SettingsScreen()));
             },
             child: Container(
               height: 30,
