@@ -63,6 +63,7 @@ Future<bool> authenticate() async {
       options: const AuthenticationOptions(
         useErrorDialogs: true,
         stickyAuth: true,
+        biometricOnly: true
       ),
     );
 
