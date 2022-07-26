@@ -2,6 +2,9 @@ import 'package:curriculum/core/classes/user.dart';
 import 'package:curriculum/screens/resumes.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import '../core/auth/auth.dart';
+import '../core/auth/biometrics.dart';
+import '../widgets/biometric_alert.dart';
 
 class RegisterWidget extends StatefulWidget {
   const RegisterWidget({Key? key}) : super(key: key);
@@ -104,6 +107,19 @@ class _RegisterWidget extends State<RegisterWidget> {
                   GestureDetector(
                     onTap: enabled?() async {
                       if ( await User.register(username, password) ) {
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {
+                          return const ResumesWidget();
+                        }));
+
+                        if (await isSupported()) {
+                          showDialog(context: context, builder: (ctx) => BiometricAlert(
+                            onConfirm: () {
+                              saveLoginCredentials(username, password);
+                            },
+                            onCancel: () {},
+                          ),);
+                        }
+
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           backgroundColor: Colors.green,
                           content: Text('register_screen.success'.tr()),
@@ -112,9 +128,7 @@ class _RegisterWidget extends State<RegisterWidget> {
                             onPressed: () {},
                           ),
                         ));
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {
-                          return const ResumesWidget();
-                        }));
+
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text('register_screen.failed'.tr()),

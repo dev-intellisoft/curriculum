@@ -117,7 +117,7 @@ class _LoginWidget extends State<LoginWidget> {
 
                 GestureDetector(
                   onTap: disabled?() {}:() async {
-                    login(username, password).then((value) {
+                    login(username, password).then((value) async {
                       if ( value ) {
                         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
                           return const ResumesWidget();
@@ -132,12 +132,14 @@ class _LoginWidget extends State<LoginWidget> {
                           ),
                         ));
 
-                        showDialog(context: context, builder: (ctx) => BiometricAlert(
-                          onConfirm: () {
-                            saveLoginCredentials(username, password);
-                          },
-                          onCancel: () {},
-                        ),);
+                        if ( await isSupported() ) {
+                          showDialog(context: context, builder: (ctx) => BiometricAlert(
+                            onConfirm: () {
+                              saveLoginCredentials(username, password);
+                            },
+                            onCancel: () {},
+                          ),);
+                        }
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text('login_screen.failed'.tr()),

@@ -11,6 +11,10 @@ enum SupportState {
   unsupported,
 }
 
+Future<bool> isSupported() async {
+  return await auth.isDeviceSupported();
+}
+
 Future<bool> checkBiometrics () async {
   return await auth.isDeviceSupported();
 }
