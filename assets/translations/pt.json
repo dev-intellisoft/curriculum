@@ -111,5 +111,6 @@
   },
   "biometric_alert": {
     "notice": "Você deseja usar login biometrico?"
-  }
+  },
+  "auth_text1": "Por favor use seu login biométrico!"
 }
