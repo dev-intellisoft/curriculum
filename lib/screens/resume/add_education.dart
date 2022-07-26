@@ -1,7 +1,6 @@
 import 'package:curriculum/core/classes/education.dart';
 import 'package:curriculum/screens/resume/educations.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
 import 'package:easy_localization/easy_localization.dart';

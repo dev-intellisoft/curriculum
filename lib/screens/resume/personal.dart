@@ -1,5 +1,6 @@
 import 'package:curriculum/core/classes/resume.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -111,6 +112,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             ),
             const SizedBox(height: 10,),
             TextFormField(
+              keyboardType: TextInputType.phone,
               controller: _telephone,
               onChanged: (value) {
                 resume.telephone = value;
@@ -121,6 +123,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             ),
             const SizedBox(height: 10,),
             TextFormField(
+              keyboardType: TextInputType.emailAddress,
               controller: _email,
               onChanged: (value) {
                 resume.email = value;
@@ -145,6 +148,7 @@ class _PersonalWidget extends State<PersonalWidget> {
 
             const SizedBox(height: 10,),
             TextFormField(
+              keyboardType: TextInputType.url,
               controller: _linkedIn,
               onChanged: (value) {
                 resume.linkedIn = value;
@@ -155,6 +159,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             ),
             const SizedBox(height: 10,),
             TextFormField(
+              keyboardType: TextInputType.url,
               controller: _github,
               onChanged: (value) {
                 resume.github = value;
