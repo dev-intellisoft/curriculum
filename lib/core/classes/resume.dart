@@ -1,6 +1,7 @@
 
 import 'package:curriculum/core/classes/education.dart';
 import 'package:curriculum/core/classes/experience.dart';
+import 'package:curriculum/core/classes/language.dart';
 import 'package:curriculum/core/database_helper.dart';
 
 class Resume {
@@ -15,7 +16,7 @@ class Resume {
   String? github;
   List<Experience> experiences = <Experience>[];
   List<Education> educations = <Education>[];
-  List<String>? languages;
+  List<Language> languages = <Language>[];
   List<String>? skills;
 
   Resume({
@@ -30,7 +31,7 @@ class Resume {
     this.github,
     required this.experiences,
     required this.educations,
-    this.languages,
+    required this.languages,
     this.skills
   });
 

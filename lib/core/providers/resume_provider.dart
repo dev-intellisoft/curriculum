@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../database_helper.dart';
 
 class ResumeProvider with ChangeNotifier {
-  Resume resume = Resume(experiences: [], educations: []);
+  Resume resume = Resume(experiences: [], educations: [], languages: []);
   List<Resume> resumes = [];
 
   Future<List<Resume>> loadResumes() async {

@@ -65,7 +65,7 @@ class _ResumesWidget extends State<ResumesWidget> {
         actions: [
           GestureDetector(
             onTap: () async{
-              context.read<ResumeProvider>().setResume(Resume(experiences: [], educations: []));
+              context.read<ResumeProvider>().setResume(Resume(experiences: [], educations: [], languages: []));
               Navigator.push(context, MaterialPageRoute(builder: (_) {
                 return const NavigationScreen();
               }));

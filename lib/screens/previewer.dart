@@ -27,7 +27,7 @@ class _PreviewerScreen extends State<PreviewerScreen> {
       body: SafeArea(
         child: FutureBuilder(
           future: DatabaseHelper.instance.getPdfData(widget.resumeId!),
-          initialData: Resume(educations: [], experiences: []),
+          initialData: Resume(educations: [], experiences: [], languages: []),
           builder: (context, AsyncSnapshot<Resume> snapshot) {
             return PdfPreview(
               previewPageMargin: const EdgeInsets.all(0),
