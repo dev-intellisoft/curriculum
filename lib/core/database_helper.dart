@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:curriculum/core/classes/education.dart';
 import 'package:curriculum/core/classes/resume.dart';
@@ -22,8 +21,31 @@ class DatabaseHelper {
       path,
       version: 1,
       onCreate: _onCreate,
-      // onOpen:
+      onOpen: _onOpen
     );
+  }
+
+  Future _onOpen(Database db)  async {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS languages(
+        id  INTEGER PRIMARY KEY, 
+        resume_id INTEGER,
+        language TEXT,
+        level CHECK( level IN(
+          'native',
+          'fluent',
+          'advanced',
+          'intermediate',
+          'basic'
+        ))
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS skills(
+        experience_id INTEGER,
+        skills TEXT
+      )
+    ''');
   }
 
   Future _onCreate(Database db, int version) async {
@@ -34,6 +56,7 @@ class DatabaseHelper {
         password TEXT
       )
       ''');
+
     await db.execute('INSERT INTO user(username, password) VALUES(\'${dotenv.env['DEMO_EMAIL']}\', \'${dotenv.env['DEMO_PASSWORD']}\')');
 
     await db.execute('''
@@ -47,7 +70,7 @@ class DatabaseHelper {
         location TEXT,
         linked_in TEXT,
         github TEXT
-        )
+      )
     ''');
 
     await db.execute('''
@@ -60,6 +83,7 @@ class DatabaseHelper {
         start DATE,
         end DATE,
         keywords TEXT,
+        skills TEXT,
         description TEXT
       )
     ''');
@@ -74,6 +98,27 @@ class DatabaseHelper {
         description TEXT,
         start DATE,
         end DATE
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS languages(
+        id  INTEGER PRIMARY KEY, 
+        resume_id INTEGER,
+        language TEXT,
+        level CHECK( level IN(
+          'native',
+          'fluent',
+          'advanced',
+          'intermediate',
+          'basic'
+        ))
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS skills(
+        experience_id INTEGER,
+        skills TEXT
       )
     ''');
   }
