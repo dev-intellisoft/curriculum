@@ -8,6 +8,8 @@ import 'package:path_provider/path_provider.dart';
 import 'classes/experience.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import 'classes/language.dart';
+
 class DatabaseHelper {
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
@@ -121,6 +123,26 @@ class DatabaseHelper {
         skills TEXT
       )
     ''');
+  }
+
+  Future<List<Language>> getAllLanguagesFromByResumeId(int resumeId) async {
+    List<Language> languages = [];
+    Database db = await instance.database;
+    var results = await db.query('languages', where: 'resume_id = ?', whereArgs: [resumeId]);
+    results.forEach((result) {
+      languages.add(Language.fromJson(result));
+    });
+    return languages;
+  }
+
+  insertLanguages(Language language) async {
+    Database db = await instance.database;
+    return await db.insert('languages', language.prepareStatement());
+  }
+
+  Future<int> removeLanguagesFromResume(int resumeId) async {
+    Database db = await instance.database;
+    return await db.delete('languages', where: 'resume_id = ?', whereArgs: [resumeId]);
   }
 
   Future<bool> userExists() async {

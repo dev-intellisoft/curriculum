@@ -45,7 +45,13 @@
     "email": "E-mail",
     "location": "Location",
     "linkedin": "Linkedin",
-    "github": "GitHub"
+    "github": "GitHub",
+    "languages": "Languages",
+    "add_languages": {
+      "title": "Languages",
+      "label": "Language",
+      "warning": "Please type a language!"
+    }
   },
   "navigation_screen": {
     "text1": "Please fill your information to proceed!",
@@ -112,5 +118,12 @@
   "biometric_alert": {
     "notice": "Do you want to use biometric login?"
   },
-  "auth_text1": "Please use you biometric login!"
+  "auth_text1": "Please use you biometric login!",
+  "language_level": {
+    "native": "Native",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "fluent": "Fluent",
+    "basic": "Basic"
+  }
 }

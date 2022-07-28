@@ -4,6 +4,7 @@ import 'package:curriculum/core/classes/experience.dart';
 import 'package:curriculum/core/classes/education.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../classes/language.dart';
 import '../database_helper.dart';
 
 class ResumeProvider with ChangeNotifier {
@@ -15,8 +16,9 @@ class ResumeProvider with ChangeNotifier {
     return resumes;
   }
 
-  void setResume(Resume _resume) {
+  void setResume(Resume _resume) async {
     resume = _resume;
+    resume.languages = await DatabaseHelper.instance.getAllLanguagesFromByResumeId(resume.id!);
     notifyListeners();
   }
 
@@ -38,12 +40,36 @@ class ResumeProvider with ChangeNotifier {
       int resumeId = await DatabaseHelper.instance.saveResume(resume);
       resume.id = resumeId;
     }
+    await DatabaseHelper.instance.removeLanguagesFromResume(resume.id!);
+
+    resume.languages.forEach((language) async {
+      language.resumeId = resume.id;
+      await DatabaseHelper.instance.insertLanguages(language);
+    });
+
     resume = resume;
+    resume.languages = await DatabaseHelper.instance.getAllLanguagesFromByResumeId(resume.id!);
     notifyListeners();
   }
 
   void removeResume (int resumeId) async {
+    await DatabaseHelper.instance.removeLanguagesFromResume(resumeId);
     await DatabaseHelper.instance.removeResume(resumeId);
+    notifyListeners();
+  }
+
+  addLanguage(Language language) {
+    resume.languages.add(language);
+    notifyListeners();
+  }
+
+  updateLanguageAt(int index, Language language) {
+    resume.languages[index] = language;
+    notifyListeners();
+  }
+
+  removeLanguageAt(int index) {
+    resume.languages.removeAt(index);
     notifyListeners();
   }
 
