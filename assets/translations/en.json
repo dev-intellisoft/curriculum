@@ -70,7 +70,9 @@
       "location": "Location",
       "location_tip": "London, UK",
       "keywords": "Keywords",
-      "description": "Description"
+      "description": "Description",
+      "keywords_hint": "Eg. customer service, accounting, manager, ...",
+      "keywords_helper": "Keywords should be separate by comma \",\"."
     }
   },
   "duplicate": "Duplicate",

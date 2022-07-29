@@ -68,7 +68,9 @@
       "location": "Localidade",
       "location_tip": "São Paulo, Brasil",
       "keywords": "Palavras chave",
-      "description": "Descrição"
+      "description": "Descrição",
+      "keywords_hint": "Ex.: atedimento, gestão, contabildade...",
+      "keywords_helper": "Palavras-chave devem ser separadas por virgula \",\"."
     }
   },
   "duplicate": "Duplicar",

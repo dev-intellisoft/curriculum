@@ -20,6 +20,7 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
     TextEditingController _title = TextEditingController(text: widget.experience.title);
     TextEditingController _location = TextEditingController(text: widget.experience.location);
     TextEditingController _description = TextEditingController(text: widget.experience.description);
+    TextEditingController _keywords =  TextEditingController(text: widget.experience.keywords);
     TextEditingController _start = TextEditingController(
         text: widget.experience.start == null?'':DateFormat('dd/MM/yyyy').format(widget.experience.start!)
     );
@@ -148,16 +149,6 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
 
                 const SizedBox(height: 15,),
                 TextFormField(
-                  onChanged: (value) {
-                    // widget.experience!.keywords = value;
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'experiences_screen.add_experience.keywords'.tr(),
-                  ),
-                ),
-
-                const SizedBox(height: 15,),
-                TextFormField(
                   controller: _description,
                   onChanged: (value) {
                     widget.experience.description = value;
@@ -166,6 +157,19 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                   maxLines: null,
                   decoration: InputDecoration(
                     labelText: 'experiences_screen.add_experience.description'.tr(),
+                  ),
+                ),
+
+                const SizedBox(height: 15,),
+                TextFormField(
+                  controller: _keywords,
+                  onChanged: (value) {
+                    widget.experience.keywords = value;
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'experiences_screen.add_experience.keywords'.tr(),
+                    hintText: 'experiences_screen.add_experience.keywords_hint'.tr(),
+                    helperText: 'experiences_screen.add_experience.keywords_helper'.tr()
                   ),
                 ),
               ],

@@ -135,7 +135,7 @@ class DatabaseHelper {
     return languages;
   }
 
-  insertLanguages(Language language) async {
+  Future<int> insertLanguages(Language language) async {
     Database db = await instance.database;
     return await db.insert('languages', language.prepareStatement());
   }

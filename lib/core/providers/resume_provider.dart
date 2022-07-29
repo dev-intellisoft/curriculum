@@ -139,6 +139,7 @@ class ResumeProvider with ChangeNotifier {
     Resume resume = await DatabaseHelper.instance.getResume(resumeId);
     resume.educations = await DatabaseHelper.instance.getEducations(resumeId);
     resume.experiences = await DatabaseHelper.instance.getExperiences(resumeId);
+    resume.languages = await DatabaseHelper.instance.getAllLanguagesFromByResumeId(resumeId);
 
     resume.name = cloneName;
     resume.id =  null;
@@ -152,6 +153,12 @@ class ResumeProvider with ChangeNotifier {
       experience.id = null;
       experience.resumeId = resume.id;
       experience.id = await DatabaseHelper.instance.insertExperience(experience);
+    });
+
+    resume.languages.forEach((language) async {
+      language.id = null;
+      language.resumeId = resume.id;
+      language.id = await DatabaseHelper.instance.insertLanguages(language);
     });
 
     resumes.add(resume);

@@ -8,7 +8,7 @@ class Experience {
   String? title;
   DateTime? start;
   DateTime? end;
-  List<String>? keywords;
+  String? keywords;
   String? description;
   String? location;
 
@@ -36,7 +36,7 @@ class Experience {
     if ( json['end'] != null ) {
       end = DateTime.parse(json['end']);
     }
-    // keywords = json['keywords'].cast<String>();
+    keywords = json['keywords'];
     description = json['description'];
     location = json['location'];
   }
