@@ -248,6 +248,7 @@ class DatabaseHelper {
     Resume resume = await getResume(resumeId);
     resume.experiences = await getExperiences(resumeId);
     resume.educations = await getEducations(resumeId);
+    resume.languages = await getAllLanguagesFromByResumeId(resumeId);
     return resume;
   }
 

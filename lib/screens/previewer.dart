@@ -1,7 +1,6 @@
 import 'package:curriculum/core/classes/resume.dart';
 import 'package:curriculum/core/database_helper.dart';
 import 'package:curriculum/core/pdf/sample.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:printing/printing.dart';
 
