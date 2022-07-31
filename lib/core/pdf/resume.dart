@@ -5,15 +5,15 @@ import 'package:curriculum/core/classes/education.dart';
 import 'package:curriculum/core/classes/experience.dart';
 import 'package:curriculum/core/classes/language.dart';
 import 'package:curriculum/core/classes/resume.dart';
-import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 const sep = 120.0;
 
 Future<Uint8List> generateResume(PdfPageFormat format, Resume? resume) async {
-  final doc = pw.Document(title: 'openCV Builder', author: 'Wellington Cunha');
+  final doc = pw.Document(title: 'app_name'.tr(), author: 'Wellington Cunha');
   final pageTheme = await _myPageTheme(format);
 
   List<String> keywords = [];
@@ -79,7 +79,7 @@ Future<Uint8List> generateResume(PdfPageFormat format, Resume? resume) async {
               ),
 
               if ( resume.experiences.isNotEmpty )
-                _Category(title: 'Work Experience'),
+                _Category(title: 'resume.experiences'.tr()),
               pw.ListView.builder(
                   itemBuilder: (context, index) {
                     return _Experience(
@@ -89,7 +89,7 @@ Future<Uint8List> generateResume(PdfPageFormat format, Resume? resume) async {
               ),
 
               if ( resume.educations.isNotEmpty )
-                _Category(title: 'Education'),
+                _Category(title: 'resume.educations'.tr()),
                 pw.ListView.builder(
                     itemBuilder: (context, index) {
                       return _Education(education:resume.educations[index] );
@@ -98,11 +98,11 @@ Future<Uint8List> generateResume(PdfPageFormat format, Resume? resume) async {
                 ),
 
               if ( resume.languages.isNotEmpty )
-                _Category(title: 'Languages'),
+                _Category(title: 'resume.languages'.tr()),
                 _Language(languages:resume.languages ),
 
               if ( keywords.isNotEmpty )
-                _Category(title: 'Skills'),
+                _Category(title: 'resume.skills'.tr()),
                 _Keyword(keywords: keywords)
 
             ]

@@ -127,5 +127,12 @@
     "advanced": "Advanced",
     "fluent": "Fluent",
     "basic": "Basic"
+  },
+  "app_name": "openCV Builder",
+  "resume": {
+    "experiences": "Work Experience",
+    "educations": "Educations",
+    "languages": "Languages",
+    "skills": "Skills"
   }
 }
