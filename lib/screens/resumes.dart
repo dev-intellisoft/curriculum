@@ -117,7 +117,7 @@ class _ResumesWidget extends State<ResumesWidget> {
                         SlidableAction(
                           onPressed: (value) async {
                             Navigator.push(context, MaterialPageRoute(builder: (_) {
-                              return PreviewerScreen(resumeId:snapShot.data![i].id);
+                              return PreviewerScreen(resumeId:snapShot.data![i].id, name:snapShot.data![i].name! ,);
                             }));
                           },
                           backgroundColor: const Color(0xFF18A100),

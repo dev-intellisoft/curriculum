@@ -6,9 +6,11 @@ import 'package:printing/printing.dart';
 
 class PreviewerScreen extends StatefulWidget {
   int? resumeId;
+  String name;
   PreviewerScreen({
     Key? key,
-    this.resumeId
+    this.resumeId,
+    this.name = ''
   }) : super(key: key);
 
   @override
@@ -21,7 +23,7 @@ class _PreviewerScreen extends State<PreviewerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Resume'),
+        title: Text(widget.name),
       ),
       body: SafeArea(
         child: FutureBuilder(
