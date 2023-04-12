@@ -1,3 +1,4 @@
+import 'package:curriculum/core/common.dart';
 import 'package:curriculum/screens/resume/personal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -75,14 +76,7 @@ class _AddLanguageWidget extends State<AddLanguageWidget> {
                   suffixIcon: GestureDetector(
                     onTap: () {
                       if ( language == '' ) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('personal_info_screen.add_languages.warning'.tr,),
-                          backgroundColor: Colors.orange,
-                          action: SnackBarAction(
-                            label: '',
-                            onPressed: () {},
-                          ),
-                        ));
+                        showWarningMessage('personal_info_screen.add_languages.warning'.tr);
                         return;
                       }
                       context.read<ResumeProvider>().addLanguage(Language(language:language, level: 'basic'));

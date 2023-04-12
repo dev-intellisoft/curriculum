@@ -1,3 +1,4 @@
+import 'package:curriculum/core/common.dart';
 import 'package:curriculum/screens/register.dart';
 import 'package:flutter/material.dart';
 import '../core/auth/auth.dart';
@@ -123,14 +124,7 @@ class _LoginWidget extends State<LoginWidget> {
                           return const ResumesWidget();
                         }));
 
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          backgroundColor: Colors.green,
-                          content: Text('login_screen.success'.tr),
-                          action: SnackBarAction(
-                            label: '',
-                            onPressed: () {},
-                          ),
-                        ));
+                        showSuccessMessage('login_screen.success'.tr);
 
                         if ( await isSupported() ) {
                           showDialog(context: context, builder: (ctx) => BiometricAlert(
@@ -141,14 +135,7 @@ class _LoginWidget extends State<LoginWidget> {
                           ),);
                         }
                       } else {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('login_screen.failed'.tr),
-                          backgroundColor: Colors.red,
-                          action: SnackBarAction(
-                            label: '',
-                            onPressed: () {},
-                          ),
-                        ));
+                        showErrorMessage('login_screen.failed'.tr);
                       }
                     }).catchError((e) {
                       print(e);
@@ -171,11 +158,7 @@ class _LoginWidget extends State<LoginWidget> {
                 ),
 
                 GestureDetector(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) {
-                      return const RegisterWidget();
-                    }));
-                  },
+                  onTap: () => Get.to(() => const RegisterWidget()),
                   child: Container(
                     margin: const EdgeInsets.only(top: 20),
                     width: double.infinity,

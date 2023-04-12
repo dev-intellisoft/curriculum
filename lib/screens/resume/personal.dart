@@ -1,4 +1,5 @@
 import 'package:curriculum/core/classes/resume.dart';
+import 'package:curriculum/core/common.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -62,25 +63,7 @@ class _PersonalWidget extends State<PersonalWidget> {
                   return;
                 }
                 context.read<ResumeProvider>().saveResume(resume);
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  backgroundColor: Colors.green,
-                  content: Row(
-                    children:  [
-                      Container(
-                        margin: const EdgeInsets.only(right: 5),
-                        child:const Icon(Icons.check_circle_outline, color: Colors.white,)
-                      ),
-                      Text('personal_info_screen.success'.tr, style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                  action: SnackBarAction(
-                    label: '',
-                    onPressed: () {},
-                  ),
-                ));
+                showSuccessMessage('personal_info_screen.success'.tr);
               },
               child: Container(
                 margin: const EdgeInsets.only(right: 10),

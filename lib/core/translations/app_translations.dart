@@ -104,7 +104,10 @@ class AppTranslation extends Translations {
       "resume.experiences": "Work Experience",
       "resume.educations": "Educations",
       "resume.languages": "Languages",
-      "resume.skills": "Skills"
+      "resume.skills": "Skills",
+      "success":"Success",
+      "error":"Error",
+      "warn":"Oops"
     },
     'pt_BR': {
       "username": "Usuário",
@@ -206,7 +209,10 @@ class AppTranslation extends Translations {
       "resume.experiences": "Resumo Profissional",
       "resume.educations": "Resumo Acadêmico",
       "resume.languages": "Idiomas",
-      "resume.skills": "Habilidades"
+      "resume.skills": "Habilidades",
+      "success":"Successo",
+      "error":"Erro",
+      "warn":"Ops"
     }
   };
 }

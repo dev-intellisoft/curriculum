@@ -1,4 +1,5 @@
 import 'package:curriculum/core/classes/user.dart';
+import 'package:curriculum/core/common.dart';
 import 'package:curriculum/screens/resumes.dart';
 import 'package:flutter/material.dart';
 import '../core/auth/auth.dart';
@@ -120,23 +121,10 @@ class _RegisterWidget extends State<RegisterWidget> {
                           ),);
                         }
 
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          backgroundColor: Colors.green,
-                          content: Text('register_screen.success'.tr),
-                          action: SnackBarAction(
-                            label: '',
-                            onPressed: () {},
-                          ),
-                        ));
+                        showSuccessMessage('register_screen.success'.tr);
 
                       } else {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('register_screen.failed'.tr),
-                          action: SnackBarAction(
-                            label: '',
-                            onPressed: () {},
-                          ),
-                        ));
+                        showErrorMessage('register_screen.failed'.tr);
                       }
                     }: () {},
                     child: Container(

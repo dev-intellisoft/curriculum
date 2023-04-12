@@ -1,4 +1,5 @@
 import 'package:curriculum/core/classes/resume.dart';
+import 'package:curriculum/core/common.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
 import 'package:curriculum/screens/resume/educations.dart';
 import 'package:curriculum/screens/resume/experiences.dart';
@@ -21,25 +22,7 @@ class _NavigationScreen extends State<NavigationScreen> {
   void _onItemTapped(int index) {
     Resume resume = context.read<ResumeProvider>().getResume();
     if ( resume.name == '' || resume.name == null ) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: Colors.amber,
-        content: Row(
-          children:  [
-            Container(
-              margin: const EdgeInsets.only(right: 5),
-                child:const Icon(Icons.warning_amber_outlined, color: Colors.black,)
-            ),
-            Text('navigation_screen.text1'.tr, style: const TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold),
-            )
-          ],
-        ),
-        action: SnackBarAction(
-          label: '',
-          onPressed: () {},
-        ),
-      ));
+      showWarningMessage('navigation_screen.text1'.tr);
       return;
     }
     context.read<ResumeProvider>().saveResume(resume);
