@@ -91,10 +91,10 @@ class _SettingsScreen extends State<SettingsScreen> {
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                child: FlatButton(
-                  minWidth: 200,
-                  color: Colors.grey,
-                  height: 47,
+                child: TextButton(
+                  // minWidth: 200,
+                  // color: Colors.grey,
+                  // height: 47,
                   onPressed: () async {
                     await logout();
                     Navigator.of(context).pushAndRemoveUntil(
@@ -112,9 +112,9 @@ class _SettingsScreen extends State<SettingsScreen> {
               if (isBiometricSupported)
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  child: FlatButton(
-                    height: 47,
-                    color: isBioEnabled?Colors.blueAccent:Colors.black12,
+                  child: TextButton(
+                    // height: 47,
+                    // color: isBioEnabled?Colors.blueAccent:Colors.black12,
                     onPressed: () async {
                       bool b = await disabledBio();
                       setState(() {
@@ -133,7 +133,7 @@ class _SettingsScreen extends State<SettingsScreen> {
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                child: FlatButton(
+                child: TextButton(
                   onPressed: () {
                     showDialog(context: context, builder: (_) => AlertDialog(
                       title: Row(
@@ -147,7 +147,7 @@ class _SettingsScreen extends State<SettingsScreen> {
                       ),
                       content: Text('delete_warning'.tr()),
                       actions: [
-                        FlatButton(
+                        TextButton(
                           onPressed: () async {
                             bool remove = await context.read<ResumeProvider>().removeAccount();
                             if (remove) {
@@ -161,7 +161,7 @@ class _SettingsScreen extends State<SettingsScreen> {
                           child: Text('yes'.tr()),
                           color: Colors.red,
                         ),
-                        FlatButton(
+                        TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
@@ -171,9 +171,9 @@ class _SettingsScreen extends State<SettingsScreen> {
                       ],
                     ),);
                   },
-                  height: 47,
-                  color: Colors.red,
-                  child: Text('delete_my_account'.tr(), style: const TextStyle(
+                  // height: 47,
+                  // color: Colors.red,
+                  child: Text('delete_my_account'.tr, style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold
                   ),),

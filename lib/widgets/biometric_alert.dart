@@ -41,7 +41,7 @@ class _BiometricAlert extends State<BiometricAlert> {
         ),
       ),
       actions: [
-        FlatButton(
+        TextButton(
           onPressed: () async {
               Navigator.pop(context);
               widget.onConfirm.call();
@@ -49,15 +49,15 @@ class _BiometricAlert extends State<BiometricAlert> {
           child: Text('yes'.tr(), style: const TextStyle(
               color: Colors.white
           ),),
-          color: Colors.green,
+          // color: Colors.green,
         ),
-        FlatButton(
+        TextButton(
           onPressed: () {
             Navigator.pop(context);
             widget.onCancel.call();
           },
           child: Text('no'.tr()),
-          color: Colors.grey.withOpacity(0.5),
+          // color: Colors.grey.withOpacity(0.5),
         )
       ],
     );

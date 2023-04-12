@@ -32,14 +32,14 @@ class _LanguageScreen extends State<LanguageScreen> {
       ),
       body: ListView(
         children: [
-          FlatButton(
+          TextButton(
             // color: Colors.blueGrey,
             onPressed: () {
               // context.read<LanguagesProvider>().setLocale(Locale('en'));
             },
             child: const Text('English')
           ),
-          FlatButton(
+          TextButton(
             // color: Colors.blueGrey,
             onPressed: () {
               // context.read<LanguagesProvider>().setLocale(Locale('pt'));

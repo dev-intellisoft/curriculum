@@ -145,13 +145,13 @@ class _ResumesWidget extends State<ResumesWidget> {
                                 },
                               ),
                               actions: [
-                                FlatButton(
+                                TextButton(
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
                                   child: Text('cancel'.tr())
                                 ),
-                                FlatButton(
+                                TextButton(
                                   onPressed: () async {
                                     if (cloneName == '') {
                                       return;

@@ -72,11 +72,11 @@ class _MyAlert extends State<MyAlert> {
         ),
       ),
       actions: [
-        FlatButton(
+        TextButton(
             onPressed: () => widget.onCancel.call(),
             child: Text('no'.tr())
         ),
-        FlatButton(
+        TextButton(
             onPressed: () => widget.onConfirm.call(),
             child: Text('yes'.tr())
         )
