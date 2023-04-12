@@ -2,13 +2,13 @@ import 'package:curriculum/core/auth/biometrics.dart';
 import 'package:curriculum/screens/settings/about.dart';
 import 'package:curriculum/screens/settings/support.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/auth/auth.dart';
 import '../../core/providers/resume_provider.dart';
 import '../../main.dart';
 import '../login.dart';
+import 'package:get/get.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
