@@ -16,13 +16,14 @@ class _AboutScreen extends State<AboutScreen> {
   String buildNumber = '';
 
   void _init () async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    setState(() {
-      appName = packageInfo.appName;
-      packageName = packageInfo.packageName;
-      version = packageInfo.version;
-      buildNumber = packageInfo.buildNumber;
-    });
+    //todo fix this package info
+    // PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    // setState(() {
+    //   appName = packageInfo.appName;
+    //   packageName = packageInfo.packageName;
+    //   version = packageInfo.version;
+    //   buildNumber = packageInfo.buildNumber;
+    // });
   }
 
   @override
