@@ -25,9 +25,7 @@ class _LoginWidget extends State<LoginWidget> {
 
    _init() async {
     if (await isLoggedIn()) {
-      return Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
-        return const ResumesWidget();
-      }));
+      return Get.offAll(() => const ResumesWidget());
     }
 
     if (widget.logout) {
@@ -35,9 +33,7 @@ class _LoginWidget extends State<LoginWidget> {
     }
 
     if ( await biometricLogin() && await authenticate() ) {
-      return Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
-        return const ResumesWidget();
-      }));
+      return Get.offAll(() => const ResumesWidget());
     }
   }
 
@@ -76,9 +72,7 @@ class _LoginWidget extends State<LoginWidget> {
                   onTap: () async {
                     if ( await biometricLogin() ){
                       if (await authenticate() ) {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
-                          return const ResumesWidget();
-                        }));
+                        Get.offAll(() => const ResumesWidget());
                       }
                     }
                   },
@@ -120,17 +114,13 @@ class _LoginWidget extends State<LoginWidget> {
                   onTap: disabled?() {}:() async {
                     login(username, password).then((value) async {
                       if ( value ) {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
-                          return const ResumesWidget();
-                        }));
+                        Get.offAll(() => const ResumesWidget());
 
                         showSuccessMessage('login_screen.success'.tr);
 
                         if ( await isSupported() ) {
                           showDialog(context: context, builder: (ctx) => BiometricAlert(
-                            onConfirm: () {
-                              saveLoginCredentials(username, password);
-                            },
+                            onConfirm: () => saveLoginCredentials(username, password),
                             onCancel: () {},
                           ),);
                         }

@@ -108,15 +108,11 @@ class _RegisterWidget extends State<RegisterWidget> {
                   GestureDetector(
                     onTap: enabled?() async {
                       if ( await User.register(username, password) ) {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {
-                          return const ResumesWidget();
-                        }));
+                        Get.offAll(() => const ResumesWidget());
 
                         if (await isSupported()) {
                           showDialog(context: context, builder: (ctx) => BiometricAlert(
-                            onConfirm: () {
-                              saveLoginCredentials(username, password);
-                            },
+                            onConfirm: () => saveLoginCredentials(username, password),
                             onCancel: () {},
                           ),);
                         }
