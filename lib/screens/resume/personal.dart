@@ -161,9 +161,7 @@ class _PersonalWidget extends State<PersonalWidget> {
                         return GestureDetector(
                           onTap: () {
                             focusNode.requestFocus();
-                            Navigator.push(context, MaterialPageRoute(builder: (_) {
-                              return const AddLanguageWidget();
-                            }));
+                            Get.to(() => AddLanguageWidget());
                           },
                           child: Container(
                             margin: const EdgeInsets.only(top: 10),

@@ -23,11 +23,7 @@ class _ExperiencesScreen extends State<ExperiencesScreen> {
         title: Text('experiences_screen.title'.tr),
         actions: [
           GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) {
-                return AddExperienceWidget(experience: Experience(),);
-              }));
-            },
+            onTap: ()  => Get.to(() => AddExperienceWidget(experience: Experience(),)),
             child: Container(
               margin: const EdgeInsets.only(right: 10),
               child: const Icon(Icons.add),
@@ -115,11 +111,7 @@ class _ExperiencesScreen extends State<ExperiencesScreen> {
                         )
                       ),
                       child: ListTile(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (_) {
-                            return AddExperienceWidget(experience: experiences[index],);
-                          }));
-                        },
+                        onTap: () => Get.to(() => AddExperienceWidget(experience: experiences[index],)),
                         key: const ValueKey(0),
                         title: Text('${experiences[index].company}'),
                         subtitle: Text('${experiences[index].title}'),

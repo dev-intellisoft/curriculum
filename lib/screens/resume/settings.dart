@@ -50,11 +50,7 @@ class _SettingsScreen extends State<SettingsScreen> {
               const SizedBox(height: 5,),
               const Divider(),
               ListTile(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_){
-                    return const AboutScreen();
-                  }));
-                },
+                onTap: () => Get.to(() => const AboutScreen()),
                 leading: const Icon(Icons.info_outline),
                 title: Text('settings_screen.about'.tr, style: const TextStyle(
                     fontWeight: FontWeight.bold
@@ -74,11 +70,7 @@ class _SettingsScreen extends State<SettingsScreen> {
               ),
               const Divider(),
               ListTile(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_){
-                    return const SupportScreen();
-                  }));
-                },
+                onTap: () => Get.to(() => const SupportScreen()),
                 leading: const Icon(Icons.support_agent),
                 title: Text('settings_screen.support'.tr, style: const TextStyle(
                     fontWeight: FontWeight.bold

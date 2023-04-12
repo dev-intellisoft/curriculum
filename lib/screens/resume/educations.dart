@@ -23,11 +23,7 @@ class _EducationsScreen extends State<EducationsScreen> {
         title: Text('educations_screen.title'.tr),
         actions: [
           GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) {
-                return AddEducationWidget(education: Education(),);
-              }));
-            },
+            onTap: () => Get.to(() => AddEducationWidget(education: Education(),)),
             child: Container(
               margin: const EdgeInsets.only(right: 10),
               child: const Icon(Icons.add),
@@ -114,11 +110,7 @@ class _EducationsScreen extends State<EducationsScreen> {
                         )
                       ),
                       child: ListTile(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (_) {
-                            return AddEducationWidget(education: educations[index],);
-                          }));
-                        },
+                        onTap: () => Get.to(() => AddEducationWidget(education: educations[index],)),
                         key: const ValueKey(0),
                         title: Text('${educations[index].institution}'),
                         subtitle: Text('${educations[index].course}'),

@@ -41,10 +41,7 @@ class _ResumesWidget extends State<ResumesWidget> {
       appBar: AppBar(
         leading: Center(
           child: GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (_) =>
-              const SettingsScreen()));
-            },
+            onTap: () => Get.to(() => const SettingsScreen()),
             child: Container(
               height: 30,
               width: 30,
@@ -66,9 +63,7 @@ class _ResumesWidget extends State<ResumesWidget> {
           GestureDetector(
             onTap: () async{
               context.read<ResumeProvider>().setResume(Resume(experiences: [], educations: [], languages: []));
-              Navigator.push(context, MaterialPageRoute(builder: (_) {
-                return const NavigationScreen();
-              }));
+              Get.to(() => const NavigationScreen());
             },
             child: Container(
               margin: const EdgeInsets.only(right: 10),
@@ -104,9 +99,7 @@ class _ResumesWidget extends State<ResumesWidget> {
                       child: ListTile(
                         onTap: () {
                           context.read<ResumeProvider>().setResume(snapShot.data![i]);
-                          Navigator.push(context, MaterialPageRoute(builder: (_) {
-                            return const NavigationScreen();
-                          }));
+                          Get.to(() => const NavigationScreen());
                         },
                         title: Text(snapShot.data![i].name!)
                       ),
@@ -116,9 +109,7 @@ class _ResumesWidget extends State<ResumesWidget> {
                       children: [
                         SlidableAction(
                           onPressed: (value) async {
-                            Navigator.push(context, MaterialPageRoute(builder: (_) {
-                              return PreviewerScreen(resumeId:snapShot.data![i].id, name:snapShot.data![i].name! ,);
-                            }));
+                            Get.to(() =>  PreviewerScreen(resumeId:snapShot.data![i].id, name:snapShot.data![i].name! ,));
                           },
                           backgroundColor: const Color(0xFF18A100),
                           foregroundColor: Colors.white,
