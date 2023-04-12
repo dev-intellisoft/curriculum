@@ -42,7 +42,7 @@ class _SettingsScreen extends State<SettingsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('settings_screen.title'.tr()),
+        title: Text('settings_screen.title'.tr),
       ),
       body: SafeArea(
         child: Center(
@@ -57,7 +57,7 @@ class _SettingsScreen extends State<SettingsScreen> {
                   }));
                 },
                 leading: const Icon(Icons.info_outline),
-                title: Text('settings_screen.about'.tr(), style: const TextStyle(
+                title: Text('settings_screen.about'.tr, style: const TextStyle(
                     fontWeight: FontWeight.bold
                 ),),
               ),
@@ -69,7 +69,7 @@ class _SettingsScreen extends State<SettingsScreen> {
                 //   }));
                 // },
                 leading: const Icon(Icons.email),
-                title: Text('settings_screen.email'.tr(), style: const TextStyle(
+                title: Text('settings_screen.email'.tr, style: const TextStyle(
                   fontWeight: FontWeight.bold
                 ),),
               ),
@@ -81,7 +81,7 @@ class _SettingsScreen extends State<SettingsScreen> {
                   }));
                 },
                 leading: const Icon(Icons.support_agent),
-                title: Text('settings_screen.support'.tr(), style: const TextStyle(
+                title: Text('settings_screen.support'.tr, style: const TextStyle(
                     fontWeight: FontWeight.bold
                 ),),
               ),
@@ -102,7 +102,7 @@ class _SettingsScreen extends State<SettingsScreen> {
                         LoginWidget(logout:true)), (Route<dynamic> route) => false
                     );
                   },
-                  child: Text('logout'.tr(), style: const TextStyle(
+                  child: Text('logout'.tr, style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold
                   ),)
@@ -121,9 +121,9 @@ class _SettingsScreen extends State<SettingsScreen> {
                         isBioEnabled = b;
                       });
                     },
-                    child: Text(
-                        isBioEnabled?'settings_screen.disabled_biometric'.tr(namedArgs: {'type':'finger print'}):
-                      'settings_screen.enabled_biometric'.tr(namedArgs: {'type':'finger print'}),
+                    child: Text('',
+                        // isBioEnabled?'settings_screen.disabled_biometric'.tr(namedArgs: {'type':'finger print'}):
+                      // 'settings_screen.enabled_biometric'.tr(namedArgs: {'type':'finger print'}),
                       style: TextStyle(
                       color: isBioEnabled?Colors.white:Colors.grey,
                       fontWeight: FontWeight.bold
@@ -142,10 +142,10 @@ class _SettingsScreen extends State<SettingsScreen> {
                             margin: const EdgeInsets.only(right: 10),
                             child: const Icon(Icons.warning, color: Colors.orange,),
                           ),
-                          Text('warning'.tr())
+                          Text('warning'.tr)
                         ],
                       ),
-                      content: Text('delete_warning'.tr()),
+                      content: Text('delete_warning'.tr),
                       actions: [
                         TextButton(
                           onPressed: () async {
@@ -158,15 +158,15 @@ class _SettingsScreen extends State<SettingsScreen> {
                               );
                             }
                           },
-                          child: Text('yes'.tr()),
-                          color: Colors.red,
+                          child: Text('yes'.tr),
+                          // color: Colors.red,
                         ),
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: Text('no'.tr()),
-                          color: Colors.grey.withOpacity(0.5),
+                          child: Text('no'.tr),
+                          // color: Colors.grey.withOpacity(0.5),
                         )
                       ],
                     ),);
