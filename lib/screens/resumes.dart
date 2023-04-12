@@ -8,7 +8,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../core/providers/resume_provider.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:get/get.dart';
 
 class ResumesWidget extends StatefulWidget {
   const ResumesWidget({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class ResumesWidget extends StatefulWidget {
 
 class _ResumesWidget extends State<ResumesWidget> {
   String cloneName = '';
-  String username = 'guest'.tr();
+  String username = 'guest'.tr;
 
   void _init() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
@@ -61,7 +61,7 @@ class _ResumesWidget extends State<ResumesWidget> {
             ),
           ),
         ),
-        title: Text('resumes_screen.title'.tr()),
+        title: Text('resumes_screen.title'.tr),
         actions: [
           GestureDetector(
             onTap: () async{
@@ -83,7 +83,7 @@ class _ResumesWidget extends State<ResumesWidget> {
             builder:  (BuildContext context, AsyncSnapshot<List<Resume>> snapShot) {
               if ( snapShot.data != null && !(snapShot.data!.length > 0) ) {
                 return Center(
-                  child: Text('resumes_screen.not_found'.tr(), style: const TextStyle(fontWeight: FontWeight.bold),)
+                  child: Text('resumes_screen.not_found'.tr, style: const TextStyle(fontWeight: FontWeight.bold),)
                 );
               }
               return ListView.builder(
@@ -123,7 +123,7 @@ class _ResumesWidget extends State<ResumesWidget> {
                           backgroundColor: const Color(0xFF18A100),
                           foregroundColor: Colors.white,
                           icon: Icons.picture_as_pdf,
-                          label: 'resumes_screen.generate'.tr(),
+                          label: 'resumes_screen.generate'.tr,
                         ),
                         SlidableAction(
                           onPressed: (value) {
@@ -131,12 +131,12 @@ class _ResumesWidget extends State<ResumesWidget> {
                               title: Row(
                                 children: [
                                   const Icon(Icons.file_copy_outlined),
-                                  Text('resumes_screen.clone_as'.tr())
+                                  Text('resumes_screen.clone_as'.tr)
                                 ],
                               ),
                               content: TextFormField(
                                 decoration: InputDecoration(
-                                  label: Text('resumes_screen.copy_name'.tr())
+                                  label: Text('resumes_screen.copy_name'.tr)
                                 ),
                                 onChanged: (value) {
                                   setState(() {
@@ -149,7 +149,7 @@ class _ResumesWidget extends State<ResumesWidget> {
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
-                                  child: Text('cancel'.tr())
+                                  child: Text('cancel'.tr)
                                 ),
                                 TextButton(
                                   onPressed: () async {
@@ -162,7 +162,7 @@ class _ResumesWidget extends State<ResumesWidget> {
                                     });
                                     Navigator.pop(context);
                                   },
-                                  child: Text('clone'.tr())
+                                  child: Text('clone'.tr)
                                 )
                               ],
                             ));
@@ -170,7 +170,7 @@ class _ResumesWidget extends State<ResumesWidget> {
                           backgroundColor: const Color(0xFF21B7CA),
                           foregroundColor: Colors.white,
                           icon: Icons.file_copy_outlined,
-                          label: 'clone'.tr(),
+                          label: 'clone'.tr,
                         ),
                         SlidableAction(
                           onPressed: (value) async {
@@ -197,7 +197,7 @@ class _ResumesWidget extends State<ResumesWidget> {
                           backgroundColor: const Color(0xFFFE4A49),
                           foregroundColor: Colors.white,
                           icon: Icons.delete,
-                          label: 'delete'.tr(),
+                          label: 'delete'.tr,
                         ),
                       ],
                     ),

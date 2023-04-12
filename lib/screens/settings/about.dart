@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:easy_localization/easy_localization.dart';
+// import 'package:package_info_plus/package_info_plus.dart';
+import 'package:get/get.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({Key? key}) : super(key: key);
@@ -37,28 +37,28 @@ class _AboutScreen extends State<AboutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('settings_screen.about_screen.title'.tr()),
+        title: Text('settings_screen.about_screen.title'.tr),
       ),
       body: ListView(
         children: [
           const SizedBox(height: 20,),
           const Divider(),
           ListTile(
-            title:  Text('settings_screen.about_screen.app_name'.tr()),
+            title:  Text('settings_screen.about_screen.app_name'.tr),
             trailing: Text(appName, style: const TextStyle(
                 fontWeight: FontWeight.bold
             ),),
           ),
           const Divider(),
           ListTile(
-            title:  Text('settings_screen.about_screen.version'.tr()),
+            title:  Text('settings_screen.about_screen.version'.tr),
             trailing: Text(version, style: const TextStyle(
                 fontWeight: FontWeight.bold
             ),),
           ),
           const Divider(),
           ListTile(
-            title: Text('settings_screen.about_screen.build'.tr()),
+            title: Text('settings_screen.about_screen.build'.tr),
             trailing: Text(buildNumber, style: const TextStyle(
                 fontWeight: FontWeight.bold
             ),),
