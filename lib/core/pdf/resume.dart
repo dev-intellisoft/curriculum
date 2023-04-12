@@ -8,12 +8,12 @@ import 'package:curriculum/core/classes/resume.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:get/get.dart';
 
 const sep = 120.0;
 
 Future<Uint8List> generateResume(PdfPageFormat format, Resume? resume) async {
-  final doc = pw.Document(title: 'app_name'.tr(), author: 'Wellington Cunha');
+  final doc = pw.Document(title: 'app_name'.tr, author: 'Wellington Cunha');
   final pageTheme = await _myPageTheme(format);
 
   List<String> keywords = [];
@@ -79,7 +79,7 @@ Future<Uint8List> generateResume(PdfPageFormat format, Resume? resume) async {
               ),
 
               if ( resume.experiences.isNotEmpty )
-                _Category(title: 'resume.experiences'.tr()),
+                _Category(title: 'resume.experiences'.tr),
               pw.ListView.builder(
                   itemBuilder: (context, index) {
                     return _Experience(
@@ -89,7 +89,7 @@ Future<Uint8List> generateResume(PdfPageFormat format, Resume? resume) async {
               ),
 
               if ( resume.educations.isNotEmpty )
-                _Category(title: 'resume.educations'.tr()),
+                _Category(title: 'resume.educations'.tr),
                 pw.ListView.builder(
                     itemBuilder: (context, index) {
                       return _Education(education:resume.educations[index] );
@@ -98,11 +98,11 @@ Future<Uint8List> generateResume(PdfPageFormat format, Resume? resume) async {
                 ),
 
               if ( resume.languages.isNotEmpty )
-                _Category(title: 'resume.languages'.tr()),
+                _Category(title: 'resume.languages'.tr),
                 _Language(languages:resume.languages ),
 
               if ( keywords.isNotEmpty )
-                _Category(title: 'resume.skills'.tr()),
+                _Category(title: 'resume.skills'.tr),
                 _Keyword(keywords: keywords)
 
             ]
@@ -196,12 +196,14 @@ class _Education extends pw.StatelessWidget {
           children: <pw.Widget>[
             pw.Container(
               margin: const pw.EdgeInsets.only(right: 15),
-                child: pw.Text(
-                  '${
-                      education.start == null? '':DateFormat('MMM yyyy').format(education.start!)
-                  } - ${
-                      education.end == null?'':DateFormat('MMM yyyy').format(education.end!)
-                  }')
+                child: pw.Text(''
+                    //todo fix this DateFormat
+                  // '${
+                  //     education.start == null? '':DateFormat('MMM yyyy').format(education.start!)
+                  // } - ${
+                  //     education.end == null?'':DateFormat('MMM yyyy').format(education.end!)
+                  // }'
+                )
             ),
             pw.Text('${education.course} at ${education.institution}',
               style: pw.Theme.of(context)
@@ -242,11 +244,14 @@ class _Experience extends pw.StatelessWidget {
               height: 6,
               margin: const pw.EdgeInsets.only( right: 20),
               child: pw.Text(
-                '${
-                    experience.start == null? '':DateFormat('MMM yyyy').format(experience.start!)
-                } - ${
-                    experience.end == null?'':DateFormat('MMM yyyy').format(experience.end!)
-                }')
+                ''
+                //todo fix this DateFormat
+                // '${
+                //     experience.start == null? '':DateFormat('MMM yyyy').format(experience.start!)
+                // } - ${
+                //     experience.end == null?'':DateFormat('MMM yyyy').format(experience.end!)
+                // }'
+              )
             ),
             pw.Text('${experience.title} at ${experience.company}',
               style: pw.Theme.of(context)

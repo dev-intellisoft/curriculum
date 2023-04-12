@@ -3,7 +3,6 @@ import 'package:curriculum/screens/settings/about.dart';
 import 'package:curriculum/screens/settings/support.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../core/auth/auth.dart';
 import '../../core/providers/resume_provider.dart';
 import '../../main.dart';

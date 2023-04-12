@@ -6,7 +6,7 @@ import 'package:curriculum/screens/resume/personal.dart';
 import 'package:curriculum/screens/resume/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:get/get.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class _NavigationScreen extends State<NavigationScreen> {
               margin: const EdgeInsets.only(right: 5),
                 child:const Icon(Icons.warning_amber_outlined, color: Colors.black,)
             ),
-            Text('navigation_screen.text1'.tr(), style: const TextStyle(
+            Text('navigation_screen.text1'.tr, style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold),
             )
@@ -75,19 +75,19 @@ class _NavigationScreen extends State<NavigationScreen> {
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: const Icon(Icons.account_box_rounded),
-              label: 'navigation_screen.information'.tr(),
+              label: 'navigation_screen.information'.tr,
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.business),
-              label: 'navigation_screen.experiences'.tr(),
+              label: 'navigation_screen.experiences'.tr,
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.school),
-              label: 'navigation_screen.education'.tr(),
+              label: 'navigation_screen.education'.tr,
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.settings),
-              label: 'navigation_screen.settings'.tr(),
+              label: 'navigation_screen.settings'.tr,
             ),
           ],
           currentIndex: _selectedIndex,

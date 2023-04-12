@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/providers/resume_provider.dart';
 import '../../widgets/my_alert.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:get/get.dart';
 
 class EducationsScreen extends StatefulWidget {
   const EducationsScreen({ Key? key }) : super(key: key);
@@ -20,7 +20,7 @@ class _EducationsScreen extends State<EducationsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('educations_screen.title'.tr()),
+        title: Text('educations_screen.title'.tr),
         actions: [
           GestureDetector(
             onTap: () {
@@ -43,7 +43,7 @@ class _EducationsScreen extends State<EducationsScreen> {
               List<Education> educations = data.getEducations() ?? [];
               if ( educations.isEmpty ) {
                 return Center(
-                  child: Text('educations_screen.not_found'.tr(), style: const TextStyle(
+                  child: Text('educations_screen.not_found'.tr, style: const TextStyle(
                       fontWeight: FontWeight.bold
                   ),),
                 );
@@ -72,7 +72,7 @@ class _EducationsScreen extends State<EducationsScreen> {
                           backgroundColor: const Color(0xFF21B7CA),
                           foregroundColor: Colors.white,
                           icon: Icons.file_copy_outlined,
-                          label: 'duplicate'.tr(),
+                          label: 'duplicate'.tr,
                         ),
                         SlidableAction(
                           onPressed: (value) async {
@@ -99,7 +99,7 @@ class _EducationsScreen extends State<EducationsScreen> {
                           backgroundColor: const Color(0xFFFE4A49),
                           foregroundColor: Colors.white,
                           icon: Icons.delete,
-                          label: 'delete'.tr(),
+                          label: 'delete'.tr,
                         ),
 
                       ],
@@ -122,7 +122,11 @@ class _EducationsScreen extends State<EducationsScreen> {
                         key: const ValueKey(0),
                         title: Text('${educations[index].institution}'),
                         subtitle: Text('${educations[index].course}'),
-                        trailing: Text('${_years > 0?'years'.tr(namedArgs: {'years':'$_years'}):''} ${_month > 0?'months'.tr(namedArgs: {'month':'$_month'}):''}'),
+                        trailing: Text(
+                          ''
+                          //todo fix this DateFormat
+                            // '${_years > 0?'years'.tr(namedArgs: {'years':'$_years'}):''} ${_month > 0?'months'.tr(namedArgs: {'month':'$_month'}):''}'
+                        ),
                       ),
                     )
                   );

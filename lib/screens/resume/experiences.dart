@@ -5,9 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:easy_localization/easy_localization.dart';
-
 import '../../widgets/my_alert.dart';
+import 'package:get/get.dart';
 
 class ExperiencesScreen extends StatefulWidget {
   const ExperiencesScreen({ Key? key }) : super(key: key);
@@ -21,7 +20,7 @@ class _ExperiencesScreen extends State<ExperiencesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('experiences_screen.title'.tr()),
+        title: Text('experiences_screen.title'.tr),
         actions: [
           GestureDetector(
             onTap: () {
@@ -44,7 +43,7 @@ class _ExperiencesScreen extends State<ExperiencesScreen> {
               List<Experience> experiences = data.getExperience() ?? [];
               if ( experiences.isEmpty ) {
                 return Center(
-                  child: Text('experiences_screen.not_found'.tr(), style: const TextStyle(
+                  child: Text('experiences_screen.not_found'.tr, style: const TextStyle(
                       fontWeight: FontWeight.bold
                   ),),
                 );
@@ -76,7 +75,7 @@ class _ExperiencesScreen extends State<ExperiencesScreen> {
                           backgroundColor: const Color(0xFF21B7CA),
                           foregroundColor: Colors.white,
                           icon: Icons.file_copy_outlined,
-                          label: 'duplicate'.tr(),
+                          label: 'duplicate'.tr,
                         ),
                         SlidableAction(
                           onPressed: (value) async {
@@ -103,7 +102,7 @@ class _ExperiencesScreen extends State<ExperiencesScreen> {
                           backgroundColor: const Color(0xFFFE4A49),
                           foregroundColor: Colors.white,
                           icon: Icons.delete,
-                          label: 'delete'.tr(),
+                          label: 'delete'.tr,
                         ),
                       ],
                     ),
@@ -124,7 +123,11 @@ class _ExperiencesScreen extends State<ExperiencesScreen> {
                         key: const ValueKey(0),
                         title: Text('${experiences[index].company}'),
                         subtitle: Text('${experiences[index].title}'),
-                        trailing: Text('${_years > 0?'years'.tr(namedArgs: { 'years':'$_years' }):''} ${_month > 0?'months'.tr(namedArgs: {'month':'$_month'}):''}'),
+                        trailing: Text(
+                          '',
+                          //todo fix this DateFormat
+                            // '${_years > 0?'years'.tr(namedArgs: { 'years':'$_years' }):''} ${_month > 0?'months'.tr(namedArgs: {'month':'$_month'}):''}'
+                        ),
                       ),
                     )
                   );

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
-
 import '../core/classes/language.dart';
+import 'package:get/get.dart';
 
 class LanguageLevelWidget extends StatefulWidget {
   Language language;
@@ -59,7 +58,7 @@ class _LanguageLevelWidget extends State<LanguageLevelWidget> {
                 });
                 Navigator.pop(context);
               },
-              label: 'language_level.native'.tr(),
+              label: 'language_level.native'.tr,
               color: Colors.green,
               selected: 'native' == widget.language.level
             ),
@@ -70,7 +69,7 @@ class _LanguageLevelWidget extends State<LanguageLevelWidget> {
                 });
                 Navigator.pop(context);
               },
-              label: 'language_level.fluent'.tr(),
+              label: 'language_level.fluent'.tr,
               color: Colors.greenAccent,
               selected: 'fluent' == widget.language.level
             ),
@@ -81,7 +80,7 @@ class _LanguageLevelWidget extends State<LanguageLevelWidget> {
                 });
                 Navigator.pop(context);
               },
-              label: 'language_level.advanced'.tr(),
+              label: 'language_level.advanced'.tr,
               color: Colors.orange,
               selected: 'advanced' == widget.language.level
             ),
@@ -92,7 +91,7 @@ class _LanguageLevelWidget extends State<LanguageLevelWidget> {
                 });
                 Navigator.pop(context);
               },
-              label: 'language_level.intermediate'.tr(),
+              label: 'language_level.intermediate'.tr,
               color: Colors.yellow,
               selected: 'intermediate' == widget.language.level
             ),
@@ -103,7 +102,7 @@ class _LanguageLevelWidget extends State<LanguageLevelWidget> {
                 });
                 Navigator.pop(context);
               },
-              label: 'language_level.basic'.tr(),
+              label: 'language_level.basic'.tr,
               color: Colors.grey,
               selected: 'basic' == widget.language.level
             ),

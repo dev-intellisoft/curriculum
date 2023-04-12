@@ -1,7 +1,6 @@
 import 'package:curriculum/screens/resume/settings.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
-// import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 class LanguageScreen extends StatefulWidget {
   const LanguageScreen({Key? key}) : super(key: key);
@@ -15,7 +14,7 @@ class _LanguageScreen extends State<LanguageScreen> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Text('settings_screen.languages_screen.title'.tr()),
+        title: Text('settings_screen.languages_screen.title'.tr),
         actions: [
           GestureDetector(
             onTap: () {

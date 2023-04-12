@@ -1,10 +1,10 @@
 import 'package:curriculum/screens/register.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
 import '../core/auth/auth.dart';
 import '../core/auth/biometrics.dart';
 import '../widgets/biometric_alert.dart';
 import 'resumes.dart';
+import 'package:get/get.dart';
 
 class LoginWidget extends StatefulWidget {
   bool logout;
@@ -66,7 +66,7 @@ class _LoginWidget extends State<LoginWidget> {
               children: [
                 Container(
                   margin: const EdgeInsets.only(top: 60, bottom: 60),
-                  child: Text('login_screen.app_name'.tr(), style: const TextStyle(
+                  child: Text('login_screen.app_name'.tr, style: const TextStyle(
                     fontSize: 18, fontWeight: FontWeight.bold
                   ),),
                 ),
@@ -87,7 +87,7 @@ class _LoginWidget extends State<LoginWidget> {
                     });
                   },
                   decoration: InputDecoration(
-                    labelText: 'username'.tr()
+                    labelText: 'username'.tr
                   ),
                 ),
 
@@ -108,7 +108,7 @@ class _LoginWidget extends State<LoginWidget> {
                       },
                       child: visibility? const Icon(Icons.visibility_off): const Icon(Icons.visibility),
                     ),
-                    labelText: 'password'.tr()
+                    labelText: 'password'.tr
                   ),
                   obscureText: !visibility,
                 ),
@@ -125,7 +125,7 @@ class _LoginWidget extends State<LoginWidget> {
 
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           backgroundColor: Colors.green,
-                          content: Text('login_screen.success'.tr()),
+                          content: Text('login_screen.success'.tr),
                           action: SnackBarAction(
                             label: '',
                             onPressed: () {},
@@ -142,7 +142,7 @@ class _LoginWidget extends State<LoginWidget> {
                         }
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('login_screen.failed'.tr()),
+                          content: Text('login_screen.failed'.tr),
                           backgroundColor: Colors.red,
                           action: SnackBarAction(
                             label: '',
@@ -159,7 +159,7 @@ class _LoginWidget extends State<LoginWidget> {
                     width: double.infinity,
                     height: 45,
                     child:  Center(
-                      child: Text('login'.tr(), style: TextStyle(
+                      child: Text('login'.tr, style: TextStyle(
                         color: disabled?Colors.grey:Colors.white,
                         fontWeight: FontWeight.bold
                       ),)),
@@ -181,7 +181,7 @@ class _LoginWidget extends State<LoginWidget> {
                     width: double.infinity,
                     height: 45,
                     child: Center(
-                      child: Text('login_screen.register'.tr(), style: const TextStyle(
+                      child: Text('login_screen.register'.tr, style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold
                       ),)),

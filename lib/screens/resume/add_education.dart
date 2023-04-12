@@ -3,7 +3,7 @@ import 'package:curriculum/screens/resume/educations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:get/get.dart';
 
 class AddEducationWidget extends StatefulWidget {
   Education education;
@@ -17,10 +17,14 @@ class _AddEducationWidget extends State<AddEducationWidget> {
   @override
   Widget build(BuildContext context) {
     TextEditingController _start = TextEditingController(
-        text: widget.education.start == null?'':DateFormat('dd/MM/yyyy').format(widget.education.start!)
+      text:''
+      //todo fix this DateFormat
+        // text: widget.education.start == null?'':DateFormat('dd/MM/yyyy').format(widget.education.start!)
     );
     TextEditingController _end = TextEditingController(
-        text: widget.education.end == null?'':DateFormat('dd/MM/yyyy').format(widget.education.end!)
+      text: ''
+      //todo fix this DateFormat
+        // text: widget.education.end == null?'':DateFormat('dd/MM/yyyy').format(widget.education.end!)
     );
     TextEditingController _institution = TextEditingController(text: widget.education.institution);
     TextEditingController _course = TextEditingController(text: widget.education.course);
@@ -35,7 +39,7 @@ class _AddEducationWidget extends State<AddEducationWidget> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('educations_screen.add_education.title'.tr()),
+          title: Text('educations_screen.add_education.title'.tr),
           actions: [
             GestureDetector(
               onTap: () {
@@ -63,7 +67,7 @@ class _AddEducationWidget extends State<AddEducationWidget> {
                     widget.education.institution = value;
                   },
                   decoration: InputDecoration(
-                    labelText: 'educations_screen.add_education.institution'.tr()
+                    labelText: 'educations_screen.add_education.institution'.tr
                   ),
                 ),
                 const SizedBox(height: 15,),
@@ -73,7 +77,7 @@ class _AddEducationWidget extends State<AddEducationWidget> {
                     widget.education.course = value;
                   },
                   decoration: InputDecoration(
-                      labelText: 'educations_screen.add_education.course'.tr()
+                      labelText: 'educations_screen.add_education.course'.tr
                   ),
                 ),
                 const SizedBox(height: 15,),
@@ -83,8 +87,8 @@ class _AddEducationWidget extends State<AddEducationWidget> {
                     widget.education.location = value;
                   },
                   decoration: InputDecoration(
-                    labelText: 'educations_screen.add_education.location'.tr(),
-                    hintText: 'educations_screen.add_education.location_tip'.tr(),
+                    labelText: 'educations_screen.add_education.location'.tr,
+                    hintText: 'educations_screen.add_education.location_tip'.tr,
                   ),
                 ),
                 const SizedBox(height: 15,),
@@ -95,7 +99,7 @@ class _AddEducationWidget extends State<AddEducationWidget> {
                       child: TextFormField(
                         controller: _start,
                         decoration: InputDecoration(
-                            labelText: 'start'.tr()
+                            labelText: 'start'.tr
                         ),
                         readOnly: true,  //set it true, so that user will not able to edit text
                         onTap: () async {
@@ -108,7 +112,9 @@ class _AddEducationWidget extends State<AddEducationWidget> {
 
                           if(pickedDate != null ){
                             widget.education.start = pickedDate;
-                            _start.text = DateFormat('dd/MM/yyyy').format(pickedDate);
+                            _start.text = pickedDate.toString();
+                            //todo fix this DateFormat
+                            // _start.text = DateFormat('dd/MM/yyyy').format(pickedDate);
                           }
                         },
                       ),
@@ -122,7 +128,7 @@ class _AddEducationWidget extends State<AddEducationWidget> {
                       child: TextFormField(
                         controller: _end,
                         decoration: InputDecoration(
-                            labelText: 'end'.tr()
+                            labelText: 'end'.tr
                         ),
                         readOnly: true,  //set it true, so that user will not able to edit text
                         onTap: () async {
@@ -136,7 +142,7 @@ class _AddEducationWidget extends State<AddEducationWidget> {
                           if(pickedDate != null ){
                             widget.education.end = pickedDate;
                             setState(() {
-                              _end.text = DateFormat('dd/MM/yyyy').format(pickedDate);
+                              // _end.text = DateFormat('dd/MM/yyyy').format(pickedDate);
                             });
                           }
                         },
@@ -153,7 +159,7 @@ class _AddEducationWidget extends State<AddEducationWidget> {
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
                   decoration: InputDecoration(
-                      labelText: 'educations_screen.add_education.description'.tr(),
+                      labelText: 'educations_screen.add_education.description'.tr,
                   ),
                 ),
               ],

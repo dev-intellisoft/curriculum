@@ -1,11 +1,11 @@
 import 'package:curriculum/screens/resume/personal.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import '../../core/classes/language.dart';
 import '../../core/providers/resume_provider.dart';
 import '../../widgets/language_level.dart';
 import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 class AddLanguageWidget extends StatefulWidget {
   const AddLanguageWidget({Key? key}) : super(key: key);
@@ -44,7 +44,7 @@ class _AddLanguageWidget extends State<AddLanguageWidget> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('personal_info_screen.add_languages.title'.tr()),
+          title: Text('personal_info_screen.add_languages.title'.tr),
           actions: [
             GestureDetector(
               onTap: () {
@@ -71,12 +71,12 @@ class _AddLanguageWidget extends State<AddLanguageWidget> {
                   language = value;
                 },
                 decoration: InputDecoration(
-                  labelText: 'personal_info_screen.add_languages.label'.tr(),
+                  labelText: 'personal_info_screen.add_languages.label'.tr,
                   suffixIcon: GestureDetector(
                     onTap: () {
                       if ( language == '' ) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('personal_info_screen.add_languages.warning'.tr(),),
+                          content: Text('personal_info_screen.add_languages.warning'.tr,),
                           backgroundColor: Colors.orange,
                           action: SnackBarAction(
                             label: '',
@@ -113,7 +113,7 @@ class _AddLanguageWidget extends State<AddLanguageWidget> {
                                 backgroundColor: const Color(0xFFFE4A49),
                                 foregroundColor: Colors.white,
                                 icon: Icons.delete,
-                                label: 'delete'.tr(),
+                                label: 'delete'.tr,
                               ),
                             ]
                           ),
@@ -136,7 +136,7 @@ class _AddLanguageWidget extends State<AddLanguageWidget> {
                                   color:_renderLanguageLevelButtonColor(languages[index].level!),
                                   borderRadius: BorderRadius.circular(5)
                                 ),
-                                child: Text('language_level.${languages[index].level}'.tr()),
+                                child: Text('language_level.${languages[index].level}'.tr),
                               ),
                             ),
                           )

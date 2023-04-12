@@ -3,7 +3,7 @@ import 'package:curriculum/screens/resume/experiences.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:get/get.dart';
 
 class AddExperienceWidget extends StatefulWidget {
   Experience experience;
@@ -22,10 +22,14 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
     TextEditingController _description = TextEditingController(text: widget.experience.description);
     TextEditingController _keywords =  TextEditingController(text: widget.experience.keywords);
     TextEditingController _start = TextEditingController(
-        text: widget.experience.start == null?'':DateFormat('dd/MM/yyyy').format(widget.experience.start!)
+      text: ''
+      //todo fix this DateFormat
+        // text: widget.experience.start == null?'':DateFormat('dd/MM/yyyy').format(widget.experience.start!)
     );
     TextEditingController _end = TextEditingController(
-        text:widget.experience.end == null? '': DateFormat('dd/MM/yyyy').format(widget.experience.end!)
+      text: ''
+      //todo fix this DateFormat
+        // text:widget.experience.end == null? '': DateFormat('dd/MM/yyyy').format(widget.experience.end!)
     );
 
     return GestureDetector(
@@ -37,7 +41,7 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('experiences_screen.add_experience.title'.tr()),
+          title: Text('experiences_screen.add_experience.title'.tr),
           actions: [
             GestureDetector(
               onTap: () {
@@ -65,7 +69,7 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                     widget.experience.company = value;
                   },
                   decoration: InputDecoration(
-                    labelText: 'experiences_screen.add_experience.company'.tr()
+                    labelText: 'experiences_screen.add_experience.company'.tr
                   ),
                 ),
                 const SizedBox(height: 15,),
@@ -75,7 +79,7 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                     widget.experience.title = value;
                   },
                   decoration: InputDecoration(
-                      labelText: 'experiences_screen.add_experience.job_title'.tr()
+                      labelText: 'experiences_screen.add_experience.job_title'.tr
                   ),
                 ),
                 const SizedBox(height: 15,),
@@ -85,8 +89,8 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                     widget.experience.location = value;
                   },
                   decoration: InputDecoration(
-                      labelText: 'experiences_screen.add_experience.location'.tr(),
-                    hintText: 'experiences_screen.add_experience.location_tip'.tr(),
+                      labelText: 'experiences_screen.add_experience.location'.tr,
+                    hintText: 'experiences_screen.add_experience.location_tip'.tr,
                   ),
                 ),
                 const SizedBox(height: 15,),
@@ -97,7 +101,7 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                       child: TextFormField(
                         controller: _start,
                         decoration: InputDecoration(
-                            labelText: 'start'.tr()
+                            labelText: 'start'.tr
                         ),
                         readOnly: true,  //set it true, so that user will not able to edit text
                         onTap: () async {
@@ -110,7 +114,9 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
 
                           if(pickedDate != null ){
                             widget.experience.start = pickedDate;
-                            _start.text = DateFormat('dd/MM/yyyy').format(pickedDate);
+                            //todo fix this DateFormat
+                            _start.text = pickedDate.toString();
+                            // _start.text = DateFormat('dd/MM/yyyy').format(pickedDate);
                           }
                         },
                       ),
@@ -124,7 +130,7 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                       child: TextFormField(
                         controller: _end,
                         decoration: InputDecoration(
-                            labelText: 'end'.tr()
+                            labelText: 'end'.tr
                         ),
                         readOnly: true,  //set it true, so that user will not able to edit text
                         onTap: () async {
@@ -138,7 +144,8 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                           if(pickedDate != null ){
                             widget.experience.end = pickedDate;
                             setState(() {
-                              _end.text = DateFormat('dd/MM/yyyy').format(pickedDate);
+                              //todo fix this DateFormat
+                              // _end.text = DateFormat('dd/MM/yyyy').format(pickedDate);
                             });
                           }
                         },
@@ -156,7 +163,7 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
                   decoration: InputDecoration(
-                    labelText: 'experiences_screen.add_experience.description'.tr(),
+                    labelText: 'experiences_screen.add_experience.description'.tr,
                   ),
                 ),
 
@@ -167,9 +174,9 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
                     widget.experience.keywords = value;
                   },
                   decoration: InputDecoration(
-                    labelText: 'experiences_screen.add_experience.keywords'.tr(),
-                    hintText: 'experiences_screen.add_experience.keywords_hint'.tr(),
-                    helperText: 'experiences_screen.add_experience.keywords_helper'.tr()
+                    labelText: 'experiences_screen.add_experience.keywords'.tr,
+                    hintText: 'experiences_screen.add_experience.keywords_hint'.tr,
+                    helperText: 'experiences_screen.add_experience.keywords_helper'.tr
                   ),
                 ),
               ],

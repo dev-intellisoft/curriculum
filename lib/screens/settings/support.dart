@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:get/get.dart';
 
 class SupportScreen extends StatefulWidget {
   const SupportScreen({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class _SupportScreen extends State<SupportScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('settings_screen.support_screen.title'.tr()),
+        title: Text('settings_screen.support_screen.title'.tr),
       ),
       body: Column(
         children: const [

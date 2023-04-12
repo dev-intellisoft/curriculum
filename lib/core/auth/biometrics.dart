@@ -1,7 +1,8 @@
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:easy_localization/easy_localization.dart';
+
+import 'package:get/get.dart';
 
 import 'auth.dart';
 final LocalAuthentication auth = LocalAuthentication();
@@ -64,7 +65,7 @@ Future<bool> authenticate() async {
   bool authenticated = false;
   try {
     authenticated = await auth.authenticate(
-      localizedReason: 'auth_text1'.tr(),
+      localizedReason: 'auth_text1'.tr,
       options: const AuthenticationOptions(
         useErrorDialogs: true,
         stickyAuth: true,

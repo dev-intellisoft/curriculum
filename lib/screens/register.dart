@@ -1,10 +1,10 @@
 import 'package:curriculum/core/classes/user.dart';
 import 'package:curriculum/screens/resumes.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
 import '../core/auth/auth.dart';
 import '../core/auth/biometrics.dart';
 import '../widgets/biometric_alert.dart';
+import 'package:get/get.dart';
 
 class RegisterWidget extends StatefulWidget {
   const RegisterWidget({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class _RegisterWidget extends State<RegisterWidget> {
       },
       child: Scaffold(
         resizeToAvoidBottomInset : true,
-        appBar: AppBar( title: Text('register_screen.register'.tr()),),
+        appBar: AppBar( title: Text('register_screen.register'.tr),),
           body: Container(
             margin: const EdgeInsets.only(left: 15, right: 15),
             child: SafeArea(
@@ -58,11 +58,11 @@ class _RegisterWidget extends State<RegisterWidget> {
                               children: [
                                 FittedBox(
                                   fit: BoxFit.fitWidth,
-                                  child: Text('register_screen.text1'.tr()),
+                                  child: Text('register_screen.text1'.tr),
                                 ),
                                 FittedBox(
                                   fit: BoxFit.fitWidth,
-                                  child: Text('register_screen.text2'.tr()),
+                                  child: Text('register_screen.text2'.tr),
                                 )
                               ],
                             ),
@@ -79,7 +79,7 @@ class _RegisterWidget extends State<RegisterWidget> {
                       });
                     },
                     decoration: InputDecoration(
-                      labelText: 'username'.tr()
+                      labelText: 'username'.tr
                     ),
                   ),
                   const SizedBox(height: 20,),
@@ -91,7 +91,7 @@ class _RegisterWidget extends State<RegisterWidget> {
                       });
                     },
                     decoration: InputDecoration(
-                      labelText: 'password'.tr(),
+                      labelText: 'password'.tr,
                       suffixIcon: GestureDetector(
                         onTap: () {
                           setState(() {
@@ -122,7 +122,7 @@ class _RegisterWidget extends State<RegisterWidget> {
 
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           backgroundColor: Colors.green,
-                          content: Text('register_screen.success'.tr()),
+                          content: Text('register_screen.success'.tr),
                           action: SnackBarAction(
                             label: '',
                             onPressed: () {},
@@ -131,7 +131,7 @@ class _RegisterWidget extends State<RegisterWidget> {
 
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('register_screen.failed'.tr()),
+                          content: Text('register_screen.failed'.tr),
                           action: SnackBarAction(
                             label: '',
                             onPressed: () {},
@@ -144,7 +144,7 @@ class _RegisterWidget extends State<RegisterWidget> {
                       width: double.infinity,
                       height: 45,
                       child: Center(
-                        child: Text('register'.tr(), style: TextStyle(
+                        child: Text('register'.tr, style: TextStyle(
                           color: enabled ?Colors.white:Colors.grey,
                           fontWeight: FontWeight.bold
                         ),)),
