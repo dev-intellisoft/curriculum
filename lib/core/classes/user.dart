@@ -18,7 +18,7 @@ class User {
   }
 
   static Future<bool> login(String username, String password) async {
-    return await DatabaseHelper.instance.login(User(username: username, password: password));
+    return await DatabaseHelper.instance.login(username, password);
   }
   static Future<bool> register(String username, String password) async {
     try {

@@ -1,14 +1,25 @@
+import 'package:curriculum/core/database_helper.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
+import 'package:curriculum/core/resume.dart';
 import 'package:curriculum/core/translations/app_translations.dart';
+import 'package:curriculum/core/user.dart';
 import 'package:flutter/material.dart';
 import 'package:curriculum/screens/login.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+
+_init() {
+  Get.put(ResumeController(db: DatabaseHelper.instance));
+  Get.put(UserController(db: DatabaseHelper.instance));
+}
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load();
+  _init();
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => ResumeProvider())
   ], child:const MyApp(),));
@@ -16,6 +27,8 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

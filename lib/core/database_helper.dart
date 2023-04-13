@@ -151,10 +151,20 @@ class DatabaseHelper {
     return _user.isNotEmpty;
   }
 
-  Future<bool> login(User user) async {
+  Future<bool> login(String username, String password) async {
     Database db = await instance.database;
-    var data = await db.rawQuery('SELECT username FROM user WHERE username = ? AND password = ? LIMIT 1', [user.username, user.password]);
+    var data = await db.rawQuery('SELECT username FROM user WHERE username = ? AND password = ? LIMIT 1', [username, password]);
     return data.isNotEmpty;
+  }
+
+
+  Future<bool> register(String username, String password) async {
+    Database db = await instance.database;
+    //todo add password as md5
+    return await db.insert('user', {
+      'username': username,
+      'password':password
+    }) > 0;
   }
 
   Future<int> addUser(User user) async {

@@ -1,5 +1,6 @@
 import 'package:curriculum/core/classes/user.dart';
 import 'package:curriculum/core/common.dart';
+import 'package:curriculum/core/user.dart';
 import 'package:curriculum/screens/resumes.dart';
 import 'package:flutter/material.dart';
 import '../core/auth/auth.dart';
@@ -7,20 +8,14 @@ import '../core/auth/biometrics.dart';
 import '../widgets/biometric_alert.dart';
 import 'package:get/get.dart';
 
-class RegisterWidget extends StatefulWidget {
-  const RegisterWidget({Key? key}) : super(key: key);
+class RegisterWidget extends StatelessWidget {
 
-  @override
-  _RegisterWidget createState() => _RegisterWidget();
-}
+  UserController controller = Get.find<UserController>();
 
-class _RegisterWidget extends State<RegisterWidget> {
-  bool visibility = false;
-  String username = '';
-  String password = '';
+  RegisterWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    bool enabled = username.isNotEmpty && password.isNotEmpty;
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -74,70 +69,42 @@ class _RegisterWidget extends State<RegisterWidget> {
                   ),
                   const SizedBox(height: 20,),
                   TextFormField(
-                    onChanged: (value){
-                      setState(() {
-                        username = value;
-                      });
-                    },
+                    onChanged: (value) => controller.username.value = value,
                     decoration: InputDecoration(
                       labelText: 'username'.tr
                     ),
                   ),
                   const SizedBox(height: 20,),
-                  TextFormField(
-                    obscureText: !visibility,
-                    onChanged: (value) {
-                      setState(() {
-                        password = value;
-                      });
-                    },
+                  Obx(() => TextFormField(
+                    obscureText: !controller.showPassword.isTrue,
+                    onChanged: (value)  => controller.password.value = value,
                     decoration: InputDecoration(
-                      labelText: 'password'.tr,
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            visibility = !visibility;
-                          });
-                        },
-                        child: Icon(visibility?Icons.visibility_off:Icons.visibility)
-                      )
+                        labelText: 'password'.tr,
+                        suffixIcon: GestureDetector(
+                            onTap: () => controller.showPassword.value = !controller.showPassword.value,
+                            child: Icon(controller.showPassword.isTrue?Icons.visibility_off:Icons.visibility)
+                        )
                     ),
-                  ),
+                  )),
                   const SizedBox(height: 20,),
 
-                  GestureDetector(
-                    onTap: enabled?() async {
-                      if ( await User.register(username, password) ) {
-                        Get.offAll(() => const ResumesWidget());
-
-                        if (await isSupported()) {
-                          showDialog(context: context, builder: (ctx) => BiometricAlert(
-                            onConfirm: () => saveLoginCredentials(username, password),
-                            onCancel: () {},
-                          ),);
-                        }
-
-                        showSuccessMessage('register_screen.success'.tr);
-
-                      } else {
-                        showErrorMessage('register_screen.failed'.tr);
-                      }
-                    }: () {},
+                  Obx(() => GestureDetector(
+                    onTap: controller.disabled()?() {}:() => controller.register(),
                     child: Container(
                       margin: const EdgeInsets.only(top: 20),
                       width: double.infinity,
                       height: 45,
                       child: Center(
-                        child: Text('register'.tr, style: TextStyle(
-                          color: enabled ?Colors.white:Colors.grey,
-                          fontWeight: FontWeight.bold
-                        ),)),
+                          child: Text('register'.tr, style: TextStyle(
+                              color: !controller.disabled() ?Colors.white:Colors.grey,
+                              fontWeight: FontWeight.bold
+                          ),)),
                       decoration: BoxDecoration(
-                        color: enabled ? Colors.blueAccent:Colors.grey[300],
-                        borderRadius: BorderRadius.circular(5)
+                          color: !controller.disabled() ? Colors.blueAccent:Colors.grey[300],
+                          borderRadius: BorderRadius.circular(5)
                       ),
                     ),
-                  ),
+                  )),
                 ],
               ),
             ),

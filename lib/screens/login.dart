@@ -1,4 +1,5 @@
 import 'package:curriculum/core/common.dart';
+import 'package:curriculum/core/user.dart';
 import 'package:curriculum/screens/register.dart';
 import 'package:flutter/material.dart';
 import '../core/auth/auth.dart';
@@ -7,46 +8,22 @@ import '../widgets/biometric_alert.dart';
 import 'resumes.dart';
 import 'package:get/get.dart';
 
-class LoginWidget extends StatefulWidget {
-  bool logout;
-  LoginWidget({
-    Key? key,
-    this.logout = false
-  }) : super(key: key);
 
-  @override
-  _LoginWidget createState() => _LoginWidget();
-}
+class LoginWidget extends StatelessWidget {
 
-class _LoginWidget extends State<LoginWidget> {
-  String username = '';
-  String password = '';
-  bool visibility = false;
+  final bool logout;
+  LoginWidget({Key? key, this.logout = false}) : super(key: key);
 
-   _init() async {
-    if (await isLoggedIn()) {
-      return Get.offAll(() => const ResumesWidget());
-    }
 
-    if (widget.logout) {
-      return;
-    }
+  UserController controller = Get.find<UserController>();
 
-    if ( await biometricLogin() && await authenticate() ) {
-      return Get.offAll(() => const ResumesWidget());
-    }
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _init();
+   _init() {
+     controller.isLoggedIn(logout:logout);
   }
 
   @override
   Widget build(BuildContext context) {
-    bool disabled = username.isEmpty || password.isEmpty;
+    _init();
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -76,79 +53,48 @@ class _LoginWidget extends State<LoginWidget> {
                       }
                     }
                   },
-                  onChanged: (value) {
-                    setState(() {
-                      username = value;
-                    });
-                  },
+                  onChanged: (value) => controller.username.value = value,
                   decoration: InputDecoration(
                     labelText: 'username'.tr
                   ),
                 ),
 
                 const SizedBox(height: 15,),
-                TextFormField(
-                  onChanged: (value) {
-                    setState(() {
-                      password = value;
-                    });
-                  },
+                Obx(() => TextFormField(
+                  onChanged: (value) => controller.password.value = value,
                   decoration:  InputDecoration(
                     isDense: true,
                     suffix: GestureDetector(
-                      onTap: () => {
-                        setState(() {
-                          visibility = !visibility;
-                        })
-                      },
-                      child: visibility? const Icon(Icons.visibility_off): const Icon(Icons.visibility),
+                      onTap: () => controller.showPassword.value = !controller.showPassword.value,
+                      child: controller.showPassword.isTrue? const Icon(Icons.visibility_off): const Icon(Icons.visibility),
                     ),
                     labelText: 'password'.tr
                   ),
-                  obscureText: !visibility,
-                ),
+                  obscureText: !controller.showPassword.isTrue,
+                )),
 
                 const SizedBox(height: 15,),
 
-                GestureDetector(
-                  onTap: disabled?() {}:() async {
-                    login(username, password).then((value) async {
-                      if ( value ) {
-                        Get.offAll(() => const ResumesWidget());
-
-                        showSuccessMessage('login_screen.success'.tr);
-
-                        if ( await isSupported() ) {
-                          showDialog(context: context, builder: (ctx) => BiometricAlert(
-                            onConfirm: () => saveLoginCredentials(username, password),
-                            onCancel: () {},
-                          ),);
-                        }
-                      } else {
-                        showErrorMessage('login_screen.failed'.tr);
-                      }
-                    }).catchError((e) {
-                      print(e);
-                    });
-                  },
+                Obx(() => GestureDetector(
+                  onTap: controller.disabled()?() {}:() => controller.login(),
                   child: Container(
                     margin: const EdgeInsets.only(top: 20),
                     width: double.infinity,
                     height: 45,
                     child:  Center(
-                      child: Text('login'.tr, style: TextStyle(
-                        color: disabled?Colors.grey:Colors.white,
-                        fontWeight: FontWeight.bold
-                      ),)),
+                        child: Text('login'.tr, style: TextStyle(
+                            color: controller.disabled()?Colors.grey:Colors.white,
+                            fontWeight: FontWeight.bold
+                        ),)),
                     decoration: BoxDecoration(
-                      color: disabled?Colors.grey[300]:Colors.blueAccent,
-                      borderRadius: BorderRadius.circular(5)
+                        color: controller.disabled()?Colors.grey[300]:Colors.blueAccent,
+                        borderRadius: BorderRadius.circular(5)
                     ),
                   ),
-                ),
+                )),
 
                 GestureDetector(
-                  onTap: () => Get.to(() => const RegisterWidget()),
+                  onTap: () => Get.to(() => RegisterWidget()),
                   child: Container(
                     margin: const EdgeInsets.only(top: 20),
                     width: double.infinity,

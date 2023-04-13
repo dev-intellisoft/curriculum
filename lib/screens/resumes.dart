@@ -1,7 +1,9 @@
 import 'package:curriculum/core/classes/resume.dart';
+import 'package:curriculum/core/resume.dart';
 import 'package:curriculum/screens/navigation.dart';
 import 'package:curriculum/screens/previewer.dart';
 import 'package:curriculum/screens/resume/settings.dart';
+import 'package:curriculum/widgets/base_app_bar.dart';
 import 'package:curriculum/widgets/my_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -18,6 +20,9 @@ class ResumesWidget extends StatefulWidget {
 }
 
 class _ResumesWidget extends State<ResumesWidget> {
+
+  ResumeController controller = Get.find<ResumeController>();
+
   String cloneName = '';
   String username = 'guest'.tr;
 
@@ -36,42 +41,10 @@ class _ResumesWidget extends State<ResumesWidget> {
 
   @override
   Widget build(BuildContext context) {
+    controller.loadResumes();
     return Scaffold(
       resizeToAvoidBottomInset : true,
-      appBar: AppBar(
-        leading: Center(
-          child: GestureDetector(
-            onTap: () => Get.to(() => const SettingsScreen()),
-            child: Container(
-              height: 30,
-              width: 30,
-              decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.4),
-                shape: BoxShape.circle
-              ),
-              child: Center(
-                child: Text(username[0].toUpperCase(), style: const TextStyle(
-                  color: Colors.black54,
-                  fontWeight: FontWeight.bold
-                ),),
-              ),
-            ),
-          ),
-        ),
-        title: Text('resumes_screen.title'.tr),
-        actions: [
-          GestureDetector(
-            onTap: () async{
-              context.read<ResumeProvider>().setResume(Resume(experiences: [], educations: [], languages: []));
-              Get.to(() => const NavigationScreen());
-            },
-            child: Container(
-              margin: const EdgeInsets.only(right: 10),
-              child: const Icon(Icons.add_circle)
-            ),
-          )
-        ],
-      ),
+      appBar: BaseAppBar(),
         body: SafeArea(
           child: FutureBuilder(
             future: Provider.of<ResumeProvider>(context).loadResumes(),
