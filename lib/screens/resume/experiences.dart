@@ -1,4 +1,5 @@
 import 'package:curriculum/core/classes/experience.dart';
+import 'package:curriculum/core/resume.dart';
 import 'package:curriculum/screens/resume/add_experience.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,7 @@ class ExperiencesScreen extends StatefulWidget {
 }
 
 class _ExperiencesScreen extends State<ExperiencesScreen> {
+  ResumeController controller = Get.find<ResumeController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

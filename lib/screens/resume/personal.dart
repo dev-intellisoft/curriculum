@@ -1,6 +1,7 @@
 import 'package:curriculum/core/classes/resume.dart';
 import 'package:curriculum/core/common.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
+import 'package:curriculum/core/resume.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'add_languages.dart';
@@ -14,7 +15,7 @@ class PersonalWidget extends StatefulWidget {
 }
 
 class _PersonalWidget extends State<PersonalWidget> {
-
+  ResumeController controller = Get.find<ResumeController>();
 
   Color _renderLanguageLevelButtonColor (String level) {
     switch (level) {
@@ -38,14 +39,14 @@ class _PersonalWidget extends State<PersonalWidget> {
   @override
   Widget build(BuildContext context) {
     Resume resume = context.read<ResumeProvider>().getResume();
-    TextEditingController _name = TextEditingController(text: resume.name);
-    TextEditingController _firstName = TextEditingController(text: resume.firstName);
-    TextEditingController _lastName = TextEditingController(text: resume.lastName);
-    TextEditingController _telephone = TextEditingController(text: resume.telephone);
-    TextEditingController _email = TextEditingController(text: resume.email);
-    TextEditingController _location = TextEditingController(text: resume.location);
-    TextEditingController _linkedIn = TextEditingController(text: resume.linkedIn);
-    TextEditingController _github = TextEditingController(text: resume.github);
+    TextEditingController _name = TextEditingController(text: controller.resume.value.name);
+    TextEditingController _firstName = TextEditingController(text: controller.resume.value.firstName);
+    TextEditingController _lastName = TextEditingController(text: controller.resume.value.lastName);
+    TextEditingController _telephone = TextEditingController(text: controller.resume.value.telephone);
+    TextEditingController _email = TextEditingController(text: controller.resume.value.email);
+    TextEditingController _location = TextEditingController(text: controller.resume.value.location);
+    TextEditingController _linkedIn = TextEditingController(text: controller.resume.value.linkedIn);
+    TextEditingController _github = TextEditingController(text: controller.resume.value.github);
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -81,14 +82,10 @@ class _PersonalWidget extends State<PersonalWidget> {
           children: [
             const SizedBox(height: 15,),
             Focus(
-              onFocusChange: (value) {
-                context.read<ResumeProvider>().saveResume(resume);
-              },
+              onFocusChange: (value) => context.read<ResumeProvider>().saveResume(resume),
               child: TextFormField(
                 controller: _name,
-                onChanged: (value) {
-                  resume.name = value;
-                },
+                onChanged: (value) => controller.resume.value.name = value,
                 decoration: InputDecoration(
                   labelText: 'personal_info_screen.profile_name'.tr,
                   hintText: 'personal_info_screen.profile_name_tip'.tr,
@@ -98,9 +95,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             const SizedBox(height: 10,),
             TextFormField(
               controller: _firstName,
-              onChanged: (value) {
-                resume.firstName = value;
-              },
+              onChanged: (value) => controller.resume.value.firstName = value,
               decoration: InputDecoration(
                 labelText: 'personal_info_screen.first_name'.tr,
               ),
@@ -108,9 +103,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             const SizedBox(height: 10,),
             TextFormField(
               controller: _lastName,
-              onChanged: (value) {
-                resume.lastName = value;
-              },
+              onChanged: (value) => controller.resume.value.lastName = value,
               decoration: InputDecoration(
                 labelText: 'personal_info_screen.last_name'.tr,
               ),
@@ -119,9 +112,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             TextFormField(
               keyboardType: TextInputType.phone,
               controller: _telephone,
-              onChanged: (value) {
-                resume.telephone = value;
-              },
+              onChanged: (value) => controller.resume.value.telephone = value,
               decoration: InputDecoration(
                 labelText: 'personal_info_screen.mobile'.tr,
               ),
@@ -130,9 +121,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             TextFormField(
               keyboardType: TextInputType.emailAddress,
               controller: _email,
-              onChanged: (value) {
-                resume.email = value;
-              },
+              onChanged: (value) => controller.resume.value.email = value,
               decoration: InputDecoration(
                 labelText: 'personal_info_screen.email'.tr,
               ),
@@ -141,9 +130,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             const SizedBox(height: 10,),
             TextFormField(
               controller: _location,
-              onChanged: (value) {
-                resume.location = value;
-              },
+              onChanged: (value) => resume.location = value,
               decoration: InputDecoration(
                 labelText: 'personal_info_screen.location'.tr,
               ),
@@ -161,7 +148,7 @@ class _PersonalWidget extends State<PersonalWidget> {
                         return GestureDetector(
                           onTap: () {
                             focusNode.requestFocus();
-                            Get.to(() => AddLanguageWidget());
+                            Get.to(() => const AddLanguageWidget());
                           },
                           child: Container(
                             margin: const EdgeInsets.only(top: 10),
@@ -209,9 +196,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             TextFormField(
               keyboardType: TextInputType.url,
               controller: _linkedIn,
-              onChanged: (value) {
-                resume.linkedIn = value;
-              },
+              onChanged: (value) => controller.resume.value.linkedIn = value,
               decoration: InputDecoration(
                 labelText: 'personal_info_screen.linkedin'.tr,
               ),
@@ -220,9 +205,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             TextFormField(
               keyboardType: TextInputType.url,
               controller: _github,
-              onChanged: (value) {
-                resume.github = value;
-              },
+              onChanged: (value) => controller.resume.value.github = value,
               decoration: InputDecoration(
                 labelText: 'personal_info_screen.github'.tr,
               ),

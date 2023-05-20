@@ -42,7 +42,6 @@ dependencies:
   pdf: ^3.8.1
   printing: ^5.9.1
   intl: ^0.17.0
-  package_info_plus: ^1.4.0
   flutter_dotenv: ^5.0.2
   local_auth: ^2.1.0
   get: ^4.6.5

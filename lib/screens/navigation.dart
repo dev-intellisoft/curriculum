@@ -1,6 +1,7 @@
 import 'package:curriculum/core/classes/resume.dart';
 import 'package:curriculum/core/common.dart';
 import 'package:curriculum/core/providers/resume_provider.dart';
+import 'package:curriculum/core/resume.dart';
 import 'package:curriculum/screens/resume/educations.dart';
 import 'package:curriculum/screens/resume/experiences.dart';
 import 'package:curriculum/screens/resume/personal.dart';
@@ -17,6 +18,8 @@ class NavigationScreen extends StatefulWidget {
 }
 
 class _NavigationScreen extends State<NavigationScreen> {
+  ResumeController controller = Get.find<ResumeController>();
+
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
