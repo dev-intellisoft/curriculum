@@ -46,9 +46,7 @@ class _AddExperienceWidget extends State<AddExperienceWidget> {
             GestureDetector(
               onTap: () {
                 context.read<ResumeProvider>().saveExperience(widget.experience);
-                Navigator.pop(context, MaterialPageRoute(builder: (_) {
-                  return const ExperiencesScreen();
-                }));
+                Get.back(result: const ExperiencesScreen());
               },
               child: Container(
                 margin: const EdgeInsets.only(right: 15),

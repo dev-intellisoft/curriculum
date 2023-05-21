@@ -81,12 +81,10 @@ class _EducationsScreen extends State<EducationsScreen> {
                                 context: context,
                                 builder: (_) => MyAlert(
                                   name: educations[index].institution!,
-                                  onCancel: () {
-                                    Navigator.pop(context);
-                                  },
+                                  onCancel: () => Get.back(),
                                   onConfirm: () {
                                     context.read<ResumeProvider>().removeEducation(educations[index].id!);
-                                    Navigator.pop(context);
+                                    Get.back();
                                   }
                                 )
                               );

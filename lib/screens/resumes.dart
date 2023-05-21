@@ -47,9 +47,7 @@ class _ResumesWidget extends State<ResumesWidget> {
       ),
       actions: [
         TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
+            onPressed: () => Get.back(),
             child: Text('cancel'.tr)
         ),
         TextButton(
@@ -119,10 +117,10 @@ class _ResumesWidget extends State<ResumesWidget> {
                               context: context,
                               builder: (_) => MyAlert(
                                   name: controller.resumes[i].name!,
-                                  onCancel: () => Navigator.pop(context),
+                                  onCancel: () => Get.back(),
                                   onConfirm: () {
                                     context.read<ResumeProvider>().removeResume(controller.resumes[i].id!);
-                                    Navigator.pop(context);
+                                    Get.back();
                                   }
                               )
                           );

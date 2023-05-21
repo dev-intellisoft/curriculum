@@ -17,11 +17,7 @@ class _LanguageScreen extends State<LanguageScreen> {
         title: Text('settings_screen.languages_screen.title'.tr),
         actions: [
           GestureDetector(
-            onTap: () {
-              Navigator.pop(context, MaterialPageRoute(builder: (_) {
-                return const SettingsScreen();
-              }));
-            },
+            onTap: () => Get.back(result: const SettingsScreen()),
             child: Container(
               margin: const EdgeInsets.only(right: 15),
               child: const Icon(Icons.check),
@@ -49,5 +45,4 @@ class _LanguageScreen extends State<LanguageScreen> {
       ),
     );
   }
-
 }

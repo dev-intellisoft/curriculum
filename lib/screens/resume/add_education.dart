@@ -44,9 +44,7 @@ class _AddEducationWidget extends State<AddEducationWidget> {
             GestureDetector(
               onTap: () {
                 context.read<ResumeProvider>().saveEducation(widget.education);
-                Navigator.pop(context, MaterialPageRoute(builder: (_) {
-                  return const EducationsScreen();
-                }));
+                Get.back(result: const EducationsScreen());
               },
               child: Container(
                 margin: const EdgeInsets.only(right: 15),

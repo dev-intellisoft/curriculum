@@ -142,7 +142,7 @@ class _SettingsScreen extends State<SettingsScreen> {
                           onPressed: () async {
                             bool remove = await context.read<ResumeProvider>().removeAccount();
                             if (remove) {
-                              Navigator.pop(_);
+                              Get.back();
                               Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(builder: (context) =>
                                 const MyApp()), (Route<dynamic> route) => false
@@ -153,9 +153,7 @@ class _SettingsScreen extends State<SettingsScreen> {
                           // color: Colors.red,
                         ),
                         TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
+                          onPressed: () => Get.back(),
                           child: Text('no'.tr),
                           // color: Colors.grey.withOpacity(0.5),
                         )

@@ -56,7 +56,7 @@ class _LanguageLevelWidget extends State<LanguageLevelWidget> {
                 setState(() {
                   widget.language.level = 'native';
                 });
-                Navigator.pop(context);
+                Get.back();
               },
               label: 'language_level.native'.tr,
               color: Colors.green,
@@ -67,7 +67,7 @@ class _LanguageLevelWidget extends State<LanguageLevelWidget> {
                 setState(() {
                   widget.language.level = 'fluent';
                 });
-                Navigator.pop(context);
+                Get.back();
               },
               label: 'language_level.fluent'.tr,
               color: Colors.greenAccent,
@@ -78,7 +78,7 @@ class _LanguageLevelWidget extends State<LanguageLevelWidget> {
                 setState(() {
                   widget.language.level = 'advanced';
                 });
-                Navigator.pop(context);
+                Get.back();
               },
               label: 'language_level.advanced'.tr,
               color: Colors.orange,
@@ -89,7 +89,7 @@ class _LanguageLevelWidget extends State<LanguageLevelWidget> {
                 setState(() {
                   widget.language.level = 'intermediate';
                 });
-                Navigator.pop(context);
+                Get.back();
               },
               label: 'language_level.intermediate'.tr,
               color: Colors.yellow,
@@ -100,7 +100,7 @@ class _LanguageLevelWidget extends State<LanguageLevelWidget> {
                 setState(() {
                   widget.language.level = 'basic';
                 });
-                Navigator.pop(context);
+                Get.back();
               },
               label: 'language_level.basic'.tr,
               color: Colors.grey,

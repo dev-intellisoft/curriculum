@@ -86,12 +86,10 @@ class _ExperiencesScreen extends State<ExperiencesScreen> {
                                 context: context,
                                 builder: (_) => MyAlert(
                                   name: experiences[index].company!,
-                                  onCancel: () {
-                                    Navigator.pop(context);
-                                  },
+                                  onCancel: () => Get.back(),
                                   onConfirm: () {
                                     context.read<ResumeProvider>().removeExperience(experiences[index].id!);
-                                    Navigator.pop(context);
+                                    Get.back();
                                   }
                                 )
                               );

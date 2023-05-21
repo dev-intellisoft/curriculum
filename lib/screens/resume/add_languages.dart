@@ -49,9 +49,10 @@ class _AddLanguageWidget extends State<AddLanguageWidget> {
           actions: [
             GestureDetector(
               onTap: () {
-                Navigator.pop(context, MaterialPageRoute(builder: (_) {
-                  return const PersonalWidget();
-                }));
+                Get.back(result: const PersonalWidget());
+                // Navigator.pop(context, MaterialPageRoute(builder: (_) {
+                //   return const PersonalWidget();
+                // }));
               },
               child: Container(
                 margin: const EdgeInsets.only(right: 15),

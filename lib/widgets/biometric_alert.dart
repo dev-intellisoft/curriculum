@@ -43,7 +43,7 @@ class _BiometricAlert extends State<BiometricAlert> {
       actions: [
         TextButton(
           onPressed: () async {
-              Navigator.pop(context);
+              Get.back();
               widget.onConfirm.call();
           },
           child: Text('yes'.tr, style: const TextStyle(
@@ -53,7 +53,7 @@ class _BiometricAlert extends State<BiometricAlert> {
         ),
         TextButton(
           onPressed: () {
-            Navigator.pop(context);
+            Get.back();
             widget.onCancel.call();
           },
           child: Text('no'.tr),
