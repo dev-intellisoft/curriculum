@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 
 class LoginWidget extends StatelessWidget {
 
-  final bool logout;
+  late final bool logout;
   LoginWidget({Key? key, this.logout = false}) : super(key: key);
 
 

@@ -39,14 +39,14 @@ class _PersonalWidget extends State<PersonalWidget> {
   @override
   Widget build(BuildContext context) {
     Resume resume = context.read<ResumeProvider>().getResume();
-    TextEditingController _name = TextEditingController(text: controller.resume.value.name);
-    TextEditingController _firstName = TextEditingController(text: controller.resume.value.firstName);
-    TextEditingController _lastName = TextEditingController(text: controller.resume.value.lastName);
-    TextEditingController _telephone = TextEditingController(text: controller.resume.value.telephone);
-    TextEditingController _email = TextEditingController(text: controller.resume.value.email);
-    TextEditingController _location = TextEditingController(text: controller.resume.value.location);
-    TextEditingController _linkedIn = TextEditingController(text: controller.resume.value.linkedIn);
-    TextEditingController _github = TextEditingController(text: controller.resume.value.github);
+    TextEditingController _name = TextEditingController(text: controller.name.value);
+    TextEditingController _firstName = TextEditingController(text: controller.firstName.value);
+    TextEditingController _lastName = TextEditingController(text: controller.lastName.value);
+    TextEditingController _telephone = TextEditingController(text: controller.telephone.value);
+    TextEditingController _email = TextEditingController(text: controller.email.value);
+    TextEditingController _location = TextEditingController(text: controller.location.value);
+    TextEditingController _linkedIn = TextEditingController(text: controller.linkedIn.value);
+    TextEditingController _github = TextEditingController(text: controller.github.value);
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -55,25 +55,22 @@ class _PersonalWidget extends State<PersonalWidget> {
       appBar: AppBar(
         title: Text('personal_info_screen.title'.tr),
         actions: [
-          Consumer<ResumeProvider>(builder: (context, data, index) {
-            String? _name = data.getResume().name;
-            bool _disableSaveButton = _name == '' || _name == null;
+          Obx(() {
             return GestureDetector(
               onTap: () {
-                if ( _disableSaveButton ) {
+                if ( controller.name.value == '' ) {
                   return;
                 }
-                context.read<ResumeProvider>().saveResume(resume);
+                // context.read<ResumeProvider>().saveResume(resume);
                 showSuccessMessage('personal_info_screen.success'.tr);
               },
               child: Container(
-                margin: const EdgeInsets.only(right: 10),
-                child: Icon(Icons.save_rounded,
-                  color: _disableSaveButton?Colors.grey:Colors.blueAccent,)
+                  margin: const EdgeInsets.only(right: 10),
+                  child: Icon(Icons.save_rounded,
+                    color: controller.name.value == ''?Colors.grey:Colors.blueAccent,)
               ),
             );
           })
-
         ],
       ),
       body: Container(
@@ -85,7 +82,7 @@ class _PersonalWidget extends State<PersonalWidget> {
               onFocusChange: (value) => context.read<ResumeProvider>().saveResume(resume),
               child: TextFormField(
                 controller: _name,
-                onChanged: (value) => controller.resume.value.name = value,
+                onChanged: (value) => controller.name.value = value,
                 decoration: InputDecoration(
                   labelText: 'personal_info_screen.profile_name'.tr,
                   hintText: 'personal_info_screen.profile_name_tip'.tr,
@@ -95,7 +92,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             const SizedBox(height: 10,),
             TextFormField(
               controller: _firstName,
-              onChanged: (value) => controller.resume.value.firstName = value,
+              onChanged: (value) => controller.firstName.value = value,
               decoration: InputDecoration(
                 labelText: 'personal_info_screen.first_name'.tr,
               ),
@@ -103,7 +100,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             const SizedBox(height: 10,),
             TextFormField(
               controller: _lastName,
-              onChanged: (value) => controller.resume.value.lastName = value,
+              onChanged: (value) => controller.lastName.value = value,
               decoration: InputDecoration(
                 labelText: 'personal_info_screen.last_name'.tr,
               ),
@@ -112,7 +109,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             TextFormField(
               keyboardType: TextInputType.phone,
               controller: _telephone,
-              onChanged: (value) => controller.resume.value.telephone = value,
+              onChanged: (value) => controller.telephone.value = value,
               decoration: InputDecoration(
                 labelText: 'personal_info_screen.mobile'.tr,
               ),
@@ -121,7 +118,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             TextFormField(
               keyboardType: TextInputType.emailAddress,
               controller: _email,
-              onChanged: (value) => controller.resume.value.email = value,
+              onChanged: (value) => controller.email.value = value,
               decoration: InputDecoration(
                 labelText: 'personal_info_screen.email'.tr,
               ),
@@ -130,7 +127,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             const SizedBox(height: 10,),
             TextFormField(
               controller: _location,
-              onChanged: (value) => resume.location = value,
+              onChanged: (value) => controller.location.value = value,
               decoration: InputDecoration(
                 labelText: 'personal_info_screen.location'.tr,
               ),
@@ -196,7 +193,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             TextFormField(
               keyboardType: TextInputType.url,
               controller: _linkedIn,
-              onChanged: (value) => controller.resume.value.linkedIn = value,
+              onChanged: (value) => controller.linkedIn.value = value,
               decoration: InputDecoration(
                 labelText: 'personal_info_screen.linkedin'.tr,
               ),
@@ -205,7 +202,7 @@ class _PersonalWidget extends State<PersonalWidget> {
             TextFormField(
               keyboardType: TextInputType.url,
               controller: _github,
-              onChanged: (value) => controller.resume.value.github = value,
+              onChanged: (value) => controller.github.value = value,
               decoration: InputDecoration(
                 labelText: 'personal_info_screen.github'.tr,
               ),

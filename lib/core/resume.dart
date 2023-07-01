@@ -10,13 +10,23 @@ class ResumeController extends GetxController {
   RxList resumes = [].obs;
   Rx<Resume> resume = Resume(experiences: [], educations: [], languages: []).obs;
 
+  RxInt id = 0.obs;
+  RxString name = ''.obs;
+  Rx<String> firstName = ''.obs;
+  Rx<String> lastName = ''.obs;
+  Rx<String> telephone = ''.obs;
+  Rx<String> email = ''.obs;
+  Rx<String> location = ''.obs;
+  Rx<String> linkedIn = ''.obs;
+  Rx<String> github = ''.obs;
+
   Future<void> loadResumes() async {
     resumes.value = await db.getResumes();
   }
 
   gotToResume(int index) async {
       resume.value = resumes[index];
-      Get.to(() => const NavigationScreen());
+      Get.to(() =>  const NavigationScreen());
   }
 
   cloneResume(int resumeId, String cloneName) async {

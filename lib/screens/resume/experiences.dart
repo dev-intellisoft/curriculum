@@ -115,7 +115,7 @@ class _ExperiencesScreen extends State<ExperiencesScreen> {
                         key: const ValueKey(0),
                         title: Text('${experiences[index].company}'),
                         subtitle: Text('${experiences[index].title}'),
-                        trailing: Text(
+                        trailing: const Text(
                           '',
                           //todo fix this DateFormat
                             // '${_years > 0?'years'.tr(namedArgs: { 'years':'$_years' }):''} ${_month > 0?'months'.tr(namedArgs: {'month':'$_month'}):''}'
